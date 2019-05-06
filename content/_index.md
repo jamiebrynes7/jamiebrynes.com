@@ -12,4 +12,16 @@ source = "Improbable"
 desc = "Open-source and currently in alpha. The SpatialOS GDK for Unity allows you to quickly and easily build multiplayer games. These games can use multiple servers across one seamless world to create new kinds of gameplay."
 footer_link = "https://improbable.io/games/spatialos-gdk-unity"
 value = "SpatialOS GDK for Unity"
+
+[[extra.entries]]
+img_link = "imgs/improbable-logo.png"
+heading = "Improbable"
+heading_link = "www.improbable.io"
+role = "Software Engineer"
+timeframe = "Since Fall 2017"
+location = "London, UK"
+desc = [
+    "My team works on building the GDK for Unity, an integration between SpatialOS and the Unity game engine. The GDK focuses on building native APIs for Unity users and having a small performance footprint.",
+    "I am the technical owner for major components of the GDK for Unity, including code generation, docs generation pipeline, and the CI infrastructure."
+]
 +++

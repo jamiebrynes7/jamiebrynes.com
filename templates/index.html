@@ -65,86 +65,41 @@
             <h2 class="subtitle">Hi there 👋</h2>
             <h1 class="title is-1">I'm Jamie</h1>
             <h2 class="subtitle is-2">A Software Engineer</h2>
-            <a class="subtitle" href="#about">
+            <a class="subtitle" href="#what-ive-done">
                 <i class="fas fa-chevron-down"></i>
             </a>
       </div>
     </div>
   </div>
-  <div class="has-background-primary">
+  <div class="has-background-white">
     <section class="section">
-      <div class="container">
-        <div class="avatar"></div>
-        <div class="card card-avatar card-max-width">
-          <div class="card-content has-text-centered" id="about">
-            <h2>
-              Currently <a href="https://improbable.io/">@Improbable</a> in London 🇬🇧
-            </h2>
-            <h2>
-              Follow my work and words below.
-            </h2>
-            <hr />
-
-            <div class="content">
-                <h3 class="is-3 title">Projects</h3>
-                <p>A selection of my current and past projects.</p>
-            </div>
-            <br/>
-
-            {% for project in section.extra.projects %}
-              {% if loop.index % 2 == 1 %}
-                <div class="columns">
-              {% endif %} 
-                <div class="card column project-card">
-                  <div class="card-content">
-                      <h4 class="title is-4">{{ project.title }}</h4>
-                      <p class="subtitle is-6">{{ project.source }}</p>
-                      <p>{{ project.desc }}</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="{{ project.footer_link }}" class="card-footer-item">{{ project.value }}</a>
-                  </div>
-                </div>
-              {% if loop.index % 2 == 0 %}
-                </div>
-              {% endif %}
+      <div class="container has-text-centered">
+        <h1 class="title about-section">Here's what I've done so far</h1>
+        <a name="what-ive-done"></a>
+      </div>
+      <div class="container about-body">
+        {% for entry in section.extra.entries %}
+        <div class="columns about-entry">
+          <div class="column is-one-third">
+            <img class="is-rounded-corners" src="{{ entry.img_link }}"/>
+          </div>
+          <div class="column is-two-thirds">
+            <p class="is-size-4">
+              <a href="{{ entry.heading_link }}">{{ entry.heading }}</a>
+            </p>
+            <p>
+              <strong class="has-text-green">
+                {{ entry.role }}, <em>{{ entry.timeframe }}</em>
+              </strong>
+            </p>
+            <p><strong class="is-size-6">{{ entry.location }}</strong></p>
+            {% for desc in entry.desc %}
+              <br/>
+              <p>{{ desc }}</p>
             {% endfor %}
-            {% if section.extra.projects | length % 2 == 1 %}
-                </div>
-            {% endif %}
-
-            <br/>
-
-            <div class="content">
-                <h3 class="is-3 title">Shameless plug</h3>
-                <p>My most recent blog posts</p>
-            </div>
-
-            <div class="columns">
-                <div class="card column project-card">
-                  <div class="card-content">
-                      <h4 class="title is-4">SpatialOS GDK for Unity</h4>
-                      <p class="subtitle is-6">Improbable</p>
-                      <p>Open-source and currently in alpha. The SpatialOS GDK for Unity allows you to quickly and easily build multiplayer games. These games can use multiple servers across one seamless world to create new kinds of gameplay.</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="https://improbable.io/games/spatialos-gdk-unity" class="card-footer-item">SpatialOS GDK for Unity</a>
-                  </div>
-                </div>
-                <div class="card column project-card">
-                    <div class="card-content">
-                        <h4 class="title is-4">Rust SpatialOS SDK</h4>
-                        <p class="subtitle is-6">Personal open-source project</p>
-                        <p>The Rust SpatialOS SDK is a Rust implementation of a Worker SDK for SpatialOS. It wraps the <a href="https://docs.improbable.io/reference/latest/capi/introduction">C API</a> and provides a native Rust interface. Comes with a default code generator to easily interact with SpatialOS components.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://github.com/jamiebrynes7/spatialos-sdk-rs" class="card-footer-item">jamiebrynes7/spatialos-sdk-rs</a>
-                    </div>
-                </div>
-              </div>
-
           </div>
         </div>
+        {% endfor %}
       </div>
     </section>
   </div>
