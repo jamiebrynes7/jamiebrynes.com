@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+
+  {% if config.generate_rss %}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") | safe }}">
+  {% endif %}
+
+  {% block css %}
+    <link rel="stylesheet" href="{{ get_url(path="site.css", trailing_slash=false) | safe}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  {% endblock css %}
+</head>
+
+<body>
+  <div class="hero is-primary is-fullheight zip-zag-bottom">
+    <div class="hero-head">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="https://www.github.com/jamiebrynes7">
+                <i class="fab fa-github"></i>
+              </a>
+              <a class="navbar-item" href="https://www.twitter.com/jamiebrynes">
+                  <i class="fab fa-twitter"></i>
+              </a>
+              <a class="navbar-item" href="https://instagram.com/jamiebrynes7/">
+                  <i class="fab fa-instagram"></i>
+              </a>
+      
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+      
+            <div id="main-navbar" class="navbar-menu">
+              <div class="navbar-end">
+                <a class="navbar-item">
+                  About
+                </a>
+                <a class="navbar-item">
+                  Open Source
+                </a>
+                <a class="navbar-item">
+                  Blog
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class ="hero-body">
+      <div class="container has-text-centered">
+            <h2 class="subtitle">Hi there 👋</h2>
+            <h1 class="title is-1">I'm Jamie</h1>
+            <h2 class="subtitle is-2">A Software Engineer</h2>
+            <a class="subtitle" href="#about">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+      </div>
+    </div>
+  </div>
+  <div class="has-background-primary">
+    <section class="section">
+      <div class="container">
+        <div class="avatar"></div>
+        <div class="card card-avatar card-max-width">
+          <div class="card-content has-text-centered" id="about">
+            <h2>
+              Currently <a href="https://improbable.io/">@Improbable</a> in London 🇬🇧
+            </h2>
+            <h2>
+              Follow my work and words below.
+            </h2>
+            <hr />
+
+            <div class="content">
+                <h3 class="is-3 title">Projects</h3>
+                <p>A selection of my current and past projects.</p>
+            </div>
+            <br/>
+
+            {% for project in section.extra.projects %}
+              {% if loop.index % 2 == 1 %}
+                <div class="columns">
+              {% endif %} 
+                <div class="card column project-card">
+                  <div class="card-content">
+                      <h4 class="title is-4">{{ project.title }}</h4>
+                      <p class="subtitle is-6">{{ project.source }}</p>
+                      <p>{{ project.desc }}</p>
+                  </div>
+                  <div class="card-footer">
+                    <a href="{{ project.footer_link }}" class="card-footer-item">{{ project.value }}</a>
+                  </div>
+                </div>
+              {% if loop.index % 2 == 0 %}
+                </div>
+              {% endif %}
+            {% endfor %}
+            {% if section.extra.projects | length % 2 == 1 %}
+                </div>
+            {% endif %}
+
+            <br/>
+
+            <div class="content">
+                <h3 class="is-3 title">Shameless plug</h3>
+                <p>My most recent blog posts</p>
+            </div>
+
+            <div class="columns">
+                <div class="card column project-card">
+                  <div class="card-content">
+                      <h4 class="title is-4">SpatialOS GDK for Unity</h4>
+                      <p class="subtitle is-6">Improbable</p>
+                      <p>Open-source and currently in alpha. The SpatialOS GDK for Unity allows you to quickly and easily build multiplayer games. These games can use multiple servers across one seamless world to create new kinds of gameplay.</p>
+                  </div>
+                  <div class="card-footer">
+                    <a href="https://improbable.io/games/spatialos-gdk-unity" class="card-footer-item">SpatialOS GDK for Unity</a>
+                  </div>
+                </div>
+                <div class="card column project-card">
+                    <div class="card-content">
+                        <h4 class="title is-4">Rust SpatialOS SDK</h4>
+                        <p class="subtitle is-6">Personal open-source project</p>
+                        <p>The Rust SpatialOS SDK is a Rust implementation of a Worker SDK for SpatialOS. It wraps the <a href="https://docs.improbable.io/reference/latest/capi/introduction">C API</a> and provides a native Rust interface. Comes with a default code generator to easily interact with SpatialOS components.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/jamiebrynes7/spatialos-sdk-rs" class="card-footer-item">jamiebrynes7/spatialos-sdk-rs</a>
+                    </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer has-background-light has-text-dark">
+    <div class="container has-text-centered">
+      <small>
+        Handcrafted with <i class="fas fa-heart"></i> by myself. Copyright © 2019.
+      </small>
+      <br/>
+      <small>
+        Made with <a href="https://bulma.io/">Bulma</a> and <a href="https://www.getzola.org/">Zola</a>.
+      </small>
+      <br/>
+      <br/>
+      <small>
+        Source available on <a href="">GitHub</a>. {{ __tera_context }}
+      </small>
+    </div>
+  </footer>
+</body>
+
+</html>

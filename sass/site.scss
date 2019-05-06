@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+$primary: #1F2833;
+
+@import "../_bulma/utilities/_all.sass";
+@import "../_bulma/base/_all.sass";
+@import "../_bulma/elements/_all.sass";
+@import "../_bulma/components/_all.sass";
+@import "../_bulma/grid/_all.sass";
+@import "../_bulma/layout/_all.sass";
+
+.card {
+    border-radius: 4px;
+}
+
+.avatar {
+    background-image: url("/avatar.png");
+    width: 192px;
+    height: 192px;
+    position: relative;
+    z-index: 2;
+    background-size: cover;
+    margin: 0px auto -96px;
+    border: 3px solid #fff;
+    border-radius: 100%;
+}
+
+.card-avatar {
+    padding-top: 96px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.card-max-width {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.project-card {
+    margin-left: 5px;
+    margin-right: 10px;
+}
