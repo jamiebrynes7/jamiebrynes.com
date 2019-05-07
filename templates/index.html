@@ -53,7 +53,7 @@
                 <a class="navbar-item">
                   Blog
                 </a>
-                <a class="navbar-item">
+                <a class="navbar-item" href="#contact">
                   Contact
                 </a>
               </div>
@@ -131,6 +131,29 @@
           </div>
         </div>
         {% endfor %}
+      </div>
+    </section>
+    <section class="section">
+      <div class="container has-text-centered">
+        <h1 class="title about-section">Here's how you can find me</h1>
+        <a name="contact"></a>
+      </div>
+      <div class="container about-body">
+        <br/>
+        <nav class="level">
+          {% for contact in section.extra.contacts %}
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="title">
+                <a href="{{ contact.link }}">
+                  <i class="{{ contact.icon }}"></i>
+                </a>
+              </p>
+              <p class="is-size-7">{{ contact.text }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </nav>
       </div>
     </section>
   </div>

@@ -54,4 +54,24 @@ desc = [
     "Designed and developed multiple tools for internal use including: a bitwise structure decoder, a simulation configuration tool, and a simulation comparison tool.",
     "Designed and developed an assembly simulator for a parallel computational slice containing two ALU units and a single memory manipulation unit. Implemented a CLI for access to the simulator and memory dumps."
 ]
+
+[[extra.contacts]]
+icon = "fas fa-envelope"
+link = "mailto:jamiebrynes7@gmail.com"
+text = "jamiebrynes7@gmail.com"
+
+[[extra.contacts]]
+icon = "fab fa-twitter"
+link = "https://www.twitter.com/jamiebrynes"
+text = "@jamiebrynes"
+
+[[extra.contacts]]
+icon = "fab fa-linkedin"
+link = "https://www.linkedin.com/jamiesonbrynes"
+text = "Jamieson Brynes"
+
+[[extra.contacts]]
+icon = "fab fa-github"
+link = "https://www.github.com/jamiebrynes7"
+text = "jamiebrynes7"
 +++
