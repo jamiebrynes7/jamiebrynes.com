@@ -11,77 +11,82 @@
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 
   {% if config.generate_rss %}
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") | safe }}">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") | safe }}">
   {% endif %}
 
   {% block css %}
-    <link rel="stylesheet" href="{{ get_url(path="site.css", trailing_slash=false) | safe}}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ get_url(path="site.css", trailing_slash=false) | safe}}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   {% endblock css %}
 </head>
 
 <body>
   <div class="hero is-primary is-fullheight zip-zag-bottom">
     <div class="hero-head">
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-              <a class="navbar-item" href="https://www.github.com/jamiebrynes7">
-                <i class="fab fa-github"></i>
-              </a>
-              <a class="navbar-item" href="https://www.twitter.com/jamiebrynes">
-                  <i class="fab fa-twitter"></i>
-              </a>
-              <a class="navbar-item" href="https://instagram.com/jamiebrynes7/">
-                  <i class="fab fa-instagram"></i>
-              </a>
-      
-              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </a>
-            </div>
-      
-            <div id="main-navbar" class="navbar-menu">
-              <div class="navbar-end">
-                <a class="navbar-item" href="#about">
-                  About
-                </a>
-                <a class="navbar-item" href="#projects">
-                  Projects
-                </a>
-                <a class="navbar-item">
-                  Blog
-                </a>
-                <a class="navbar-item" href="#contact">
-                  Contact
-                </a>
-              </div>
-            </div>
-          </nav>
-    </div>
-    <div class ="hero-body">
-      <div class="container has-text-centered">
-            <h2 class="subtitle">Hi there 👋</h2>
-            <h1 class="title is-1">I'm Jamie</h1>
-            <h2 class="subtitle is-2">A Software Engineer</h2>
-            <a class="subtitle" href="#about">
-                <i class="fas fa-chevron-down"></i>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://www.github.com/jamiebrynes7">
+            <i class="fab fa-github"></i>
+          </a>
+          <a class="navbar-item" href="https://www.twitter.com/jamiebrynes">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a class="navbar-item" href="https://www.instagram.com/jamiebrynes7/">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a class="navbar-item" href="https://www.linkedin.com/jamiesonbrynes">
+            <i class="fab fa-linkedin"></i>
+          </a>
+
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+            data-target="main-navbar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="main-navbar" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="#about">
+              About
             </a>
+            <a class="navbar-item" href="#projects">
+              Projects
+            </a>
+            <a class="navbar-item">
+              Blog
+            </a>
+            <a class="navbar-item" href="#contact">
+              Contact
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h2 class="subtitle">Hi there 👋</h2>
+        <h1 class="title is-1">I'm Jamie</h1>
+        <h2 class="subtitle is-2">A Software Engineer</h2>
+        <a class="subtitle" href="#about">
+          <i class="fas fa-chevron-down"></i>
+        </a>
       </div>
     </div>
   </div>
   <div class="has-background-white">
     <section class="section">
       <div class="container has-text-centered">
-        <h1 class="title about-section">Here's what I've done so far</h1>
         <a name="about"></a>
+        <h1 class="title about-section">Here's what I've done so far</h1>
       </div>
       <div class="container about-body">
         {% for entry in section.extra.entries %}
         <div class="columns about-entry">
           <div class="column is-one-third">
-            <img class="is-rounded-corners" src="{{ entry.img_link }}"/>
+            <img class="is-rounded-corners" src="{{ entry.img_link }}" />
           </div>
           <div class="column is-two-thirds">
             <p class="is-size-4">
@@ -94,8 +99,8 @@
             </p>
             <p><strong class="is-size-6">{{ entry.location }}</strong></p>
             {% for desc in entry.desc %}
-              <br/>
-              <p>{{ desc }}</p>
+            <br />
+            <p>{{ desc }}</p>
             {% endfor %}
           </div>
         </div>
@@ -104,15 +109,15 @@
     </section>
     <section class="section">
       <div class="container has-text-centered">
-        <h1 class="title about-section">Here's what I do in my free time</h1>
         <a name="projects"></a>
+        <h1 class="title about-section">Here's what I do in my free time</h1>
       </div>
       <div class="container about-body">
         {% for project in section.extra.projects %}
         <div class="columns about-entry">
           <div class="column is-one-third">
             {% if project.img_link %}
-            <img class="is-rounded-corners" src="{{ project.img_link }}"/>
+            <img class="is-rounded-corners" src="{{ project.img_link }}" />
             {% endif %}
           </div>
           <div class="column is-two-thirds">
@@ -125,8 +130,8 @@
               {% endif %}
             </p>
             {% for desc in project.desc %}
-              <br/>
-              <p>{{ desc }}</p>
+            <br />
+            <p>{{ desc }}</p>
             {% endfor %}
           </div>
         </div>
@@ -135,11 +140,11 @@
     </section>
     <section class="section">
       <div class="container has-text-centered">
-        <h1 class="title about-section">Here's how you can find me</h1>
         <a name="contact"></a>
+        <h1 class="title about-section">Here's how you can find me</h1>
       </div>
       <div class="container about-body">
-        <br/>
+        <br />
         <nav class="level">
           {% for contact in section.extra.contacts %}
           <div class="level-item has-text-centered">
@@ -163,12 +168,12 @@
       <small>
         Handcrafted with <i class="fas fa-heart"></i> by myself. Copyright © 2019.
       </small>
-      <br/>
+      <br />
       <small>
         Made with <a href="https://bulma.io/">Bulma</a> and <a href="https://www.getzola.org/">Zola</a>.
       </small>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <small>
         Source available on <a href="https://www.github.com/jamiebrynes7/website">GitHub</a>.
       </small>
