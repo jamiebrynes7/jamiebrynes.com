@@ -18,7 +18,7 @@ desc = [
 github_link = "https://github.com/jamiebrynes7/website"
 
 [[extra.entries]]
-img_link = "imgs/improbable-logo.png"
+img_link = "imgs/improbable.png"
 heading = "Improbable"
 heading_link = "https://www.improbable.io"
 role = "Software Engineer"
@@ -30,7 +30,7 @@ desc = [
 ]
 
 [[extra.entries]]
-img_link = "imgs/ou-logo.png"
+img_link = "imgs/ou.png"
 heading = "University of Oxford"
 heading_link = "https://www.ox.ac.uk"
 role = "MEng in Engineering Science"
@@ -43,7 +43,7 @@ desc = [
 ]
 
 [[extra.entries]]
-img_link = "imgs/hpe.jpg"
+img_link = "imgs/hpe.png"
 heading = "Hewlett Packard Enterprise"
 heading_link = "https://www.hpe.com"
 role = "Networking ASIC R&D Intern"
