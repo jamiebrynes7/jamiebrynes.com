@@ -52,3 +52,27 @@ html {
 .is-rounded-corners {
     border-radius: 10px;
 }
+
+@media (max-width: 1000px) {
+    .about-body {
+        padding: 0px 50px;
+    }
+}
+
+@media (max-width: 800px) {
+    .about-body {
+        padding: 0px 10px;
+    }
+
+    .about-section:after {
+        left: 0em;
+        top: 0.75em;
+        margin: 0px auto 10px;
+        display: block;
+        width: 30%;
+    }
+
+    .about-section:before {
+        height: 0px;
+    }
+}

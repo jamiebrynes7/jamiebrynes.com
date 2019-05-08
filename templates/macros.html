@@ -1,0 +1,64 @@
+{% macro nav(site_url, extra) %}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{{ extra.github }}">
+      <i class="fab fa-github"></i>
+    </a>
+    <a class="navbar-item" href="{{ extra.twitter }}">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a class="navbar-item" href="{{ extra.instagram }}">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a class="navbar-item" href="{{ extra.linkedin }}">
+      <i class="fab fa-linkedin"></i>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="main-navbar">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="main-navbar" class="navbar-menu">
+    <div class="navbar-end">
+      <a class="navbar-item" href="{{ site_url }}">
+        Home
+      </a>
+      <a class="navbar-item" href="{{ site_url }}#about">
+        About
+      </a>
+      <a class="navbar-item" href="{{ site_url }}#projects">
+        Projects
+      </a>
+      <a class="navbar-item" href="{{ site_url }}">
+        Blog
+      </a>
+      <a class="navbar-item" href="{{ site_url }}#contact">
+        Contact
+      </a>
+    </div>
+  </div>
+</nav>
+{% endmacro nav %}
+
+{% macro footer() %}
+<footer class="footer has-background-light has-text-dark">
+    <div class="container has-text-centered">
+      <small>
+        Handcrafted with <i class="fas fa-heart"></i> by myself. Copyright © 2019.
+      </small>
+      <br />
+      <small>
+        Made with <a href="https://bulma.io/">Bulma</a> and <a href="https://www.getzola.org/">Zola</a>.
+      </small>
+      <br />
+      <br />
+      <small>
+        Source available on <a href="https://www.github.com/jamiebrynes7/website">GitHub</a>.
+      </small>
+    </div>
+  </footer>
+{% endmacro footer %}

@@ -1,3 +1,5 @@
+{% import "macros.html" as macros %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,51 +21,16 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   {% endblock css %}
+
+  {% block js %}
+  <script src="js/nav.js"></script>
+  {% endblock js %}
 </head>
 
 <body>
   <div class="hero is-primary is-fullheight zip-zag-bottom">
     <div class="hero-head">
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="https://www.github.com/jamiebrynes7">
-            <i class="fab fa-github"></i>
-          </a>
-          <a class="navbar-item" href="https://www.twitter.com/jamiebrynes">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a class="navbar-item" href="https://www.instagram.com/jamiebrynes7/">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a class="navbar-item" href="https://www.linkedin.com/jamiesonbrynes">
-            <i class="fab fa-linkedin"></i>
-          </a>
-
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-            data-target="main-navbar">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-
-        <div id="main-navbar" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item" href="#about">
-              About
-            </a>
-            <a class="navbar-item" href="#projects">
-              Projects
-            </a>
-            <a class="navbar-item">
-              Blog
-            </a>
-            <a class="navbar-item" href="#contact">
-              Contact
-            </a>
-          </div>
-        </div>
-      </nav>
+      {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
     </div>
     <div class="hero-body">
       <div class="container has-text-centered">
@@ -154,7 +121,6 @@
                   <i class="{{ contact.icon }}"></i>
                 </a>
               </p>
-              <p class="is-size-7">{{ contact.text }}</p>
             </div>
           </div>
           {% endfor %}
@@ -162,23 +128,7 @@
       </div>
     </section>
   </div>
-
-  <footer class="footer has-background-light has-text-dark">
-    <div class="container has-text-centered">
-      <small>
-        Handcrafted with <i class="fas fa-heart"></i> by myself. Copyright © 2019.
-      </small>
-      <br />
-      <small>
-        Made with <a href="https://bulma.io/">Bulma</a> and <a href="https://www.getzola.org/">Zola</a>.
-      </small>
-      <br />
-      <br />
-      <small>
-        Source available on <a href="https://www.github.com/jamiebrynes7/website">GitHub</a>.
-      </small>
-    </div>
-  </footer>
+  {{ macros::footer() }}
 </body>
 
 </html>
