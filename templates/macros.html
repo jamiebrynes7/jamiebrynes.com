@@ -14,8 +14,7 @@
       <i class="fab fa-linkedin"></i>
     </a>
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-      data-target="main-navbar">
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -46,19 +45,42 @@
 
 {% macro footer() %}
 <footer class="footer has-background-light has-text-dark">
-    <div class="container has-text-centered">
-      <small>
-        Handcrafted with <i class="fas fa-heart"></i> by myself. Copyright © 2019.
-      </small>
-      <br />
-      <small>
-        Made with <a href="https://bulma.io/">Bulma</a> and <a href="https://www.getzola.org/">Zola</a>.
-      </small>
-      <br />
-      <br />
-      <small>
-        Source available on <a href="https://www.github.com/jamiebrynes7/website">GitHub</a>.
-      </small>
-    </div>
-  </footer>
+  <div class="container has-text-centered">
+    <small>
+      Handcrafted with <i class="fas fa-heart"></i> by myself. Copyright © 2019.
+    </small>
+    <br />
+    <small>
+      Made with <a href="https://bulma.io/">Bulma</a> and <a href="https://www.getzola.org/">Zola</a>.
+    </small>
+    <br />
+    <br />
+    <small>
+      Source available on <a href="https://www.github.com/jamiebrynes7/website">GitHub</a>.
+    </small>
+  </div>
+</footer>
 {% endmacro footer %}
+
+{% macro toc(h1s) %}
+<aside class="menu sidebar-right">
+  <div class="card toc-card">
+  <p class="menu-label">
+    Table of Contents
+  </p>
+  <ul class="menu-list">
+    {% for h1 in h1s %}
+    <li><a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+    {% if h1.children %}
+    <ul>
+      {% for h2 in h1.children %}
+      <li><a href="{{ h2.permalink | safe }}">{{ h2.title }}</a></li>
+      {% endfor %}
+    </ul>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+  </div>
+</aside>
+{% endmacro %}

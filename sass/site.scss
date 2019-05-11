@@ -106,7 +106,7 @@ html {
     margin: 5px 0px;
 }
 
-.post a {
+.post-content a {
     color: #42a5f5;
     border-bottom: 1px solid #42a5f5;
 }
@@ -156,4 +156,28 @@ html {
 
 .kudos:after {
     left: -1.5em;
+}
+
+.sidebar-right {
+    margin-bottom: 1em;
+}
+
+@media(min-width: 1500px) {
+    .sidebar-right {
+        position: sticky !important; /* added to make toc scroll with page */
+        float: right !important; /* added to make toc scroll with page */
+        top: 0;
+        right: 0;
+        // TODO: Make this align with the things above.
+        width: 250px;
+        margin-right: -250px;
+        padding-left: 1em;
+        padding-top: 1em !important; /* added to make toc scroll with page */
+        z-index: 10;
+    }
+}
+
+.toc-card {
+    padding: 10px;
+    border-radius: 10px;
 }
