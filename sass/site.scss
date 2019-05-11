@@ -76,3 +76,58 @@ html {
         height: 0px;
     }
 }
+
+.post {
+    padding: 0px 250px;
+    margin: 75px 0px;
+}
+
+.post h1 {
+    padding-top: 10px;
+}
+
+.post p {
+    margin-bottom: 1em;
+}
+
+.post-content h1 {
+    @extend .title;
+    @extend .is-3;
+}
+
+.post-content ul {
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-bottom: 1em;
+}
+
+.post-content pre {
+    margin: 5px 0px;
+}
+
+.post a {
+    color: #42a5f5!important;
+    border-bottom: 1px solid #42a5f5;
+}
+
+@media (max-width: 1500px) {
+    .post {
+        padding: 0px 100px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .post {
+        padding: 0px 50px;
+    }
+}
+
+@media (max-width: 800px) {
+    .post {
+        padding: 0px 10px;
+    }
+}
+
+.is-serif {
+    font-family: 'Merriweather', serif;
+}

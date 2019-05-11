@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block content %}
+
+<div class="hero is-primary">
+  <div class="hero-head">
+    {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
+  </div>
+</div>
+
+<div class="container">
+  <article class="post">
+    {% block post %}
+
+    <h1 class="title is-serif">{{ page.title }}</h1>
+    {% if page.subtitle %}
+    <h2 class="subtitle">{{ page.subtitle }}</h2>
+    {% endif %}
+
+    <div class="post-content">
+      {{ page.content | safe }}
+    </div>
+
+    {% endblock post %}
+  </article>
+</div>
+
+{% endblock content %}
