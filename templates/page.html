@@ -5,6 +5,7 @@
 <script src="/js/kudosplease-min.js"></script>
 <script src="/js/kudosplease-bootstrap.js"></script>
 <script src="/js/social.js"></script>
+<script src="/js/nav.js"></script>
 {% endblock js %}
 
 {% block content %}
@@ -21,9 +22,11 @@
 
     <span class="has-text-grey-dark is-size-7">{{ page.date | date(format="%d %b %Y") }} | {{page.reading_time }} min
       read</span>
-    <h1 class="title is-serif">{{ page.title }}</h1>
+    <h1 class="title is-serif post-title">{{ page.title }}</h1>
     
+    {% if page.extra.toc %}
     {{ macros::toc(h1s=toc) }}
+    {% endif %}
 
     <div class="post-content">
       {{ page.content | safe }}

@@ -83,11 +83,11 @@ html {
     margin: 75px 0px;
 }
 
-.post h1 {
+.post-content h1 {
     padding-top: 10px;
 }
 
-.post p {
+.post-content p {
     margin-bottom: 1em;
 }
 
@@ -109,6 +109,10 @@ html {
 .post-content a {
     color: #42a5f5;
     border-bottom: 1px solid #42a5f5;
+}
+
+.post-title {
+    margin-top: 10px;
 }
 
 @media (max-width: 1500px) {
@@ -180,4 +184,9 @@ html {
 .toc-card {
     padding: 10px;
     border-radius: 10px;
+}
+
+.post-summary {
+    padding: 20px 0px;
+    border-bottom: 1px dotted $grey-dark ;
 }

@@ -3,6 +3,9 @@ title = "Projects | December 2018"
 
 [taxonomies]
 tags = ["project-updates", "rustlang", "spatialos"]
+
+[extra]
+toc = true
 +++
 
 _This is the first in a series of posts, to be published monthly, detailing the state of my current side projects._
@@ -10,6 +13,7 @@ _This is the first in a series of posts, to be published monthly, detailing the 
 # [SpatialOS SDK for Rust](https://www.github.com/jamiebrynes7/spatialos-sdk-rs) 
 
 I'm making good progress on the Rust bindings for the SpatialOS SDK. Notably I've:
+
 
 - Added the locator connection flow, this allows you to connect to cloud deployments as a client.
 - Upgraded to Rust 2018 edition and Rust 1.31
