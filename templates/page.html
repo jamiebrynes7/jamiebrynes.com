@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% import "macros.html" as macros %}
 
+{% block js %}
+<script src="/js/kudosplease-min.js"></script>
+<script src="/js/kudosplease-bootstrap.js"></script>
+<script src="/js/social.js"></script>
+{% endblock js %}
+
 {% block content %}
 
 <div class="hero is-primary">
@@ -13,17 +19,52 @@
   <article class="post">
     {% block post %}
 
+    <span class="has-text-grey-dark is-size-7">{{ page.date | date(format="%d %b %Y") }} | {{page.reading_time }} min
+      read</span>
     <h1 class="title is-serif">{{ page.title }}</h1>
-    {% if page.subtitle %}
-    <h2 class="subtitle">{{ page.subtitle }}</h2>
-    {% endif %}
+
 
     <div class="post-content">
       {{ page.content | safe }}
     </div>
 
-    {% endblock post %}
-  </article>
+    <div class="post-divider"></div>
+
+    {% if page.taxonomies.tags %}
+    <div class="tags">
+      {% for tag in page.taxonomies.tags %}
+      <span class="tag is-light"><a class="no-underline" href="/tags/{{ tag }}">{{ tag }}</a></span>
+      {% endfor %}
+    </div>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <div class="kudos" data-amount="0" data-url="{{ page.permalink }}"></div>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <a class="no-underline" href="javascript:tweetCurrentPage('{{ page.title }}')">
+            <i class="is-size-4 fab fa-twitter"></i>
+          </a>
+        </div>
+        <div class="level-item">
+          <a class="no-underline" href="javascript:shareOnFacebook()">
+            <i class="is-size-4 fab fa-facebook"></i>
+          </a>
+        </div>
+        <div class="level-item">
+          <a class="no-underline" href="javascript:shareViaEmail('{{ page.title }}')">
+            <i class="is-size-4 fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+</div>
+</nav>
+{% endif %}
+
+{% endblock post %}
+</article>
 </div>
 
 {% endblock content %}

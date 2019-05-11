@@ -2,12 +2,13 @@
 
 $primary: #01579B;
 
-@import "../_bulma/utilities/_all.sass";
-@import "../_bulma/base/_all.sass";
-@import "../_bulma/elements/_all.sass";
-@import "../_bulma/components/_all.sass";
-@import "../_bulma/grid/_all.sass";
-@import "../_bulma/layout/_all.sass";
+@import "../_css/utilities/_all.sass";
+@import "../_css/base/_all.sass";
+@import "../_css/elements/_all.sass";
+@import "../_css/components/_all.sass";
+@import "../_css/grid/_all.sass";
+@import "../_css/layout/_all.sass";
+@import "../_css//kudosplease.scss";
 
 html {
     scroll-behavior: smooth;
@@ -106,7 +107,7 @@ html {
 }
 
 .post a {
-    color: #42a5f5!important;
+    color: #42a5f5;
     border-bottom: 1px solid #42a5f5;
 }
 
@@ -124,10 +125,35 @@ html {
 
 @media (max-width: 800px) {
     .post {
-        padding: 0px 10px;
+        padding: 0px 20px;
     }
 }
 
 .is-serif {
     font-family: 'Merriweather', serif;
+}
+
+.no-underline {
+    color: hsl(0, 0%, 14%)!important;
+    border-bottom: none!important;
+}
+
+.post-divider {
+    @extend .has-background-grey-dark;
+    width: 33%;
+    content: "";
+    height: 1px;
+    margin: 50px auto;
+}
+
+.kudos {
+    margin: 0;
+    width: 3em;
+    height: 3em;
+    line-height: 3em;
+    box-shadow: inset 0 0 0 0.25em #000, inset 0 0 0 1.25em #fff, inset 0 0 0 3em #000;
+}
+
+.kudos:after {
+    left: -1.5em;
 }

@@ -5,6 +5,10 @@ build_search_index = true
 
 title = "Jamie Brynes - software engineer"
 
+taxonomies = [
+    {name = "tags", paginate_by = 5}
+]
+
 [extra]
 # Put all your custom variables here
 github = "https://www.github.com/jamiebrynes7"

@@ -1,10 +1,13 @@
 +++
 title = "Projects | December 2018"
+
+[taxonomies]
+tags = ["project-updates", "rustlang", "spatialos"]
 +++
 
 _This is the first in a series of posts, to be published monthly, detailing the state of my current side projects._
 
-# SpatialOS SDK for Rust
+# [SpatialOS SDK for Rust](https://www.github.com/jamiebrynes7/spatialos-sdk-rs) 
 
 I'm making good progress on the Rust bindings for the SpatialOS SDK. Notably I've:
 
@@ -40,7 +43,7 @@ histogram_metric.add_sample(0.5);
 
 In parallel, [a colleague and friend of mine](http://dga.me.uk/) has been working on the generated code MVP so that you can use schema types in Rust in a native way. I'm still pondering on how to structure a SpatialOS & Rust project - do you have a local crate just for generated code? Does the code generation happen at build time? Some questions to answer when testing the workflow.
 
-# Git Tools
+# [Git Tools](https://www.github.com/jamiebrynes7/git-tools)
 
 This last month I've started to revisit this project with fresh eyes as I've gained more Rustlang experience. I upgraded the project to Rust 2018 edition (super easy thanks to `cargo fix`!) and started to port the tools across to use the [`git2-rs`](https://github.com/alexcrichton/git2-rs) crate instead of invoking commands directly.
 
