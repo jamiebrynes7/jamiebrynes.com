@@ -3,9 +3,6 @@ title = "Projects | December 2018"
 
 [taxonomies]
 tags = ["project-updates", "rustlang", "spatialos"]
-
-[extra]
-toc = true
 +++
 
 _This is the first in a series of posts, to be published monthly, detailing the state of my current side projects._

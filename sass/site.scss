@@ -96,6 +96,15 @@ html {
     @extend .is-3;
 }
 
+.post-content h2 {
+    @extend .title;
+    @extend .is-4;
+}
+
+.post-content code {
+    color: #8e0000;
+}
+
 .post-content ul {
     list-style-type: circle;
     list-style-position: inside;
