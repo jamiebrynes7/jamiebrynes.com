@@ -17,13 +17,14 @@
 </div>
 
 <div class="container">
-  <article class="post">
+  <article class="post is-serif">
     {% block post %}
 
-    <span class="has-text-grey-dark is-size-7">{{ page.date | date(format="%d %b %Y") }} | {{page.reading_time }} min
+
+    <h1 class="title post-title">{{ page.title }}</h1>
+    <span class="has-text-grey-dark is-size-7">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min
       read</span>
-    <h1 class="title is-serif post-title">{{ page.title }}</h1>
-    
+
     {% if page.extra.toc %}
     {{ macros::toc(h1s=toc) }}
     {% endif %}

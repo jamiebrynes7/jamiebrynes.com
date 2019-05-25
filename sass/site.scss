@@ -79,16 +79,28 @@ html {
 }
 
 .post {
-    padding: 0px 250px;
-    margin: 75px 0px;
+    padding: 0px 20px;
+    max-width: 740px;
+    margin: 75px auto;
+    color: rgba(0, 0, 0, 0.84);
+}
+
+.post-content {
+    font-size: 18px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
 }
 
 .post-content h1 {
-    padding-top: 10px;
+    padding-top: 38px;
+}
+
+.post-content h2 {
+    padding-top: 38px;
 }
 
 .post-content p {
-    margin-bottom: 1em;
+    margin-top: 38px;
 }
 
 .post-content h1 {
@@ -102,13 +114,19 @@ html {
 }
 
 .post-content code {
-    color: #8e0000;
+    background: rgba(0,0,0,.05);
+    padding: 3px 4px;
+    margin: 0 2px;
+    color: rgba(0, 0, 0, 0.84);
 }
 
 .post-content ul {
     list-style-type: circle;
-    list-style-position: inside;
-    margin-bottom: 1em;
+    margin-top: 38px;
+}
+
+.post-content li {
+    margin-top: 1em;
 }
 
 .post-content pre {
@@ -116,34 +134,17 @@ html {
 }
 
 .post-content a {
-    color: #42a5f5;
-    border-bottom: 1px solid #42a5f5;
+    color: rgba(0, 0, 0, 0.84);
+    border-bottom: rgba(0, 0, 0, 0.84) solid 1px;
 }
 
 .post-title {
     margin-top: 10px;
-}
-
-@media (max-width: 1500px) {
-    .post {
-        padding: 0px 100px;
-    }
-}
-
-@media (max-width: 1000px) {
-    .post {
-        padding: 0px 50px;
-    }
-}
-
-@media (max-width: 800px) {
-    .post {
-        padding: 0px 20px;
-    }
+    font-size: 42px;
 }
 
 .is-serif {
-    font-family: 'Merriweather', serif;
+    font-family: 'Lora', serif;
 }
 
 .no-underline {

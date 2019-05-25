@@ -5,7 +5,7 @@ title = "Projects | February & March 2019"
 tags = ["project-updates", "rustlang", "spatialos"]
 +++
 
-_This is a series of blog posts, to be published monthly, detailing the state of my current side projects._
+<sub>_This is a series of blog posts, to be published monthly, detailing the state of my current side projects._</sub>
 
 Well – I missed the last month's update, and to be honest, there wasn't a whole lot in it, so I've decided to combine the two months into one!
 
