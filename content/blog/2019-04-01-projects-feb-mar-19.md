@@ -1,13 +1,13 @@
 +++
 title = "Projects | February & March 2019"
+description = "Updates on the SpatialOS SDK for Rust and discussion of the work required to reach an initial release."
 
 [taxonomies]
 tags = ["project-updates", "rustlang", "spatialos"]
 +++
 
-<sub>_This is a series of blog posts, to be published monthly, detailing the state of my current side projects._</sub>
-
 Well – I missed the last month's update, and to be honest, there wasn't a whole lot in it, so I've decided to combine the two months into one!
+
 
 # [SpatialOS SDK for Rust](https://www.github.com/jamiebrynes7/spatialos-sdk-rs) 
 

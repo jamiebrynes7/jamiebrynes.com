@@ -10,7 +10,7 @@
 
 {% block content %}
 
-<div class="hero is-primary">
+<div class="hero">
   <div class="hero-head">
     {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
   </div>
@@ -20,53 +20,50 @@
   <article class="post is-serif">
     {% block post %}
 
-
-    <h1 class="title post-title">{{ page.title }}</h1>
-    <span class="has-text-grey-dark is-size-7">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min
-      read</span>
+    <div class="post-heading columns">
+      <div clas="column is-half">
+        <h1 class="title is-size-1 is-size-3-touch">{{ page.title }}</h1>
+        <span class="has-text-grey-dark is-size-7">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min
+          read</span>
+      </div>
+      <div class="column is-half"></div>
+    </div>
 
     {% if page.extra.toc %}
     {{ macros::toc(h1s=toc) }}
     {% endif %}
 
-    <div class="post-content">
-      {{ page.content | safe }}
+    <div class="columns">
+      <div class="column is-one-fifth">
+        <div class="sticky has-text-centered">
+            <p style="margin-bottom: 15px">Share this</p>
+            <a class="no-underline share-icon" href="javascript:tweetCurrentPage('{{ page.title }}')">
+                <i class="is-size-4 fab fa-twitter"></i>
+            </a>
+            <a class="no-underline share-icon" href="javascript:shareOnFacebook()">
+                <i class="is-size-4 fab fa-facebook"></i>
+            </a>
+            <a class="no-underline share-icon" href="javascript:shareViaEmail('{{ page.title }}')">
+                <i class="is-size-4 fas fa-envelope"></i>
+            </a>
+            <div class="post-divider"></div>
+            <div class="kudos" data-amount="0" data-url="{{ page.permalink }}"></div>
+        </div>
+      </div>
+      <div class="post-content column">
+          {{ page.content | safe }}
+      </div>
     </div>
 
     <div class="post-divider"></div>
 
     {% if page.taxonomies.tags %}
-    <div class="tags">
+    <div class="tags has-text-centered" style="display: block!important">
       {% for tag in page.taxonomies.tags %}
       <span class="tag is-light"><a class="no-underline" href="/tags/{{ tag }}">{{ tag }}</a></span>
       {% endfor %}
     </div>
     {% endif %}
-    <nav class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <div class="kudos" data-amount="0" data-url="{{ page.permalink }}"></div>
-        </div>
-      </div>
-      <div class="level-right">
-        <div class="level-item">
-          <a class="no-underline" href="javascript:tweetCurrentPage('{{ page.title }}')">
-            <i class="is-size-4 fab fa-twitter"></i>
-          </a>
-        </div>
-        <div class="level-item">
-          <a class="no-underline" href="javascript:shareOnFacebook()">
-            <i class="is-size-4 fab fa-facebook"></i>
-          </a>
-        </div>
-        <div class="level-item">
-          <a class="no-underline" href="javascript:shareViaEmail('{{ page.title }}')">
-            <i class="is-size-4 fas fa-envelope"></i>
-          </a>
-        </div>
-      </div>
-</div>
-</nav>
 
 {% endblock post %}
 </article>

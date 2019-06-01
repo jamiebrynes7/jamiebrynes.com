@@ -79,27 +79,5 @@
         {% endfor %}
       </div>
     </section>
-    <section class="section">
-      <div class="container has-text-centered">
-        <a name="contact"></a>
-        <h1 class="title about-section">Here's how you can find me</h1>
-      </div>
-      <div class="container about-body">
-        <br />
-        <nav class="level">
-          {% for contact in section.extra.contacts %}
-          <div class="level-item has-text-centered">
-            <div>
-              <p class="title">
-                <a href="{{ contact.link }}">
-                  <i class="{{ contact.icon }}"></i>
-                </a>
-              </p>
-            </div>
-          </div>
-          {% endfor %}
-        </nav>
-      </div>
-    </section>
   </div>
 {% endblock content %}

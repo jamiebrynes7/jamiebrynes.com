@@ -76,17 +76,30 @@ html {
     .about-section:before {
         height: 0px;
     }
+
+    .share-icon {
+        display: inline-block!important;
+        margin: 0px 10px 0px 10px!important;
+    }
+
+    .post-content::first-letter {
+        font-size: 3em!important;
+    }
 }
 
 .post {
     padding: 0px 20px;
-    max-width: 740px;
+    max-width: 1140px;
     margin: 75px auto;
     color: rgba(0, 0, 0, 0.84);
 }
 
+.post-heading {
+    margin: 10px 0px 40px 0px!important;
+}
+
 .post-content {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.58;
     letter-spacing: -.003em;
 }
@@ -100,7 +113,11 @@ html {
 }
 
 .post-content p {
-    margin-top: 38px;
+    margin-bottom: 38px;
+}
+
+.post-content a {
+    color: #03a87c;
 }
 
 .post-content h1 {
@@ -122,11 +139,11 @@ html {
 
 .post-content ul {
     list-style-type: circle;
-    margin-top: 38px;
+    margin-bottom: 38px;
 }
 
 .post-content li {
-    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .post-content pre {
@@ -134,13 +151,7 @@ html {
 }
 
 .post-content a {
-    color: rgba(0, 0, 0, 0.84);
-    border-bottom: rgba(0, 0, 0, 0.84) solid 1px;
-}
-
-.post-title {
-    margin-top: 10px;
-    font-size: 42px;
+    color: #03a87c;
 }
 
 .is-serif {
@@ -198,5 +209,37 @@ html {
 
 .post-summary {
     padding: 20px 0px;
-    border-bottom: 1px dotted $grey-dark ;
+    margin-bottom: 25px;
+}
+
+.navbar-end .navbar-item {
+    margin: 0px 10px;
+}
+
+.sticky {
+    position: sticky;
+    top: 70px;
+    margin-bottom: 50px;
+}
+
+.kudos {
+    margin: 15px auto 0 auto;
+}
+
+.share-icon {
+    float: none!important;
+    display: block;
+    margin: 10px 0 10px 0;
+}
+
+.post-content::first-letter {
+    float: left;
+    font-size: 5em;
+    line-height: 1;
+    margin: 0 0.2em 0 0;
+    vertical-align: top;
+}
+
+.excerpt {
+    margin: 15px 0px 25px 0;
 }

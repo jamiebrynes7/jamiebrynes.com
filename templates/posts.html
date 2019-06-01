@@ -2,7 +2,7 @@
 {% import "macros.html" as macros %}
 
 {% block content %}
-<div class="hero is-primary">
+<div class="hero">
     <div class="hero-head">
       {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
     </div>
@@ -13,17 +13,17 @@
     <article class="post">
         {% for page in paginator.pages %}
           <div class="post-summary columns">
-            <div class="column is-one-fifth">
-              <p>{{ page.date | date(format="%d %b %Y") }}</p>
-            </div>
-            <div class="column is-three-fifth">
-              <a href="{{ page.permalink }}"><h1 class="is-serif title">{{ page.title }}</h1></a>
+            <div class="column is-three-quarters">
+              <a href="{{ page.permalink }}"><h2 class="title is-size-4">{{ page.title }}</h2></a>
+              <p class="excerpt has-text-grey">{{ page.description }}</p>
               {% if page.taxonomies.tags %}
-              <p>Posted in: {% for tag in page.taxonomies.tags %}<span class="tag is-light"><a class="no-underline" href="/tags/{{ tag }}">{{ tag }}</a></span>{% endfor %}</p>
+              <p class="is-size-7 has-text-grey">In{% for tag in page.taxonomies.tags %}
+                <a class="no-underline" href="/tags/{{ tag }}"> {{ tag }}{% if loop.index != page.taxonomies.tags | length %},{% endif %}
+                </a>{% endfor %}
+              </p>
               {% endif %}
             </div>
-            <div class="column is-one-fifth">
-              <a href="{{ page.permalink }}"><h1 class="title"><i class="fas fa-arrow-right"></i></h1></a>
+            <div class="column is-one-quarter">
             </div>
           </div>
         {% endfor %}
