@@ -34,25 +34,25 @@
     {% endif %}
 
     <div class="columns">
-      <div class="column is-one-fifth">
-        <div class="sticky has-text-centered">
-            <p style="margin-bottom: 15px">Share this</p>
-            <a class="no-underline share-icon" href="javascript:tweetCurrentPage('{{ page.title }}')">
-                <i class="is-size-4 fab fa-twitter"></i>
-            </a>
-            <a class="no-underline share-icon" href="javascript:shareOnFacebook()">
-                <i class="is-size-4 fab fa-facebook"></i>
-            </a>
-            <a class="no-underline share-icon" href="javascript:shareViaEmail('{{ page.title }}')">
-                <i class="is-size-4 fas fa-envelope"></i>
-            </a>
-            <div class="post-divider"></div>
-            <div class="kudos" data-amount="0" data-url="{{ page.permalink }}"></div>
-        </div>
-      </div>
       <div class="post-content column">
           {{ page.content | safe }}
       </div>
+      <div class="column is-one-fifth">
+          <div class="sticky has-text-centered">
+              <p style="margin-bottom: 15px">Share this</p>
+              <a class="no-underline share-icon" href="javascript:tweetCurrentPage('{{ page.title }}')">
+                  <i class="is-size-4 fab fa-twitter"></i>
+              </a>
+              <a class="no-underline share-icon" href="javascript:shareOnFacebook()">
+                  <i class="is-size-4 fab fa-facebook"></i>
+              </a>
+              <a class="no-underline share-icon" href="javascript:shareViaEmail('{{ page.title }}')">
+                  <i class="is-size-4 fas fa-envelope"></i>
+              </a>
+              <div class="post-divider"></div>
+              <div class="kudos" data-amount="0" data-url="{{ page.permalink }}"></div>
+          </div>
+        </div>
     </div>
 
     <div class="post-divider"></div>
