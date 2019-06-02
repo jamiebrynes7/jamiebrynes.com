@@ -1,21 +1,21 @@
 +++
 [[extra.projects]]
 title = "Rust SpatialOS SDK"
+role = "Personal Project"
 img_link = "imgs/rust-sdk.PNG"
 title_link = "https://github.com/jamiebrynes7/spatialos-sdk-rs"
 desc = [
     "The Rust SpatialOS SDK is a hobby project Rust implementation of a Worker SDK for SpatialOS.",
     "It wraps the C SDK in a native and safe Rust interface and provides a default code generation implementation. It also provides a cargo plugin to allow developers to both get started quickly and use the workflows that they know and love."
 ]
-github_link = "https://github.com/jamiebrynes7/spatialos-sdk-rs"
 
 [[extra.projects]]
 title = "This Website"
+role = "Personal Project"
 title_link = "https://github.com/jamiebrynes7/website"
 desc = [
     "This website is fully open source and is handcrafted using Zola and the Bulma CSS framework."
 ]
-github_link = "https://github.com/jamiebrynes7/website"
 
 [[extra.entries]]
 img_link = "imgs/improbable.png"

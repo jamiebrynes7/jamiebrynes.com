@@ -105,22 +105,6 @@ html {
 }
 
 .post-content h1 {
-    padding-top: 38px;
-}
-
-.post-content h2 {
-    padding-top: 38px;
-}
-
-.post-content p {
-    margin-bottom: 38px;
-}
-
-.post-content a {
-    color: #03a87c;
-}
-
-.post-content h1 {
     @extend .title;
     @extend .is-3;
 }
@@ -128,6 +112,15 @@ html {
 .post-content h2 {
     @extend .title;
     @extend .is-4;
+}
+
+.post-content h3 {
+    @extend .title;
+    @extend .is-5;
+}
+
+.post-content p {
+    margin-bottom: 1.5em;
 }
 
 .post-content code {
@@ -140,19 +133,37 @@ html {
 .post-content ul {
     list-style-type: circle;
     list-style-position: inside;
-    margin-bottom: 38px;
+    margin-bottom: 1.5em;
 }
 
-.post-content li {
-    margin-bottom: 1em;
+.post-content ol {
+    list-style-position: inside;
+    margin-bottom: 1.5em;
+}
+
+.post-content blockquote {
+    margin-bottom: 1.5em;
+    padding: 0 1.5em;
+    border-left: 3px solid #03a87c;
 }
 
 .post-content pre {
-    margin: 5px 0px;
+    margin-bottom: 1.5em;
 }
 
 .post-content a {
     color: #03a87c;
+
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    /* ...and now for the proper property */
+    transition:.5s;
+}
+
+.post-content a:hover {
+    color: rgba(0, 0, 0, 0.84);
 }
 
 .is-serif {

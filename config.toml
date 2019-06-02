@@ -1,6 +1,7 @@
 base_url = "https://jamiebrynes.com"
 compile_sass = true
 highlight_code = true
+highlight_theme = "ayu-dark"
 build_search_index = true
 
 title = "Jamie Brynes - software engineer"

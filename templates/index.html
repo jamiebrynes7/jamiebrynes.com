@@ -64,11 +64,11 @@
           <div class="column is-two-thirds">
             <p class="is-size-4">
               <a href="{{ project.title_link }}">{{ project.title }}</a>
-              {% if project.github_link %}
-              <span style="float:right">
-                <a href="{{ project.github_link }}"><i class="fab fa-github"></i></a>
-              </span>
-              {% endif %}
+            </p>
+            <p>
+              <strong class="has-text-green">
+                {{ project.role }}
+              </strong>
             </p>
             {% for desc in project.desc %}
             <br />
