@@ -11,6 +11,8 @@
 <section>
   <div class="container">
     <article class="post">
+        {% block postsheading %}
+        {% endblock postsheading %}
         {% for page in paginator.pages %}
           <div class="post-summary columns">
             <div class="column is-three-quarters">
