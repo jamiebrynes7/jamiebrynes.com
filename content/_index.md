@@ -12,6 +12,7 @@ desc = [
 [[extra.projects]]
 title = "This Website"
 role = "Personal Project"
+img_link = "imgs/website.png"
 title_link = "https://github.com/jamiebrynes7/website"
 desc = [
     "This website is fully open source and is handcrafted using Zola and the Bulma CSS framework."
