@@ -19,7 +19,7 @@ I'm making good progress on the Rust bindings for the SpatialOS SDK. Notably I'v
 
 Looking forward to the following month my focus is around: 
 
-- A more user-friendly API for various objects - the start of which can be found [here](https://github.com/jamiebrynes7/spatialos-sdk-rs/pull/37). For example, using metrics:
+- A more user-friendly API, (the start of which [is under progress](https://github.com/jamiebrynes7/spatialos-sdk-rs/pull/37)). For example, using metrics:
 
 ```rust
 let mut m = Metrics::new()
@@ -38,9 +38,9 @@ histogram_metric.add_sample(0.5);
 ```
 
 - Writing more unit tests and integration tests to guarantee behaviour correctness.
-- Catching up with the SpatialOS SDK release cycle (currently at `13.5.0`!)
+- Catching up with the SpatialOS SDK release cycle (at the time of writing, pinned to `13.5.0`!)
 
-In parallel, [a colleague and friend of mine](http://dga.me.uk/) has been working on the generated code MVP so that you can use schema types in Rust in a native way. I'm still pondering on how to structure a SpatialOS & Rust project - do you have a local crate just for generated code? Does the code generation happen at build time? Some questions to answer when testing the workflow.
+In parallel, [a colleague and friend of mine](http://dga.me.uk/) has been working on the generated code MVP so that you can use schema types in Rust in a native way. I'm still pondering on how to structure a SpatialOS & Rust project - do you have a local crate for generated code? Does the code generation happen at build time? Some questions to answer when testing the workflow.
 
 # [Git Tools](https://www.github.com/jamiebrynes7/git-tools)
 
