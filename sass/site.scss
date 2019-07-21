@@ -144,8 +144,16 @@ body {
     margin-bottom: 20px;
 }
 
-.post-content li {
-    
+.post-content figcaption {
+    float: right;
+    font-style: italic;
+    font-size: 16px;
+    padding-right: 10px;
+}
+
+.post-content figure {
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 .post-content blockquote {
@@ -156,6 +164,7 @@ body {
 
 .post-content pre {
     margin-bottom: 1.5em;
+    line-height: 1.5em;
 }
 
 .post-content a {
