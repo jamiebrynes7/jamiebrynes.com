@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ "${CONTEXT}" == "production" ]];
+if [[ "${CONTEXT}" == "production" ]]; then
     DEPLOY_URL="https://www.jamiebrynes.com"
 fi
 
