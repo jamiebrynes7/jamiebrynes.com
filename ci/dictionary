@@ -19,4 +19,6 @@ EntityIds?
 enums?
 shortcodes?
 src
-[0-9]*.?[0-9]*?[KMG][bB]
+[0-9]*.?[0-9]*?[KMG]?[bB]
+Javascript
+Bulma
