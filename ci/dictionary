@@ -1,5 +1,5 @@
 SpatialOS
-APIs
+APIs?
 SDK
 CLI
 OpList
@@ -12,3 +12,13 @@ MacOS
 struct
 Rustlang
 Runtime
+GDK
+Q2
+Tera
+EntityIds?
+enums?
+shortcodes?
+src
+[0-9]*.?[0-9]*?[KMG]?[bB]
+Javascript
+Bulma
