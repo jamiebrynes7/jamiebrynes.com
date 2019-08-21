@@ -17,6 +17,6 @@ cd "${GITHUB_WORKSPACE}/kudos"
 echo "----> Building Rust binary"
 cargo build --release --target x86_64-unknown-linux-musl
 
-echo "----> Build is complete."
+echo "----> Build is complete. Publishing to ${GITHUB_WORKSPACE}/.release"
 mkdir -p "${GITHUB_WORKSPACE}/.release"
 cp ./target/x86_64-unknown-linux-musl/release/bootstrap "${GITHUB_WORKSPACE}/.release/"
