@@ -48,9 +48,9 @@ RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
 
 RUN mkdir -p $HOME/libs $HOME/src
 
-RUN mkdir -p /rust
-ENV RUSTUP_HOME=/rust
-ENV CARGO_HOME=/rust
+RUN mkdir -p /rust/.cargo /rust/.rustup
+ENV RUSTUP_HOME=/rust/.cargo
+ENV CARGO_HOME=/rust/.rustup
 
 # Set up our path with all our binary directories, including those for the
 # musl-gcc toolchain and for our Rust toolchain.
