@@ -11,4 +11,4 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: kudos-please-binary
-          path: ${GITHUB_WORKSPACE}/release
+          path: /github/workspace/release
