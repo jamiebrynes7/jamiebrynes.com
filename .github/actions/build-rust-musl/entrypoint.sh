@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -e -x
 
 if [[ -z "${GITHUB_WORKSPACE}" ]]; then
   echo "Set the GITHUB_WORKSPACE env variable."
@@ -17,6 +17,8 @@ cd "${GITHUB_WORKSPACE}/kudos"
 echo "----> Building Rust binary"
 cargo build --release --target x86_64-unknown-linux-musl
 
-echo "----> Build is complete. Publishing to ${GITHUB_WORKSPACE}/.release"
-mkdir -p "${GITHUB_WORKSPACE}/.release"
-cp ./target/x86_64-unknown-linux-musl/release/bootstrap "${GITHUB_WORKSPACE}/.release/"
+RELEASE_PATH=${GITHUB_WORKSPACE}/release
+
+echo "----> Build is complete. Publishing to ${RELEASE_PATH}"
+mkdir -p "${RELEASE_PATH}"
+cp ./target/x86_64-unknown-linux-musl/release/bootstrap "${RELEASE_PATH}/bootstrap"
