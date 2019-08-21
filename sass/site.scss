@@ -128,9 +128,11 @@ body {
 
 .post-content code {
     background: rgba(0,0,0,.05);
-    padding: 3px 4px;
     margin: 0 2px;
     color: rgba(0, 0, 0, 0.84);
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0, 0.1);
+    font-size: 0.75em;
 }
 
 .post-content ul {
@@ -167,6 +169,7 @@ body {
     margin-bottom: 1.5em;
     line-height: 1.5em;
     white-space: pre-wrap;
+    border-radius: 5px;
 }
 
 .post-content a {
