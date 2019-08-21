@@ -17,5 +17,6 @@ cd "${GITHUB_WORKSPACE}/_kudos"
 echo "----> Building Rust binary"
 cargo build --release --target x86_64-unknown-linux-musl
 
-echo "----> Build is complete. Zipping result."
-zip -j bootstrap.zip ./target/x86_64-unknown-linux-musl/release/bootstrap
+echo "----> Build is complete."
+mkdir -p "${GITHUB_WORKSPACE}/.release"
+cp ./target/x86_64-unknown-linux-musl/release/bootstrap "${GITHUB_WORKSPACE}/.release/"
