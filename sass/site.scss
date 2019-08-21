@@ -142,8 +142,13 @@ body {
 }
 
 .post-content ol {
-    list-style-position: inside;
+    list-style-position: outside;
     margin-bottom: 20px;
+    margin-left: 1em;
+}
+
+.post-content ol li {
+    padding-left: 0.5em;
 }
 
 .post-content figcaption {
