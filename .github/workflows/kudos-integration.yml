@@ -8,3 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: ./.github/actions/build-rust-musl
+      - uses: actions/upload-artifact@master
+        with:
+          name: kudos-please-binary
+          path: /github/workspace/.release
