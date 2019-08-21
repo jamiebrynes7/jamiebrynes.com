@@ -22,3 +22,4 @@ RELEASE_PATH=${GITHUB_WORKSPACE}/release
 echo "----> Build is complete. Publishing to ${RELEASE_PATH}"
 mkdir -p "${RELEASE_PATH}"
 cp ./target/x86_64-unknown-linux-musl/release/bootstrap "${RELEASE_PATH}/bootstrap"
+ls -lah "${RELEASE_PATH}"
