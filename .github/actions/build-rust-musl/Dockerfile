@@ -27,15 +27,7 @@ RUN apt-get update && \
         pkgconf \
         sudo \
         xutils-dev \
-        gcc-multilib-arm-linux-gnueabihf \
-        && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-    #useradd rust --user-group --create-home --shell /bin/bash --groups sudo && \
-    #MDBOOK_VERSION=0.2.1 && \
-    #curl -LO https://github.com/rust-lang-nursery/mdBook/releases/download/v$MDBOOK_VERSION/mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
-    #tar xf mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
-    #mv mdbook /usr/local/bin/ && \
-    #rm -f mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Static linking for C++ code
 RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
@@ -58,60 +50,6 @@ ENV PATH=/rust/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/us
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
     rustup target add x86_64-unknown-linux-musl
-
-# Build a static library version of OpenSSL using musl-libc.  This is needed by
-# the popular Rust `hyper` crate.
-#
-# We point /usr/local/musl/include/linux at some Linux kernel headers (not
-# necessarily the right ones) in an effort to compile OpenSSL 1.1's "engine"
-# component. It's possible that this will cause bizarre and terrible things to
-# happen. There may be "sanitized" header
-RUN echo "Building OpenSSL" && \
-    ls /usr/include/linux && \
-    sudo mkdir -p /usr/local/musl/include && \
-    sudo ln -s /usr/include/linux /usr/local/musl/include/linux && \
-    sudo ln -s /usr/include/x86_64-linux-gnu/asm /usr/local/musl/include/asm && \
-    sudo ln -s /usr/include/asm-generic /usr/local/musl/include/asm-generic && \
-    cd /tmp && \
-    curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" && \
-    tar xvzf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
-    env CC=musl-gcc ./Configure no-shared no-zlib -fPIC --prefix=/usr/local/musl -DOPENSSL_NO_SECURE_MEMORY linux-x86_64 && \
-    env C_INCLUDE_PATH=/usr/local/musl/include/ make depend && \
-    env C_INCLUDE_PATH=/usr/local/musl/include/ make && \
-    sudo make install && \
-    sudo rm /usr/local/musl/include/linux /usr/local/musl/include/asm /usr/local/musl/include/asm-generic && \
-    rm -r /tmp/*
-
-RUN echo "Building zlib" && \
-    cd /tmp && \
-    ZLIB_VERSION=1.2.11 && \
-    curl -LO "http://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
-    tar xzf "zlib-$ZLIB_VERSION.tar.gz" && cd "zlib-$ZLIB_VERSION" && \
-    CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
-    make && sudo make install && \
-    rm -r /tmp/*
-
-RUN echo "Building libpq" && \
-    cd /tmp && \
-    POSTGRESQL_VERSION=11.2 && \
-    curl -LO "https://ftp.postgresql.org/pub/source/v$POSTGRESQL_VERSION/postgresql-$POSTGRESQL_VERSION.tar.gz" && \
-    tar xzf "postgresql-$POSTGRESQL_VERSION.tar.gz" && cd "postgresql-$POSTGRESQL_VERSION" && \
-    CC=musl-gcc CPPFLAGS=-I/usr/local/musl/include LDFLAGS=-L/usr/local/musl/lib ./configure --with-openssl --without-readline --prefix=/usr/local/musl && \
-    cd src/interfaces/libpq && make all-static-lib && sudo make install-lib-static && \
-    cd ../../bin/pg_config && make && sudo make install && \
-    rm -r /tmp/*
-
-ENV OPENSSL_DIR=/usr/local/musl/ \
-    OPENSSL_INCLUDE_DIR=/usr/local/musl/include/ \
-    DEP_OPENSSL_INCLUDE=/usr/local/musl/include/ \
-    OPENSSL_LIB_DIR=/usr/local/musl/lib/ \
-    OPENSSL_STATIC=1 \
-    PQ_LIB_STATIC_X86_64_UNKNOWN_LINUX_MUSL=1 \
-    PG_CONFIG_X86_64_UNKNOWN_LINUX_GNU=/usr/bin/pg_config \
-    PKG_CONFIG_ALLOW_CROSS=true \
-    PKG_CONFIG_ALL_STATIC=true \
-    LIBZ_SYS_STATIC=1 \
-    TARGET=musl
 
 COPY entrypoint.sh /entrypoint.sh
 
