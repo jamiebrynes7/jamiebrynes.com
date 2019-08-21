@@ -46,9 +46,6 @@ RUN apt-get update && \
 # Static linking for C++ code
 RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
 
-# Allow sudo without a password.
-ADD sudoers /etc/sudoers.d/nopasswd
-
 RUN mkdir -p /home/rust/libs /home/rust/src
 
 # Set up our path with all our binary directories, including those for the
