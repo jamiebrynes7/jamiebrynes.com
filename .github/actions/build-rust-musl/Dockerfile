@@ -35,22 +35,26 @@ RUN apt-get update && \
         xutils-dev \
         gcc-multilib-arm-linux-gnueabihf \
         && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    useradd rust --user-group --create-home --shell /bin/bash --groups sudo && \
-    MDBOOK_VERSION=0.2.1 && \
-    curl -LO https://github.com/rust-lang-nursery/mdBook/releases/download/v$MDBOOK_VERSION/mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
-    tar xf mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
-    mv mdbook /usr/local/bin/ && \
-    rm -f mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+    #useradd rust --user-group --create-home --shell /bin/bash --groups sudo && \
+    #MDBOOK_VERSION=0.2.1 && \
+    #curl -LO https://github.com/rust-lang-nursery/mdBook/releases/download/v$MDBOOK_VERSION/mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
+    #tar xf mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz && \
+    #mv mdbook /usr/local/bin/ && \
+    #rm -f mdbook-v$MDBOOK_VERSION-x86_64-unknown-linux-musl.tar.gz
 
 # Static linking for C++ code
 RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
 
 RUN mkdir -p $HOME/libs $HOME/src
 
+RUN mkdir -p /rust
+ENV RUSTUP_HOME=/rust
+ENV CARGO_HOME=/rust
+
 # Set up our path with all our binary directories, including those for the
 # musl-gcc toolchain and for our Rust toolchain.
-ENV PATH=$HOME/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=/rust/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Install our Rust toolchain and the `musl` target.  We patch the
 # command-line we pass to the installer so that it won't attempt to
@@ -59,14 +63,7 @@ ENV PATH=$HOME/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/us
 # manually.
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
-    rustup target add x86_64-unknown-linux-musl && \
-    rustup target add armv7-unknown-linux-musleabihf
-ADD cargo-config.toml $HOME/.cargo/config
-
-# Set up a `git credentials` helper for using GH_USER and GH_TOKEN to access
-# private repositories if desired.
-ADD git-credential-ghtoken /usr/local/bin
-RUN git config --global credential.https://github.com.helper ghtoken
+    rustup target add x86_64-unknown-linux-musl
 
 # Build a static library version of OpenSSL using musl-libc.  This is needed by
 # the popular Rust `hyper` crate.
@@ -121,15 +118,6 @@ ENV OPENSSL_DIR=/usr/local/musl/ \
     PKG_CONFIG_ALL_STATIC=true \
     LIBZ_SYS_STATIC=1 \
     TARGET=musl
-
-# (Please feel free to submit pull requests for musl-libc builds of other C
-# libraries needed by the most popular and common Rust crates, to avoid
-# everybody needing to build them manually.)
-
-# Install some useful Rust tools from source. This will use the static linking
-# toolchain, but that should be OK.
-RUN cargo install -f cargo-audit && \
-    rm -rf $HOME/.cargo/registry/
 
 COPY entrypoint.sh /entrypoint.sh
 
