@@ -12,7 +12,7 @@ if [[ -z "${GITHUB_REPOSITORY}" ]]; then
   exit 1
 fi
 
-cd "${GITHUB_WORKSPACE}"
+cd "${GITHUB_WORKSPACE}/_kudos"
 
 echo "----> Building Rust binary"
 cargo build --release 
