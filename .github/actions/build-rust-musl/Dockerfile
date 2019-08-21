@@ -4,10 +4,6 @@ FROM ubuntu:18.04
 # The Rust toolchain to use when building our image.  Set by `hooks/build`.
 ARG TOOLCHAIN=stable
 
-# The OpenSSL version to use. We parameterize this because many Rust
-# projects will fail to build with 1.1.
-ARG OPENSSL_VERSION=1.0.2r
-
 # Make sure we have basic dev tools for building C libraries.  Our goal
 # here is to support the musl-libc builds and Cargo builds needed for a
 # large selection of the most popular crates.
@@ -27,12 +23,11 @@ RUN apt-get update && \
         pkgconf \
         sudo \
         xutils-dev \
+        zip \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Static linking for C++ code
 RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
-
-RUN mkdir -p $HOME/libs $HOME/src
 
 RUN mkdir -p /rust/.cargo /rust/.rustup
 ENV RUSTUP_HOME=/rust/.rustup
