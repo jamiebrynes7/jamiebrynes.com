@@ -11,12 +11,6 @@ ARG OPENSSL_VERSION=1.0.2r
 # Make sure we have basic dev tools for building C libraries.  Our goal
 # here is to support the musl-libc builds and Cargo builds needed for a
 # large selection of the most popular crates.
-#
-# We also set up a `rust` user by default, in whose account we'll install
-# the Rust toolchain.  This user has sudo privileges if you need to install
-# any more software.
-#
-# `mdbook` is the standard Rust tool for making searchable HTML manuals.
 RUN apt-get update && \
     apt-get install -y \
         build-essential \
@@ -49,8 +43,8 @@ RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
 RUN mkdir -p $HOME/libs $HOME/src
 
 RUN mkdir -p /rust/.cargo /rust/.rustup
-ENV RUSTUP_HOME=/rust/.cargo
-ENV CARGO_HOME=/rust/.rustup
+ENV RUSTUP_HOME=/rust/.rustup
+ENV CARGO_HOME=/rust/.cargo
 
 # Set up our path with all our binary directories, including those for the
 # musl-gcc toolchain and for our Rust toolchain.
