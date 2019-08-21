@@ -46,11 +46,11 @@ RUN apt-get update && \
 # Static linking for C++ code
 RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
 
-RUN mkdir -p /home/rust/libs /home/rust/src
+RUN mkdir -p $HOME/libs $HOME/src
 
 # Set up our path with all our binary directories, including those for the
 # musl-gcc toolchain and for our Rust toolchain.
-ENV PATH=/home/rust/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=$HOME/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Install our Rust toolchain and the `musl` target.  We patch the
 # command-line we pass to the installer so that it won't attempt to
@@ -61,7 +61,7 @@ RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
     rustup target add x86_64-unknown-linux-musl && \
     rustup target add armv7-unknown-linux-musleabihf
-ADD cargo-config.toml /home/rust/.cargo/config
+ADD cargo-config.toml $HOME/.cargo/config
 
 # Set up a `git credentials` helper for using GH_USER and GH_TOKEN to access
 # private repositories if desired.
@@ -129,7 +129,7 @@ ENV OPENSSL_DIR=/usr/local/musl/ \
 # Install some useful Rust tools from source. This will use the static linking
 # toolchain, but that should be OK.
 RUN cargo install -f cargo-audit && \
-    rm -rf /home/rust/.cargo/registry/
+    rm -rf $HOME/.cargo/registry/
 
 COPY entrypoint.sh /entrypoint.sh
 
