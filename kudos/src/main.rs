@@ -56,7 +56,8 @@ struct KudosResponseBody {
 struct KudosResponse {
     #[serde(rename(serialize = "statusCode"))]
     status_code: u32,
-    body: String
+    body: String,
+    headers: HashMap<String, String>
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -66,13 +67,18 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 fn kudos_handler(event: KudosRequest, _ctx: Context) -> Result<KudosResponse, HandlerError> {
     let event = event.body;
+
+    let mut headers = HashMap::new();
+    headers.insert("Access-Control-Allow-Origin".to_string(), "*".to_string());
+
     if event.increment {
         increment_kudos(&event.url)
             .map(|value| KudosResponse {
                 status_code: 200,
                 body: serde_json::to_string(&KudosResponseBody {
                     value
-                }).unwrap()
+                }).unwrap(),
+                headers
             })
             .map_err(|e| HandlerError::from(e.to_string().as_str()))
     } else {
@@ -81,7 +87,8 @@ fn kudos_handler(event: KudosRequest, _ctx: Context) -> Result<KudosResponse, Ha
                 status_code: 200,
                 body: serde_json::to_string(&KudosResponseBody {
                     value
-                }).unwrap()
+                }).unwrap(),
+                headers
             })
             .map_err(|e| HandlerError::from(e.to_string().as_str()))
     }
