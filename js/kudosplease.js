@@ -200,7 +200,6 @@ KudosPlease = (function() {
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
           var amount = JSON.parse(xhr.responseText)["value"];
-          console.log(amount);
           el.setAttribute('data-amount', amount);
   
           if (increment == false) {
