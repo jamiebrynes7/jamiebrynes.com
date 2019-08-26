@@ -100,7 +100,7 @@ body {
 
 .post-content {
     font-size: 18px;
-    line-height: 1.75em;
+    line-height: 1.5em;
     letter-spacing: -.009em;
 }
 
@@ -152,10 +152,9 @@ body {
 }
 
 .post-content figcaption {
-    float: right;
-    font-style: italic;
+    text-align: center;
     font-size: 16px;
-    padding-right: 10px;
+    color: rgba(0, 0, 0, 0.4);
 }
 
 .post-content figure {
@@ -165,8 +164,8 @@ body {
 
 .post-content blockquote {
     margin-bottom: 1.5em;
-    padding: 0 1.5em;
-    border-left: 3px solid #0dbe98;
+    padding: 0 0.75em;
+    border-left: 2px solid #0dbe98;
     font-style: italic;
 }
 
@@ -274,4 +273,48 @@ body {
 
 .excerpt {
     margin: 15px 0px 25px 0;
+}
+
+.lightbox-image {
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-content {
+    width: auto!important; // Ensure that the lightbox is full size!
+}
+
+.modal-toggle {
+    cursor: pointer;
+    position: relative;
+}
+
+.modal-background {
+    cursor: pointer;
+}
+
+.modal-toggle-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: .75s ease;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    font-size: 2em;
+    color: rgba(255, 255, 255, 0);
+}
+
+.modal-toggle:hover .modal-toggle-overlay {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 1);
+  }
+
+.modal-toggle-overlay i {
+    position: absolute;
+    bottom: 2.5%;
+    right: 1%;
 }
