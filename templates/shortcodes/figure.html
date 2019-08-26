@@ -9,11 +9,10 @@
       <div class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
-          <img class="lightbox-img" src="{{ src }}" {% if alt %}alt="{{ alt }}"{% endif %} />      
+          <img src="{{ src }}" {% if alt %}alt="{{ alt }}"{% endif %} />      
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
       </div>
       <figcaption>{{ caption }}</figcaption>
   </figure>
-
 </div>
