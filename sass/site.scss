@@ -333,6 +333,19 @@ h1, h2, h3, h4, h5, h6 {
     right: 1%;
 }
 
+.post-content table {
+    @extend .table;
+    margin: auto;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+@media(min-width: 1100px) {
+    .post-content table {
+        display: table;
+    }
+}
 .tags {
     margin-top: 10px;
 }
