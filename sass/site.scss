@@ -66,9 +66,14 @@ body {
     border-radius: 10px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1088px) {
     .about-body {
         padding: 0px 50px;
+    }
+
+    
+    .mobile-hidden {
+        display: none;
     }
 }
 
@@ -93,6 +98,7 @@ body {
         display: inline-block!important;
         margin: 0px 10px 0px 10px!important;
     }
+
 }
 
 .post {
@@ -103,30 +109,32 @@ body {
 }
 
 .post-heading {
-    margin: 10px 0px 40px 0px!important;
+    margin: 10px 0px 50px 0px!important;
+    align-items: center;
+    text-align: center;
 }
 
 .post-content {
-    font-size: 18px;
-    line-height: 1.5em;
+    font-size: 1.125em;
+    line-height: 1.7em;
     letter-spacing: -.009em;
 }
 
 .post-content h1 {
     @extend .title;
-    @extend .is-3;
+    @extend .is-size-3;
     margin-top: 40px;
 }
 
 .post-content h2 {
     @extend .title;
-    @extend .is-4;
+    @extend .is-size-4;
     margin-top: 30px;
 }
 
 .post-content h3 {
     @extend .title;
-    @extend .is-5;
+    @extend .is-size-5;
     margin-top: 20px;
 }
 
@@ -162,7 +170,7 @@ body {
 .post-content figcaption {
     text-align: center;
     font-size: 16px;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.55);
 }
 
 .post-content figure {
@@ -182,6 +190,7 @@ body {
     line-height: 1.5em;
     white-space: pre-wrap;
     border-radius: 5px;
+    font-size: 0.75em;
 }
 
 .post-content a {
@@ -210,14 +219,6 @@ body {
     border-bottom: none!important;
 }
 
-.post-divider {
-    @extend .has-background-grey-dark;
-    width: 33%;
-    content: "";
-    height: 1px;
-    margin: 50px auto;
-}
-
 .kudos {
     margin: 0;
     width: 3em;
@@ -232,6 +233,13 @@ body {
 
 .sidebar-right {
     margin-bottom: 1em;
+}
+
+.share-text {
+    margin-bottom: 15px;
+    font-weight: bolder;
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 @media(min-width: 1500px) {
@@ -267,6 +275,7 @@ body {
     position: sticky;
     top: 70px;
     margin-bottom: 50px;
+    margin-right: 50px;
 }
 
 .kudos {
@@ -318,4 +327,12 @@ body {
     position: absolute;
     bottom: 2.5%;
     right: 1%;
+}
+
+.tags {
+    margin-top: 10px;
+}
+
+footer {
+    padding-bottom: 3rem!important;
 }

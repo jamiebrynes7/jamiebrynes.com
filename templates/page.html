@@ -22,12 +22,11 @@
     {% block post %}
 
     <div class="post-heading columns">
-      <div clas="column is-half">
-        <h1 class="title is-size-1 is-size-3-touch">{{ page.title }}</h1>
+      <div class="column">
+        <h1 class="title is-size-2 is-size-3-touch">{{ page.title }}</h1>
         <span class="has-text-grey-dark is-size-6">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min
           read</span>
       </div>
-      <div class="column is-half"></div>
     </div>
 
     {% if page.extra.toc %}
@@ -35,12 +34,9 @@
     {% endif %}
 
     <div class="columns">
-      <div class="post-content column">
-          {{ page.content | safe }}
-      </div>
-      <div class="column is-one-fifth">
+      <div class="column is-2 mobile-hidden">
           <div class="sticky has-text-centered">
-              <p style="margin-bottom: 15px">Share this</p>
+              <p class="share-text">SHARE</p>
               <a class="no-underline share-icon" href="javascript:tweetCurrentPage('{{ page.title }}')">
                   <i class="is-size-4 fab fa-twitter"></i>
               </a>
@@ -50,13 +46,16 @@
               <a class="no-underline share-icon" href="javascript:shareViaEmail('{{ page.title }}')">
                   <i class="is-size-4 fas fa-envelope"></i>
               </a>
-              <div class="post-divider"></div>
               <div class="kudos" data-amount="0" data-url="{{ page.permalink }}"></div>
           </div>
-        </div>
+      </div>
+      <div class="post-content column">
+          {{ page.content | safe }}
+      </div>
+      <div class="column is-2 mobile-hidden">
+      </div>
     </div>
 
-    <div class="post-divider"></div>
 
     {% if page.taxonomies.tags %}
     <div class="tags has-text-centered" style="display: block!important">
