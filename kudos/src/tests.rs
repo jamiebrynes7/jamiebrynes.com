@@ -1,30 +1,87 @@
 use rusoto_dynamodb::*;
 use rusoto_core::{RusotoFuture, RusotoError};
 
-use crate::{get_current_kudos, increment_kudos};
+use crate::{kudos_handler, get_current_kudos, increment_kudos};
 use std::collections::HashMap;
+use crate::events::{KudosRequest, KudosEvent};
 
 const URL: &'static str = "some_url";
 
-fn validate_get_item(req: GetItemInput) -> bool {
-    validate_query_key(&req.key)
-        && req.table_name == "kudos-please"
-}
+#[test]
+pub fn kudos_handler_redirects_to_correct_func() {
+    /* ---------------------- Get Item  ---------------------- */
+    let mut mock = DynamoDbMock::default();
 
-fn validate_update_item(req: UpdateItemInput) -> bool {
-    validate_query_key(&req.key)
-        && req.table_name == "kudos-please"
-        && req.return_values.as_ref().unwrap().eq("UPDATED_NEW")
-}
+    let output = GetItemOutput {
+        consumed_capacity: None,
+        item: None
+    };
 
-fn validate_query_key(key: &HashMap<String, AttributeValue>) -> bool {
-    if let Some(attr) = key.get("url") {
-        if let Some(data) = attr.s.as_ref() {
-            return data.eq(URL)
+    mock.expect_get_item(|_| true, Ok(output));
+
+    let req = KudosRequest {
+        body: KudosEvent {
+            increment: false,
+            url: URL.to_string()
         }
-    }
+    };
 
-    return false;
+    let res = kudos_handler(req, mock);
+    assert!(res.is_ok());
+
+    /* ---------------------- Update Item  ---------------------- */
+    let mut mock = DynamoDbMock::default();
+
+    let mut data = HashMap::new();
+
+    data.insert("kudos".to_string(), AttributeValue {
+        n: Some("1".to_string()),
+        ..Default::default()
+    });
+
+    let output = UpdateItemOutput {
+        consumed_capacity: None,
+        attributes: Some(data),
+        item_collection_metrics: None
+    };
+
+    mock.expect_update_item(|_| true, Ok(output));
+
+    let req = KudosRequest {
+        body: KudosEvent {
+            increment: true,
+            url: URL.to_string()
+        }
+    };
+
+    let res = kudos_handler(req, mock);
+    assert!(res.is_ok());
+}
+
+#[test]
+pub fn kudos_handler_sets_error_code_and_headers() {
+    let mut mock = DynamoDbMock::default();
+
+    let output = GetItemOutput {
+        consumed_capacity: None,
+        item: None
+    };
+
+    mock.expect_get_item(|_| true, Ok(output));
+
+    let req = KudosRequest {
+        body: KudosEvent {
+            increment: false,
+            url: URL.to_string()
+        }
+    };
+
+    let res = kudos_handler(req, mock);
+    assert!(res.is_ok());
+
+    let response = res.unwrap();
+    assert_eq!(200, response.status_code);
+    assert!(response.headers.get("Access-Control-Allow-Origin").map_or(false, |v| v.eq("*")));
 }
 
 #[test]
@@ -96,6 +153,27 @@ pub fn increment_kudos_attempts_to_increment_value() {
     let result = increment_kudos(URL, mock);
     assert!(result.is_ok());
     assert_eq!(1, result.unwrap());
+}
+
+fn validate_get_item(req: GetItemInput) -> bool {
+    validate_query_key(&req.key)
+        && req.table_name == "kudos-please"
+}
+
+fn validate_update_item(req: UpdateItemInput) -> bool {
+    validate_query_key(&req.key)
+        && req.table_name == "kudos-please"
+        && req.return_values.as_ref().unwrap().eq("UPDATED_NEW")
+}
+
+fn validate_query_key(key: &HashMap<String, AttributeValue>) -> bool {
+    if let Some(attr) = key.get("url") {
+        if let Some(data) = attr.s.as_ref() {
+            return data.eq(URL)
+        }
+    }
+
+    return false;
 }
 
 #[derive(Default)]

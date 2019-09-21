@@ -47,9 +47,9 @@ pub struct KudosResponseBody {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct KudosResponse {
     #[serde(rename(serialize = "statusCode"))]
-    status_code: u32,
-    body: String,
-    headers: HashMap<String, String>
+    pub status_code: u32,
+    pub body: String,
+    pub headers: HashMap<String, String>
 }
 
 impl KudosResponse {
