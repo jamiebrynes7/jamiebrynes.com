@@ -14,6 +14,9 @@ fi
 
 cd "${GITHUB_WORKSPACE}/kudos"
 
+echo "----> Running tests"
+cargo test 
+
 echo "----> Building Rust binary"
 cargo build --release --target x86_64-unknown-linux-musl
 
