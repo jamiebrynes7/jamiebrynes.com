@@ -11,25 +11,26 @@
 <section>
   <div class="container">
     <article class="post">
-        {% block postsheading %}
-        {% endblock postsheading %}
-        {% for page in paginator.pages %}
-          <div class="post-summary columns">
-            <div class="column is-three-quarters">
-              <a href="{{ page.permalink }}"><h2 class="title is-size-4">{{ page.title }}</h2></a>
-              <p class="excerpt has-text-grey">{{ page.description }}</p>
-              {% if page.taxonomies.tags %}
-              <p class="is-size-7 has-text-grey">In{% for tag in page.taxonomies.tags %}
-                <a class="no-underline" href="/tags/{{ tag }}"> {{ tag }}{% if loop.index != page.taxonomies.tags | length %},{% endif %}
-                </a>{% endfor %}
-              </p>
-              {% endif %}
-            </div>
-            <div class="column is-one-quarter">
-            </div>
+        <div class="columns">
+          <div class="column is-one-fifth"></div>
+          <div class="column is-three-fifths">
+            {% block postsheading %}
+            {% endblock postsheading %}
+            {% for page in paginator.pages %}
+              <div class="post-summary">
+                <a href="{{ page.permalink }}"><h2 class="title is-size-5">{{ page.title }}</h2></a>
+                <p class="excerpt has-text-grey-dark is-size-6">{{ page.description }}</p>
+                <p class="has-text-grey-dark is-size-6-5">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min
+                    read{% if page.taxonomies.tags %} &#X00B7 {% for tag in page.taxonomies.tags %}<a class="has-text-grey-dark" href="/tags/{{ tag }}"> #{{ tag }}</a>{% if loop.index != page.taxonomies.tags | length %} &#X00B7{% endif %}
+                      {% endfor %}{% endif %}
+                </p>
+              </div>
+            {% endfor %}
+            {{ macros::pager(pg=paginator) }}
           </div>
-        {% endfor %}
-        {{ macros::pager(pg=paginator) }}
+          <div class="column is-one-fifths">
+          </div>
+        </div>
     </article>
   </div>
 </section>

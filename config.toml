@@ -17,3 +17,9 @@ twitter = "https://www.twitter.com/jamiebrynes"
 instagram = "https://www.instagram.com/jamiebrynes7"
 linkedin = "https://www.linkedin.com/in/jamiesonbrynes"
 email = "jamiebrynes7@gmail.com"
+
+[extra.tags]
+project-updates = "Regular updates about any projects that I have ongoing."
+rustlang = "Rust is a systems programming language created by Mozilla."
+spatialos = "SpatialOS is a cloud platform that provides hosting, online services, tools and a multiserver networking stack for developing and operating your multiplayer game, using any engine."
+website = "Anything concerning this website."
