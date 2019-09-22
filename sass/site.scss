@@ -207,6 +207,7 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-transition:.3s;
     /* ...and now for the proper property */
     transition:.3s;
+    text-decoration: none!important;
 }
 
 .post-content a:hover {
