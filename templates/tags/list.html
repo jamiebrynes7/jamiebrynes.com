@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+  <div class="hero-head">
+    {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <article class="post">
+      <div class="columns">
+          <div class="column is-one-fifth"></div>
+          <div class="column is-three-fifths">
+            <div class="has-text-centered">
+              <h1 class="title is-1" style="margin-bottom: 50px;">Tags</h1>
+            </div>
+
+            {% for term in terms %}
+              <div class="post-summary">
+                <a href="{{ term.permalink }}"><h2 class="title is-size-5">#{{ term.name }}</h2></a>
+                <p class="excerpt has-text-grey-dark is-size-6">{% if config.extra.tags is containing(term.name) %}{{ config.extra.tags[term.name] }}{% endif %}</p>
+                <p class="has-text-grey-dark is-size-6-5">{{ term.pages | length }} posts</p>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="column is-one-fifth"></div>
+      </div>
+    </article>
+  </div>
+</section>
+{% endblock content %}

@@ -15,6 +15,10 @@ html {
 }
 
 body {
+    font-family: 'Source Sans Pro'
+}
+
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato'
 }
 
@@ -210,10 +214,6 @@ body {
     background-color: #0dbe98;
 }
 
-.is-serif {
-    font-family: 'Source Sans Pro', serif;
-}
-
 .no-underline {
     color: hsl(0, 0%, 14%)!important;
     border-bottom: none!important;
@@ -263,8 +263,12 @@ body {
 }
 
 .post-summary {
-    padding: 20px 0px;
-    margin-bottom: 25px;
+    padding: 25px 25px;
+    border-bottom: rgba(0, 0, 0, 0.25) 1px solid;
+
+    &:last-child {
+        border: 0;
+    }
 }
 
 .navbar-end .navbar-item {
@@ -289,7 +293,7 @@ body {
 }
 
 .excerpt {
-    margin: 15px 0px 25px 0;
+    margin: 20px 0px;
 }
 
 .modal-content {
@@ -335,4 +339,8 @@ body {
 
 footer {
     padding-bottom: 3rem!important;
+}
+
+.is-size-6-5 {
+    font-size: 0.875em;
 }

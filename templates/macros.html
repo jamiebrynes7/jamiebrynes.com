@@ -79,8 +79,7 @@
 
 {% macro pager(pg) %}
 {% if pg.number_pagers > 1 %}
-<div class="post-divider"></div>
-<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+<nav class="pagination is-centered" style="margin-top: 30px" role="navigation" aria-label="pagination">
     <a class="pagination-previous" title="This is the first page" {% if not pg.previous %}disabled {% endif %}>Previous</a>
     <a class="pagination-next" {% if not pg.next %}disabled {% endif %}>Next page</a>
     <ul class="pagination-list">
