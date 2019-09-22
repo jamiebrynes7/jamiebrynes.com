@@ -26,6 +26,7 @@ Bulma
 UI
 Pietrusky
 TLS
+SSL
 [0-9].*[mn]?s
 Netlify
 LetsEncrypt
@@ -34,13 +35,17 @@ AWS
 HTTPS
 JSON
 incrementing
-du jour
+du/ jour
 Rustoso
 [Ss]erde
 [Ee]ntrypoint
 [Rr]untime
 deserialize
+serialization
+serialize
+deserialization
 stringified
 CORS
 lightbox
 UX
+callout
