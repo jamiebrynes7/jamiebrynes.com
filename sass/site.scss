@@ -1,14 +1,22 @@
 @charset "utf-8";
 
+// Overwrite Bulma primary color
 $primary: #01579B;
 
+// Bulma
 @import "../_css/utilities/_all.sass";
 @import "../_css/base/_all.sass";
 @import "../_css/elements/_all.sass";
 @import "../_css/components/_all.sass";
 @import "../_css/grid/_all.sass";
 @import "../_css/layout/_all.sass";
-@import "../_css//kudosplease.scss";
+
+@import "./variables";
+@import "./helpers";
+@import "./about";
+@import "./post";
+@import "./modal";
+@import "./kudos";
 
 html {
     scroll-behavior: smooth;
@@ -22,6 +30,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato'
 }
 
+footer {
+    padding-bottom: 3rem!important;
+}
+
 ::selection {
     background: #fff2a8; /* WebKit/Blink Browsers */
 }
@@ -30,331 +42,7 @@ h1, h2, h3, h4, h5, h6 {
     background: #fff2a8; /* Gecko Browsers */
 }
 
-.about-section:before, .about-section:after {
-    background-color: #000;
-    content: "";
-    display: inline-block;
-    height: 1px;
-    position: relative;
-    vertical-align: middle;
-    width: 20%;
-}
-
-.about-section:before {
-    right: 0.75em;
-    margin-left: -20%;
-}
-
-.about-section:after {
-    left: 0.75em;
-    margin-right: -20%;
-}
-
-.about-section { 
-    display: inline-block;
-}
-
-.about-body {
-    padding: 0px 150px;
-}
-
-.about-entry {
-    margin-top: 20px;
-}
-
-.has-text-green {
-    color: #388E3C;
-}
-
-.is-rounded-corners {
-    border-radius: 10px;
-}
-
-@media (max-width: 1088px) {
-    .about-body {
-        padding: 0px 50px;
-    }
-
-    
-    .mobile-hidden {
-        display: none;
-    }
-}
-
-@media (max-width: 800px) {
-    .about-body {
-        padding: 0px 10px;
-    }
-
-    .about-section:after {
-        left: 0em;
-        top: 0.75em;
-        margin: 0px auto 10px;
-        display: block;
-        width: 30%;
-    }
-
-    .about-section:before {
-        height: 0px;
-    }
-
-    .share-icon {
-        display: inline-block!important;
-        margin: 0px 10px 0px 10px!important;
-    }
-
-}
-
-.post {
-    padding: 0px 20px;
-    max-width: 1140px;
-    margin: 75px auto;
-    color: rgba(0, 0, 0, 0.84);
-}
-
-.post-heading {
-    margin: 10px 0px 50px 0px!important;
-    align-items: center;
-    text-align: center;
-}
-
-.post-content {
-    font-size: 1.125em;
-    line-height: 1.7em;
-    letter-spacing: -.009em;
-}
-
-.post-content h1 {
-    @extend .title;
-    @extend .is-size-3;
-    margin-top: 40px;
-}
-
-.post-content h2 {
-    @extend .title;
-    @extend .is-size-4;
-    margin-top: 30px;
-}
-
-.post-content h3 {
-    @extend .title;
-    @extend .is-size-5;
-    margin-top: 20px;
-}
-
-.post-content p {
-    margin-bottom: 20px;
-}
-
-.post-content code {
-    background: rgba(0,0,0,.05);
-    margin: 0 2px;
-    color: rgba(0, 0, 0, 0.84);
-    border-radius: 3px;
-    border: 1px solid rgba(0,0,0, 0.1);
-    font-size: 0.75em;
-}
-
-.post-content ul {
-    list-style-type: circle;
-    list-style-position: inside;
-    margin-bottom: 20px;
-}
-
-.post-content ol {
-    list-style-position: outside;
-    margin-bottom: 20px;
-    margin-left: 1em;
-}
-
-.post-content ol li {
-    padding-left: 0.5em;
-}
-
-.post-content figcaption {
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.55);
-}
-
-.post-content figure {
-    margin-top: 30px;
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-.post-content blockquote {
-    margin-bottom: 1.5em;
-    padding: 0 0.75em;
-    border-left: 2px solid #0dbe98;
-    font-style: italic;
-}
-
-.post-content pre {
-    margin-bottom: 1.5em;
-    line-height: 1.5em;
-    white-space: pre-wrap;
-    border-radius: 5px;
-    font-size: 0.75em;
-}
-
-.post-content a {
-    box-shadow: inset 0 -2px 0 #0dbe98;
-    color: rgba(0, 0, 0, 0.84);
-
-    -o-transition:.3s;
-    -ms-transition:.3s;
-    -moz-transition:.3s;
-    -webkit-transition:.3s;
-    /* ...and now for the proper property */
-    transition:.3s;
-    text-decoration: none!important;
-}
-
-.post-content a:hover {
-    color: rgba(0, 0, 0, 0.84);
-    background-color: #0dbe98;
-}
-
-.no-underline {
-    color: hsl(0, 0%, 14%)!important;
-    border-bottom: none!important;
-}
-
-.kudos {
-    margin: 0;
-    width: 3em;
-    height: 3em;
-    line-height: 3em;
-    box-shadow: inset 0 0 0 0.25em #000, inset 0 0 0 1.25em #fff, inset 0 0 0 3em #000;
-}
-
-.kudos:after {
-    left: -1.5em;
-}
-
-.sidebar-right {
-    margin-bottom: 1em;
-}
-
-.share-text {
-    margin-bottom: 15px;
-    font-weight: bolder;
-    font-size: 0.9em;
-    color: rgba(0, 0, 0, 0.7);
-}
-
-@media(min-width: 1500px) {
-    .sidebar-right {
-        position: sticky !important; /* added to make toc scroll with page */
-        float: right !important; /* added to make toc scroll with page */
-        top: 0;
-        right: 0;
-        // TODO: Make this align with the things above.
-        width: 250px;
-        margin-right: -250px;
-        padding-left: 1em;
-        padding-top: 1em !important; /* added to make toc scroll with page */
-        z-index: 10;
-    }
-}
-
-.toc-card {
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.post-summary {
-    padding: 25px 25px;
-    border-bottom: rgba(0, 0, 0, 0.25) 1px solid;
-
-    &:last-child {
-        border: 0;
-    }
-}
-
+// Add some spacing around navbar entries.
 .navbar-end .navbar-item {
     margin: 0px 10px;
-}
-
-.sticky {
-    position: sticky;
-    top: 70px;
-    margin-bottom: 50px;
-    margin-right: 50px;
-}
-
-.kudos {
-    margin: 15px auto 0 auto;
-}
-
-.share-icon {
-    float: none!important;
-    display: block;
-    margin: 10px 0 10px 0;
-}
-
-.excerpt {
-    margin: 20px 0px;
-}
-
-.modal-content {
-    width: auto!important; // Ensure that the lightbox is full size!
-}
-
-.modal-toggle {
-    cursor: pointer;
-    position: relative;
-}
-
-.modal-background {
-    cursor: pointer;
-}
-
-.modal-toggle-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    transition: .75s ease;
-    background-color: rgba(255, 255, 255, 0);
-    text-align: center;
-    font-size: 2em;
-    color: rgba(255, 255, 255, 0);
-}
-
-.modal-toggle:hover .modal-toggle-overlay {
-    background-color: rgba(255, 255, 255, 0.25);
-    color: rgba(255, 255, 255, 1);
-  }
-
-.modal-toggle-overlay i {
-    position: absolute;
-    bottom: 2.5%;
-    right: 1%;
-}
-
-.post-content table {
-    @extend .table;
-    margin: auto;
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
-@media(min-width: 1100px) {
-    .post-content table {
-        display: table;
-    }
-}
-.tags {
-    margin-top: 10px;
-}
-
-footer {
-    padding-bottom: 3rem!important;
-}
-
-.is-size-6-5 {
-    font-size: 0.875em;
 }

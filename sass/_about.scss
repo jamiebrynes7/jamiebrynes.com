@@ -1,0 +1,51 @@
+.about-body {
+    padding: 0px 150px;
+
+    @media (max-width: $tablet) {
+        padding: 0px 10px!important;
+    }
+
+    @media (max-width: $desktop) {
+        padding: 0px 50px;
+    }
+}
+
+.about-section {
+    display: inline-block;
+
+    &:before {
+        right: 0.75em;
+        margin-left: -20%;
+
+        @media (max-width: $tablet) {
+            height: 0px!important;
+        }
+    }
+
+    &:after {
+        left: 0.75em;
+        margin-right: -20%;
+
+        @media (max-width: $tablet) {
+            left: 0em;
+            top: 0.75em;
+            margin: 0px auto 10px;
+            display: block!important;
+            width: 30%!important;
+        }
+    }
+
+    &:before, &:after {
+        background-color: #000;
+        content: "";
+        display: inline-block;
+        height: 1px;
+        position: relative;
+        vertical-align: middle;
+        width: 20%;
+    }
+}
+
+.about-entry {
+    margin-top: 20px;
+}
