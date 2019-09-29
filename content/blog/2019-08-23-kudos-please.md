@@ -20,7 +20,7 @@ The simple reason is something called [**Mixed Active Content**](https://develop
 
 This meant that if I wanted to add this widget to each post, I'd need to provide an alternate back end implementation that _is_ secured with TLS. 
 
-## The Requirements
+# The Requirements
 
 Before selecting a technology and writing the back end, I did some quick requirements gathering:
 
@@ -33,9 +33,9 @@ There are also some softer requirements or nice-to-haves:
 - Free or cheap. At the time of writing, I only pay for the domain for this website. I'd quite like to keep the costs down.
 - Quick to update and deploy changes. Although I don't anticipate changing the back end too frequently, it should still be easy to update in the case where I must.
 
-## Choosing the tech
+# Choosing the tech
 
-### Standalone server
+## Standalone server
 
 My first thought was to host a (very) tiny server to serve the API and a run a database instance to store the persistent data. I could host this web server at something like: 
 `https://api.jamiebrynes.com` which also gives me the option of extending and adding additional API endpoints to this server in the future.
@@ -46,7 +46,7 @@ I'd also have to deal with adding an SSL certificate to this subdomain as well (
 
 Regardless, for such a small API, even hosting a micro server seemed like overkill and an excessive amount of engineering overhead.
 
-### Serverless
+## Serverless
 
 So I turned to the in-vogue buzzword: **serverless** computing. There are a ton of choices for serverless compute providers: [AWS Lambda](https://aws.amazon.com/lambda/), [Google Cloud Functions](https://cloud.google.com/functions/), [Azure Functions](https://azure.microsoft.com/en-gb/services/functions/), [zeit.co](https://zeit.co/docs/v2/advanced/concepts/lambdas), and probably many more. 
 
@@ -62,9 +62,9 @@ To enumerate _some_ of the options in table form:
 
 Given my proclivity for free services, this led me to look at AWS and GCP a little closer. I have used AWS Lambda a _little_ bit in the past and this was enough to sway me that direction. This also means I would be using DynamoDB since it is included in the free tier as well!
 
-## (Re)designing the API
+# Rewriting the API
 
-### Requests and responses
+## Requests and responses
 
 The original API call used by kudos please uses the following scheme for its API:
 
@@ -109,7 +109,7 @@ body:
 }
 ```
 
-### Writing the lambda
+## Writing the lambda
 
 AWS Lambda offers a huge amount of languages and SDKs for its service. It supports Java, Go, PowerShell, Node.js, C#, Python, and Ruby out of the box in addition to providing a Runtime API which allows you to use additional languages.
 
@@ -314,14 +314,14 @@ You'll note the `if_not_exists()` in the `update_expression`. This effectively s
 
 ## Setting up AWS
 
-The rest of the work required to get this API up and running is just some AWS configuration. To cut a long story short: 
+The rest of the work required to get the backend up and running is some AWS configuration. To cut a long story (with lots of fumbling through documentation and configuration) short: 
 
 1. Create a new DynamoDB table called `kudos-please`.
 2. Create a new Lambda which can read/write to DynamoDB.
 3. Add an API Gateway on the Lambda and enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) on it.
 4. Test the API endpoint.
 
-## The results
+# Results & final thoughts
 
 Let's return to the requirements and evaluate how we fared:
 
@@ -331,7 +331,7 @@ Let's return to the requirements and evaluate how we fared:
 
 To answer that final question, lets fall back onto our trusty Chrome Developer Tools.
 
-{{ lightbox(src="/blog/kudos-please-benchmark.png", caption="A quick benchmark of fetching data on page load.") }}
+{{ lightbox(src="/blog/kudos-please-benchmark.png", caption="A quick benchmark of fetching kudos on page load.") }}
 
 {{ lightbox(src="/blog/kudos-please-benchmark-increment.png", caption="A quick benchmark of giving kudos.") }}
 
@@ -340,6 +340,6 @@ I think both these request/response times are well within the acceptable range. 
 As for the nice-to-haves:
 
 - Free and/or cheap. ✅
-- Quick to update/deploy changes. ✅<sup>With some effort!</sup>
+- Quick to update/deploy changes. ✅
 
-Ultimately, I was able to quickly implement, test, and deploy an alternative back end for the kudos please service using AWS for compute and data persistence! I consider this an absolute win.
+Overall, I've had a good experience with using the serverless paradigm to build this feature. That the problem was well defined and that the solution was conceptually straightforward certainly led to that good experience. It strikes me as a particularly good onboarding project. However, I'm yet to be convinced that, were this feature more complex, my experience would have been so smooth. Regardless, I've got a nice little feature running for free, learned some new things, and got to use a few new crates!
