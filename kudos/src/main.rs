@@ -1,4 +1,5 @@
 mod events;
+use crate::events::*;
 use lambda_runtime::error::HandlerError;
 use lambda_runtime::lambda;
 use lambda_runtime::Context;
@@ -6,7 +7,6 @@ use rusoto_core::Region;
 use rusoto_dynamodb::{AttributeValue, DynamoDb, DynamoDbClient, GetItemInput, UpdateItemInput};
 use std::collections::HashMap;
 use std::error::Error;
-use crate::events::*;
 
 #[cfg(test)]
 mod tests;
@@ -22,7 +22,10 @@ fn entrypoint(event: KudosRequest, _ctx: Context) -> Result<KudosResponse, Handl
     kudos_handler(event, DynamoDbClient::new(Region::EuWest2))
 }
 
-fn kudos_handler<T: DynamoDb>(event: KudosRequest, client: T) -> Result<KudosResponse, HandlerError> {
+fn kudos_handler<T: DynamoDb>(
+    event: KudosRequest,
+    client: T,
+) -> Result<KudosResponse, HandlerError> {
     let event_body = event.body;
 
     let result = if event_body.increment {
@@ -85,14 +88,14 @@ fn increment_kudos<T: DynamoDb>(url: &str, client: T) -> Result<u32, Box<dyn Err
         AttributeValue {
             n: Some("1".to_string()),
             ..Default::default()
-        }
+        },
     );
     expression_attr_values.insert(
         ":zero".to_string(),
         AttributeValue {
             n: Some("0".to_string()),
             ..Default::default()
-        }
+        },
     );
 
     let mut expression_attr_names = HashMap::new();
@@ -109,16 +112,12 @@ fn increment_kudos<T: DynamoDb>(url: &str, client: T) -> Result<u32, Box<dyn Err
     };
 
     let value = match client.update_item(operation).sync() {
-        Ok(result) => {
-            match result.attributes {
-                Some(attrs) => {
-                    match attrs.get("kudos").map_or(None, |attr| attr.n.clone()) {
-                        Some(n ) => n.parse::<u32>()?,
-                        None => 0
-                    }
-                },
-                None => Err("No kudos element found.".to_string())?
-            }
+        Ok(result) => match result.attributes {
+            Some(attrs) => match attrs.get("kudos").map_or(None, |attr| attr.n.clone()) {
+                Some(n) => n.parse::<u32>()?,
+                None => 0,
+            },
+            None => Err("No kudos element found.".to_string())?,
         },
         Err(e) => Err(format!("Failed to update item {:?}", e))?,
     };

@@ -1,13 +1,72 @@
-name: Build 
+name: Build Kudos Please
 on: [push]
 
 jobs:
-  build:
-    name: Build Rust binary
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v1
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Run cargo check
+        working-directory: ./kudos
+        run: |
+          cargo check 
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v1
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Run cargo test
+        working-directory: ./kudos
+        run: |
+          cargo test
+
+  fmt:
+    name: Rustfmt
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v1
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install rustfmt
+        run: rustup component add rustfmt
+
+      - name: Run cargo fmt
+        working-directory: ./kudos
+        run: |
+          cargo fmt --all -- --check
+
+  build-prod:
+    name: Build production binary
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+
       - uses: ./.github/actions/build-rust-musl
+
       - uses: actions/upload-artifact@master
         with:
           name: kudos-please-binary
