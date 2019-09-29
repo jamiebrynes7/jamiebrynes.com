@@ -314,7 +314,7 @@ You'll note the `if_not_exists()` in the `update_expression`. This effectively s
 
 ## Setting up AWS
 
-The rest of the work required to get the backend up and running is some AWS configuration. To cut a long story (with lots of fumbling through documentation and configuration) short: 
+The rest of the work required to get the back-end up and running is some AWS configuration. To cut a long story (with lots of fumbling through documentation and configuration) short: 
 
 1. Create a new DynamoDB table called `kudos-please`.
 2. Create a new Lambda which can read/write to DynamoDB.
