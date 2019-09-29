@@ -5,4 +5,4 @@ RUN ["npm", "install", "-g", "spellchecker-cli"]
 
 COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPIINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
