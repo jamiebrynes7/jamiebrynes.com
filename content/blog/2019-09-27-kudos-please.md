@@ -319,7 +319,6 @@ The rest of the work required to get the back-end up and running is some AWS con
 1. Create a new DynamoDB table called `kudos-please`.
 2. Create a new Lambda which can read/write to DynamoDB.
 3. Add an API Gateway on the Lambda and enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) on it.
-4. Test the API endpoint.
 
 # Results & final thoughts
 
@@ -342,4 +341,4 @@ As for the nice-to-haves:
 - Free and/or cheap. ✅
 - Quick to update/deploy changes. ✅
 
-Overall, I've had a good experience with using the serverless paradigm to build this feature. That the problem was well defined and that the solution was conceptually straightforward certainly led to that good experience. It strikes me as a particularly good onboarding project. However, I'm yet to be convinced that, were this feature more complex, my experience would have been so smooth. Regardless, I've got a nice little feature running for free, learned some new things, and got to use a few new crates!
+Overall, I've had a good experience building this feature in the serverless paradigm. That the problem was well defined and the solution was conceptually straightforward certainly led to that good experience. It strikes me as a particularly good onboarding project. However, I'm yet to be convinced that, were this feature more complex, my experience would have been so smooth. Regardless, I've got a nice little feature running for free, learned some new things, and got to use a few new crates!
