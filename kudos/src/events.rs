@@ -1,7 +1,7 @@
-use serde::{Deserialize, Serialize, de};
-use std::fmt;
+use serde::{de, Deserialize, Serialize};
 use serde_json;
 use std::collections::HashMap;
+use std::fmt;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct KudosEvent {
@@ -12,12 +12,12 @@ pub struct KudosEvent {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct KudosRequest {
     #[serde(deserialize_with = "deserialize_json_string")]
-    pub body: KudosEvent
+    pub body: KudosEvent,
 }
 
 fn deserialize_json_string<'de, D>(deserializer: D) -> Result<KudosEvent, D::Error>
-    where
-        D: de::Deserializer<'de>,
+where
+    D: de::Deserializer<'de>,
 {
     struct JsonStringVisitor;
 
@@ -29,8 +29,8 @@ fn deserialize_json_string<'de, D>(deserializer: D) -> Result<KudosEvent, D::Err
         }
 
         fn visit_str<E>(self, v: &str) -> Result<Self::Value, E>
-            where
-                E: de::Error,
+        where
+            E: de::Error,
         {
             serde_json::from_str(v).map_err(E::custom)
         }
@@ -49,17 +49,15 @@ pub struct KudosResponse {
     #[serde(rename(serialize = "statusCode"))]
     pub status_code: u32,
     pub body: String,
-    pub headers: HashMap<String, String>
+    pub headers: HashMap<String, String>,
 }
 
 impl KudosResponse {
     pub fn success(value: u32, headers: HashMap<String, String>) -> Self {
         KudosResponse {
             status_code: 200,
-            body: serde_json::to_string(&KudosResponseBody {
-                value
-            }).unwrap(),
-            headers
+            body: serde_json::to_string(&KudosResponseBody { value }).unwrap(),
+            headers,
         }
     }
 }

@@ -1,9 +1,9 @@
+use rusoto_core::{RusotoError, RusotoFuture};
 use rusoto_dynamodb::*;
-use rusoto_core::{RusotoFuture, RusotoError};
 
-use crate::{kudos_handler, get_current_kudos, increment_kudos};
+use crate::events::{KudosEvent, KudosRequest};
+use crate::{get_current_kudos, increment_kudos, kudos_handler};
 use std::collections::HashMap;
-use crate::events::{KudosRequest, KudosEvent};
 
 const URL: &'static str = "some_url";
 
@@ -14,7 +14,7 @@ pub fn kudos_handler_redirects_to_correct_func() {
 
     let output = GetItemOutput {
         consumed_capacity: None,
-        item: None
+        item: None,
     };
 
     mock.expect_get_item(|_| true, Ok(output));
@@ -22,8 +22,8 @@ pub fn kudos_handler_redirects_to_correct_func() {
     let req = KudosRequest {
         body: KudosEvent {
             increment: false,
-            url: URL.to_string()
-        }
+            url: URL.to_string(),
+        },
     };
 
     let res = kudos_handler(req, mock);
@@ -34,15 +34,18 @@ pub fn kudos_handler_redirects_to_correct_func() {
 
     let mut data = HashMap::new();
 
-    data.insert("kudos".to_string(), AttributeValue {
-        n: Some("1".to_string()),
-        ..Default::default()
-    });
+    data.insert(
+        "kudos".to_string(),
+        AttributeValue {
+            n: Some("1".to_string()),
+            ..Default::default()
+        },
+    );
 
     let output = UpdateItemOutput {
         consumed_capacity: None,
         attributes: Some(data),
-        item_collection_metrics: None
+        item_collection_metrics: None,
     };
 
     mock.expect_update_item(|_| true, Ok(output));
@@ -50,8 +53,8 @@ pub fn kudos_handler_redirects_to_correct_func() {
     let req = KudosRequest {
         body: KudosEvent {
             increment: true,
-            url: URL.to_string()
-        }
+            url: URL.to_string(),
+        },
     };
 
     let res = kudos_handler(req, mock);
@@ -64,7 +67,7 @@ pub fn kudos_handler_sets_error_code_and_headers() {
 
     let output = GetItemOutput {
         consumed_capacity: None,
-        item: None
+        item: None,
     };
 
     mock.expect_get_item(|_| true, Ok(output));
@@ -72,8 +75,8 @@ pub fn kudos_handler_sets_error_code_and_headers() {
     let req = KudosRequest {
         body: KudosEvent {
             increment: false,
-            url: URL.to_string()
-        }
+            url: URL.to_string(),
+        },
     };
 
     let res = kudos_handler(req, mock);
@@ -81,7 +84,10 @@ pub fn kudos_handler_sets_error_code_and_headers() {
 
     let response = res.unwrap();
     assert_eq!(200, response.status_code);
-    assert!(response.headers.get("Access-Control-Allow-Origin").map_or(false, |v| v.eq("*")));
+    assert!(response
+        .headers
+        .get("Access-Control-Allow-Origin")
+        .map_or(false, |v| v.eq("*")));
 }
 
 #[test]
@@ -89,14 +95,17 @@ pub fn get_current_kudos_returns_current_kudos() {
     let mut mock = DynamoDbMock::default();
 
     let mut data = HashMap::new();
-    data.insert("kudos".to_string(), AttributeValue {
-        n: Some("1".to_string()),
-        ..Default::default()
-    });
+    data.insert(
+        "kudos".to_string(),
+        AttributeValue {
+            n: Some("1".to_string()),
+            ..Default::default()
+        },
+    );
 
     let output = GetItemOutput {
         consumed_capacity: None,
-        item: Some(data)
+        item: Some(data),
     };
 
     mock.expect_get_item(validate_get_item, Ok(output));
@@ -112,7 +121,7 @@ pub fn get_current_kudos_returns_0_if_url_does_not_exist() {
 
     let output = GetItemOutput {
         consumed_capacity: None,
-        item: Some(HashMap::new())
+        item: Some(HashMap::new()),
     };
 
     mock.expect_get_item(validate_get_item, Ok(output));
@@ -134,18 +143,21 @@ pub fn get_current_kudos_errors_if_dynamo_db_errors() {
 #[test]
 pub fn increment_kudos_attempts_to_increment_value() {
     let mut mock = DynamoDbMock::default();
-    
+
     let mut data = HashMap::new();
-    
-    data.insert("kudos".to_string(), AttributeValue {
-        n: Some("1".to_string()),
-        ..Default::default()
-    });
-    
+
+    data.insert(
+        "kudos".to_string(),
+        AttributeValue {
+            n: Some("1".to_string()),
+            ..Default::default()
+        },
+    );
+
     let output = UpdateItemOutput {
         consumed_capacity: None,
         attributes: Some(data),
-        item_collection_metrics: None
+        item_collection_metrics: None,
     };
 
     mock.expect_update_item(validate_update_item, Ok(output));
@@ -156,8 +168,7 @@ pub fn increment_kudos_attempts_to_increment_value() {
 }
 
 fn validate_get_item(req: GetItemInput) -> bool {
-    validate_query_key(&req.key)
-        && req.table_name == "kudos-please"
+    validate_query_key(&req.key) && req.table_name == "kudos-please"
 }
 
 fn validate_update_item(req: UpdateItemInput) -> bool {
@@ -169,7 +180,7 @@ fn validate_update_item(req: UpdateItemInput) -> bool {
 fn validate_query_key(key: &HashMap<String, AttributeValue>) -> bool {
     if let Some(attr) = key.get("url") {
         if let Some(data) = attr.s.as_ref() {
-            return data.eq(URL)
+            return data.eq(URL);
         }
     }
 
@@ -179,38 +190,43 @@ fn validate_query_key(key: &HashMap<String, AttributeValue>) -> bool {
 #[derive(Default)]
 struct DynamoDbMock {
     get_item_expectation: Option<Expectation<GetItemInput, GetItemOutput>>,
-    update_item_expectation: Option<Expectation<UpdateItemInput, UpdateItemOutput>>
+    update_item_expectation: Option<Expectation<UpdateItemInput, UpdateItemOutput>>,
 }
 
-struct Expectation<Req, Resp>{
+struct Expectation<Req, Resp> {
     pub validation: Box<dyn Fn(Req) -> bool>,
-    pub response: Result<Resp, ()>
+    pub response: Result<Resp, ()>,
 }
 
 impl DynamoDbMock {
     pub fn expect_get_item<F>(&mut self, validation: F, resp: Result<GetItemOutput, ()>)
-        where F : 'static + Fn(GetItemInput) -> bool {
+    where
+        F: 'static + Fn(GetItemInput) -> bool,
+    {
         self.get_item_expectation = Some(Expectation {
             validation: Box::new(validation),
-            response: resp
+            response: resp,
         })
     }
 
     pub fn expect_update_item<F>(&mut self, validation: F, resp: Result<UpdateItemOutput, ()>)
-        where F: 'static + Fn(UpdateItemInput) -> bool {
+    where
+        F: 'static + Fn(UpdateItemInput) -> bool,
+    {
         self.update_item_expectation = Some(Expectation {
             validation: Box::new(validation),
-            response: resp
+            response: resp,
         })
     }
 
     fn convert_result<T, U>(original: &Result<T, ()>) -> Result<T, RusotoError<U>>
-        where T: Clone
+    where
+        T: Clone,
     {
         // In our implementation, we just box the error - so not concerned with the type (for now)!
         match original {
             Ok(resp) => Ok(resp.clone()),
-            Err(()) => Err(RusotoError::ParseError("Mocked error.".to_string()))
+            Err(()) => Err(RusotoError::ParseError("Mocked error.".to_string())),
         }
     }
 }
@@ -227,7 +243,10 @@ impl DynamoDb for DynamoDbMock {
         RusotoFuture::from(result)
     }
 
-    fn update_item(&self, input: UpdateItemInput) -> RusotoFuture<UpdateItemOutput, UpdateItemError> {
+    fn update_item(
+        &self,
+        input: UpdateItemInput,
+    ) -> RusotoFuture<UpdateItemOutput, UpdateItemError> {
         assert!(self.update_item_expectation.is_some());
 
         let expectation = self.update_item_expectation.as_ref().unwrap();
@@ -239,55 +258,93 @@ impl DynamoDb for DynamoDbMock {
 
     // The rest of these are not used so will be left unimplemented.
 
-    fn batch_get_item(&self, input: BatchGetItemInput) -> RusotoFuture<BatchGetItemOutput, BatchGetItemError> {
+    fn batch_get_item(
+        &self,
+        input: BatchGetItemInput,
+    ) -> RusotoFuture<BatchGetItemOutput, BatchGetItemError> {
         unimplemented!()
     }
 
-    fn batch_write_item(&self, input: BatchWriteItemInput) -> RusotoFuture<BatchWriteItemOutput, BatchWriteItemError> {
+    fn batch_write_item(
+        &self,
+        input: BatchWriteItemInput,
+    ) -> RusotoFuture<BatchWriteItemOutput, BatchWriteItemError> {
         unimplemented!()
     }
 
-    fn create_backup(&self, input: CreateBackupInput) -> RusotoFuture<CreateBackupOutput, CreateBackupError> {
+    fn create_backup(
+        &self,
+        input: CreateBackupInput,
+    ) -> RusotoFuture<CreateBackupOutput, CreateBackupError> {
         unimplemented!()
     }
 
-    fn create_global_table(&self, input: CreateGlobalTableInput) -> RusotoFuture<CreateGlobalTableOutput, CreateGlobalTableError> {
+    fn create_global_table(
+        &self,
+        input: CreateGlobalTableInput,
+    ) -> RusotoFuture<CreateGlobalTableOutput, CreateGlobalTableError> {
         unimplemented!()
     }
 
-    fn create_table(&self, input: CreateTableInput) -> RusotoFuture<CreateTableOutput, CreateTableError> {
+    fn create_table(
+        &self,
+        input: CreateTableInput,
+    ) -> RusotoFuture<CreateTableOutput, CreateTableError> {
         unimplemented!()
     }
 
-    fn delete_backup(&self, input: DeleteBackupInput) -> RusotoFuture<DeleteBackupOutput, DeleteBackupError> {
+    fn delete_backup(
+        &self,
+        input: DeleteBackupInput,
+    ) -> RusotoFuture<DeleteBackupOutput, DeleteBackupError> {
         unimplemented!()
     }
 
-    fn delete_item(&self, input: DeleteItemInput) -> RusotoFuture<DeleteItemOutput, DeleteItemError> {
+    fn delete_item(
+        &self,
+        input: DeleteItemInput,
+    ) -> RusotoFuture<DeleteItemOutput, DeleteItemError> {
         unimplemented!()
     }
 
-    fn delete_table(&self, input: DeleteTableInput) -> RusotoFuture<DeleteTableOutput, DeleteTableError> {
+    fn delete_table(
+        &self,
+        input: DeleteTableInput,
+    ) -> RusotoFuture<DeleteTableOutput, DeleteTableError> {
         unimplemented!()
     }
 
-    fn describe_backup(&self, input: DescribeBackupInput) -> RusotoFuture<DescribeBackupOutput, DescribeBackupError> {
+    fn describe_backup(
+        &self,
+        input: DescribeBackupInput,
+    ) -> RusotoFuture<DescribeBackupOutput, DescribeBackupError> {
         unimplemented!()
     }
 
-    fn describe_continuous_backups(&self, input: DescribeContinuousBackupsInput) -> RusotoFuture<DescribeContinuousBackupsOutput, DescribeContinuousBackupsError> {
+    fn describe_continuous_backups(
+        &self,
+        input: DescribeContinuousBackupsInput,
+    ) -> RusotoFuture<DescribeContinuousBackupsOutput, DescribeContinuousBackupsError> {
         unimplemented!()
     }
 
-    fn describe_endpoints(&self) -> RusotoFuture<DescribeEndpointsResponse, DescribeEndpointsError> {
+    fn describe_endpoints(
+        &self,
+    ) -> RusotoFuture<DescribeEndpointsResponse, DescribeEndpointsError> {
         unimplemented!()
     }
 
-    fn describe_global_table(&self, input: DescribeGlobalTableInput) -> RusotoFuture<DescribeGlobalTableOutput, DescribeGlobalTableError> {
+    fn describe_global_table(
+        &self,
+        input: DescribeGlobalTableInput,
+    ) -> RusotoFuture<DescribeGlobalTableOutput, DescribeGlobalTableError> {
         unimplemented!()
     }
 
-    fn describe_global_table_settings(&self, input: DescribeGlobalTableSettingsInput) -> RusotoFuture<DescribeGlobalTableSettingsOutput, DescribeGlobalTableSettingsError> {
+    fn describe_global_table_settings(
+        &self,
+        input: DescribeGlobalTableSettingsInput,
+    ) -> RusotoFuture<DescribeGlobalTableSettingsOutput, DescribeGlobalTableSettingsError> {
         unimplemented!()
     }
 
@@ -295,27 +352,45 @@ impl DynamoDb for DynamoDbMock {
         unimplemented!()
     }
 
-    fn describe_table(&self, input: DescribeTableInput) -> RusotoFuture<DescribeTableOutput, DescribeTableError> {
+    fn describe_table(
+        &self,
+        input: DescribeTableInput,
+    ) -> RusotoFuture<DescribeTableOutput, DescribeTableError> {
         unimplemented!()
     }
 
-    fn describe_time_to_live(&self, input: DescribeTimeToLiveInput) -> RusotoFuture<DescribeTimeToLiveOutput, DescribeTimeToLiveError> {
+    fn describe_time_to_live(
+        &self,
+        input: DescribeTimeToLiveInput,
+    ) -> RusotoFuture<DescribeTimeToLiveOutput, DescribeTimeToLiveError> {
         unimplemented!()
     }
 
-    fn list_backups(&self, input: ListBackupsInput) -> RusotoFuture<ListBackupsOutput, ListBackupsError> {
+    fn list_backups(
+        &self,
+        input: ListBackupsInput,
+    ) -> RusotoFuture<ListBackupsOutput, ListBackupsError> {
         unimplemented!()
     }
 
-    fn list_global_tables(&self, input: ListGlobalTablesInput) -> RusotoFuture<ListGlobalTablesOutput, ListGlobalTablesError> {
+    fn list_global_tables(
+        &self,
+        input: ListGlobalTablesInput,
+    ) -> RusotoFuture<ListGlobalTablesOutput, ListGlobalTablesError> {
         unimplemented!()
     }
 
-    fn list_tables(&self, input: ListTablesInput) -> RusotoFuture<ListTablesOutput, ListTablesError> {
+    fn list_tables(
+        &self,
+        input: ListTablesInput,
+    ) -> RusotoFuture<ListTablesOutput, ListTablesError> {
         unimplemented!()
     }
 
-    fn list_tags_of_resource(&self, input: ListTagsOfResourceInput) -> RusotoFuture<ListTagsOfResourceOutput, ListTagsOfResourceError> {
+    fn list_tags_of_resource(
+        &self,
+        input: ListTagsOfResourceInput,
+    ) -> RusotoFuture<ListTagsOfResourceOutput, ListTagsOfResourceError> {
         unimplemented!()
     }
 
@@ -327,11 +402,17 @@ impl DynamoDb for DynamoDbMock {
         unimplemented!()
     }
 
-    fn restore_table_from_backup(&self, input: RestoreTableFromBackupInput) -> RusotoFuture<RestoreTableFromBackupOutput, RestoreTableFromBackupError> {
+    fn restore_table_from_backup(
+        &self,
+        input: RestoreTableFromBackupInput,
+    ) -> RusotoFuture<RestoreTableFromBackupOutput, RestoreTableFromBackupError> {
         unimplemented!()
     }
 
-    fn restore_table_to_point_in_time(&self, input: RestoreTableToPointInTimeInput) -> RusotoFuture<RestoreTableToPointInTimeOutput, RestoreTableToPointInTimeError> {
+    fn restore_table_to_point_in_time(
+        &self,
+        input: RestoreTableToPointInTimeInput,
+    ) -> RusotoFuture<RestoreTableToPointInTimeOutput, RestoreTableToPointInTimeError> {
         unimplemented!()
     }
 
@@ -343,11 +424,17 @@ impl DynamoDb for DynamoDbMock {
         unimplemented!()
     }
 
-    fn transact_get_items(&self, input: TransactGetItemsInput) -> RusotoFuture<TransactGetItemsOutput, TransactGetItemsError> {
+    fn transact_get_items(
+        &self,
+        input: TransactGetItemsInput,
+    ) -> RusotoFuture<TransactGetItemsOutput, TransactGetItemsError> {
         unimplemented!()
     }
 
-    fn transact_write_items(&self, input: TransactWriteItemsInput) -> RusotoFuture<TransactWriteItemsOutput, TransactWriteItemsError> {
+    fn transact_write_items(
+        &self,
+        input: TransactWriteItemsInput,
+    ) -> RusotoFuture<TransactWriteItemsOutput, TransactWriteItemsError> {
         unimplemented!()
     }
 
@@ -355,23 +442,38 @@ impl DynamoDb for DynamoDbMock {
         unimplemented!()
     }
 
-    fn update_continuous_backups(&self, input: UpdateContinuousBackupsInput) -> RusotoFuture<UpdateContinuousBackupsOutput, UpdateContinuousBackupsError> {
+    fn update_continuous_backups(
+        &self,
+        input: UpdateContinuousBackupsInput,
+    ) -> RusotoFuture<UpdateContinuousBackupsOutput, UpdateContinuousBackupsError> {
         unimplemented!()
     }
 
-    fn update_global_table(&self, input: UpdateGlobalTableInput) -> RusotoFuture<UpdateGlobalTableOutput, UpdateGlobalTableError> {
+    fn update_global_table(
+        &self,
+        input: UpdateGlobalTableInput,
+    ) -> RusotoFuture<UpdateGlobalTableOutput, UpdateGlobalTableError> {
         unimplemented!()
     }
 
-    fn update_global_table_settings(&self, input: UpdateGlobalTableSettingsInput) -> RusotoFuture<UpdateGlobalTableSettingsOutput, UpdateGlobalTableSettingsError> {
+    fn update_global_table_settings(
+        &self,
+        input: UpdateGlobalTableSettingsInput,
+    ) -> RusotoFuture<UpdateGlobalTableSettingsOutput, UpdateGlobalTableSettingsError> {
         unimplemented!()
     }
 
-    fn update_table(&self, input: UpdateTableInput) -> RusotoFuture<UpdateTableOutput, UpdateTableError> {
+    fn update_table(
+        &self,
+        input: UpdateTableInput,
+    ) -> RusotoFuture<UpdateTableOutput, UpdateTableError> {
         unimplemented!()
     }
 
-    fn update_time_to_live(&self, input: UpdateTimeToLiveInput) -> RusotoFuture<UpdateTimeToLiveOutput, UpdateTimeToLiveError> {
+    fn update_time_to_live(
+        &self,
+        input: UpdateTimeToLiveInput,
+    ) -> RusotoFuture<UpdateTimeToLiveOutput, UpdateTimeToLiveError> {
         unimplemented!()
     }
 }
