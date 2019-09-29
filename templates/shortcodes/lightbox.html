@@ -1,0 +1,18 @@
+<div>  
+  <figure>
+    <div class="modal-toggle">
+        <img src="{{ src }}" {% if alt %}alt="{{ alt }}"{% endif %} role="button"/>
+        <div class="modal-toggle-overlay">
+            <i class="fas fa-search-plus"></i>
+        </div>
+    </div>
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <img src="{{ src }}" {% if alt %}alt="{{ alt }}"{% endif %} />      
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+      <figcaption>{{ caption }}</figcaption>
+  </figure>
+</div>
