@@ -1,7 +1,8 @@
 name: Build Kudos Please
 on: 
   push: 
-    - 'kudos/*'
+    paths:
+      - 'kudos/*'
 
 jobs:
   check:
