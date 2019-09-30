@@ -58,16 +58,3 @@ jobs:
         working-directory: ./kudos
         run: |
           cargo fmt --all -- --check
-
-  build-prod:
-    name: Build production binary
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - uses: ./.github/actions/build-rust-musl
-
-      - uses: actions/upload-artifact@master
-        with:
-          name: kudos-please-binary
-          path: release
