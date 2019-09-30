@@ -22,13 +22,13 @@ build: zola
 	docker run -v $(CWD):/var/website local/website/zola build
 
 lint: spellcheck
-	docker run -v $(CWD):/var/src local/website/spellcheck spellchecker -f 'content/blog/*.md' '!content/blog/1970-01-01-mkdown-test.md' '!content/blog/_index.md' -l en-GB -d ci/dictionary
+	docker run -v /$(CWD):/github/ -e GITHUB_WORKSPACE="//github" spellcheck:latest
 
 zola:
 	docker build --file ./ci/zola.Dockerfile --tag local/website/zola .
 
 spellcheck:
-	docker build --file ./ci/spellcheck.Dockerfile --tag local/website/spellcheck .
+	docker build --file ./.github/actions/spellcheck/Dockerfile --tag spellcheck:latest ./.github/actions/spellcheck
 
 clean:
 	rm -rf ./public/
