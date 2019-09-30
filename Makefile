@@ -1,19 +1,7 @@
-define POST_TEMPLATE
-+++
-title = ""
-description = ""
-
-[taxonomies]
-tags = []
-+++
-endef
-
-export POST_TEMPLATE
-
 TIMESTAMP=$(shell date '+%Y-%m-%d')
 CWD=$(shell pwd)
 
-.PHONY: serve build_web zola clean create-post spellcheck
+.PHONY: serve build_web zola clean spellcheck
 
 serve: zola
 	docker run -v $(CWD):/var/website -p 1111:1111 local/website/zola serve --interface 0.0.0.0
@@ -32,6 +20,3 @@ spellcheck:
 
 clean:
 	rm -rf ./public/
-
-create-post:
-	echo "$$POST_TEMPLATE" > ./content/blog/$(TIMESTAMP)-$(TITLE).md
