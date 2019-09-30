@@ -1,4 +1,4 @@
-# Website
+# Personal website
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/af1f3486-98da-4b30-a5a9-680e656c709c/deploy-status)](https://app.netlify.com/sites/optimistic-edison-23360f/deploys) ![](https://github.com/jamiebrynes7/website/workflows/Build%20Kudos%20Please/badge.svg) ![](https://github.com/jamiebrynes7/website/workflows/Check%20blog%20posts/badge.svg)
 
