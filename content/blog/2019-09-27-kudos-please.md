@@ -229,7 +229,7 @@ fn get_current_kudos(url: &str) -> Result<u32, Box<dyn Error>> {
 }
 ```
 
-This uses the Rustoso library to query DynamoDB for the "kudos" given a particular URL. In DynamoDB all queries are stringified. The type of the field you are querying is determined by which field is set in the `AttributeValue`.
+This uses the Rusoto library to query DynamoDB for the "kudos" given a particular URL. In DynamoDB all queries are stringified. The type of the field you are querying is determined by which field is set in the `AttributeValue`.
 
 For example: 
 
