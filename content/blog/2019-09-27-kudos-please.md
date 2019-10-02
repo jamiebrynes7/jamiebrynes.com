@@ -113,7 +113,7 @@ body:
 
 AWS Lambda offers a huge amount of languages and SDKs for its service. It supports Java, Go, PowerShell, Node.js, C#, Python, and Ruby out of the box in addition to providing a Runtime API which allows you to use additional languages.
 
-The latter option caught my eye and I had a quick search for a SDK in my favourite language at the moment, **Rust**. My search was not in vain and turned up a [great library from `awslabs`](https://github.com/awslabs/aws-lambda-rust-runtime). However, this wasn't the only piece to the puzzle. I'd need to also interact with DynamoDB, but again a quick search turned up [Rustoso](https://github.com/rusoto/rusoto)!
+The latter option caught my eye and I had a quick search for a SDK in my favourite language at the moment, **Rust**. My search was not in vain and turned up a [great library from `awslabs`](https://github.com/awslabs/aws-lambda-rust-runtime). However, this wasn't the only piece to the puzzle. I'd need to also interact with DynamoDB, but again a quick search turned up [Rusoto](https://github.com/rusoto/rusoto)!
 
 With these tools and trusty libraries like [`serde`](https://github.com/serde-rs/serde), I was ready to get started! 
 
@@ -229,7 +229,7 @@ fn get_current_kudos(url: &str) -> Result<u32, Box<dyn Error>> {
 }
 ```
 
-This uses the Rustoso library to query DynamoDB for the "kudos" given a particular URL. In DynamoDB all queries are stringified. The type of the field you are querying is determined by which field is set in the `AttributeValue`.
+This uses the Rusoto library to query DynamoDB for the "kudos" given a particular URL. In DynamoDB all queries are stringified. The type of the field you are querying is determined by which field is set in the `AttributeValue`.
 
 For example: 
 
