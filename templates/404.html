@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="hero is-primary is-fullheight zip-zag-bottom">
+    <div class="hero-head">
+      {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
+    </div>
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title is-1">404</h1>
+        <br/>
+        <h2 class="subtitle is-4"><pre class="not-found">throw new NotFoundException();</pre></h2>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
