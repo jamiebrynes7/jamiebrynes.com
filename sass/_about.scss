@@ -1,51 +1,52 @@
 .about-body {
-    padding: 0px 150px;
+  padding: 0 150px;
 
-    @media (max-width: $tablet) {
-        padding: 0px 10px!important;
-    }
+  @media (max-width: $tablet) {
+    padding: 0 10px !important;
+  }
 
-    @media (max-width: $desktop) {
-        padding: 0px 50px;
-    }
+  @media (max-width: $desktop) {
+    padding: 0 50px;
+  }
 }
 
 .about-section {
+  display: inline-block;
+
+  &::before {
+    right: 0.75em;
+    margin-left: -20%;
+
+    @media (max-width: $tablet) {
+      height: 0 !important;
+    }
+  }
+
+  &::after {
+    left: 0.75em;
+    margin-right: -20%;
+
+    @media (max-width: $tablet) {
+      left: 0;
+      top: 0.75em;
+      margin: 0 auto 10px;
+      display: block !important;
+      width: 30% !important;
+    }
+  }
+
+  &::before,
+  &::after {
+    background-color: #000;
+    content: "";
     display: inline-block;
-
-    &:before {
-        right: 0.75em;
-        margin-left: -20%;
-
-        @media (max-width: $tablet) {
-            height: 0px!important;
-        }
-    }
-
-    &:after {
-        left: 0.75em;
-        margin-right: -20%;
-
-        @media (max-width: $tablet) {
-            left: 0em;
-            top: 0.75em;
-            margin: 0px auto 10px;
-            display: block!important;
-            width: 30%!important;
-        }
-    }
-
-    &:before, &:after {
-        background-color: #000;
-        content: "";
-        display: inline-block;
-        height: 1px;
-        position: relative;
-        vertical-align: middle;
-        width: 20%;
-    }
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 20%;
+  }
 }
 
 .about-entry {
-    margin-top: 20px;
+  margin-top: 20px;
 }

@@ -1,22 +1,22 @@
 .is-size-6-5 {
-    font-size: 0.875em;
+  font-size: 0.875em;
 }
 
 .no-underline {
-    color: hsl(0, 0%, 14%)!important;
-    border-bottom: none!important;
+  color: hsl(0, 0%, 14%) !important;
+  border-bottom: none !important;
 }
 
 .has-text-green {
-    color: $dark-green;
+  color: $dark-green;
 }
 
 .is-rounded-corners {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 @media (max-width: 1088px) {
-    .mobile-hidden {
-        display: none;
-    }
+  .mobile-hidden {
+    display: none;
+  }
 }

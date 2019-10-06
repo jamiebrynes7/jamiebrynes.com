@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 // Overwrite Bulma primary color
-$primary: #01579B;
+$primary: #01579b;
 
 // Bulma
 @import "../_css/utilities/_all.sass";
@@ -10,7 +10,6 @@ $primary: #01579B;
 @import "../_css/components/_all.sass";
 @import "../_css/grid/_all.sass";
 @import "../_css/layout/_all.sass";
-
 @import "./variables";
 @import "./helpers";
 @import "./about";
@@ -19,36 +18,41 @@ $primary: #01579B;
 @import "./kudos";
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Source Sans Pro'
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato'
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', sans-serif;
 }
 
 footer {
-    padding-bottom: 3rem!important;
+  padding-bottom: 3rem !important;
 }
 
 ::selection {
-    background: #fff2a8; /* WebKit/Blink Browsers */
+  background: #fff2a8; /* WebKit/Blink Browsers */
 }
 
 ::-moz-selection {
-    background: #fff2a8; /* Gecko Browsers */
+  background: #fff2a8; /* Gecko Browsers */
 }
 
 // Add some spacing around navbar entries.
 .navbar-end .navbar-item {
-    margin: 0px 10px;
+  margin: 0 10px;
 }
 
 .not-found {
-    white-space: pre-wrap;
-    background-color: unset;
-    color: unset;
+  white-space: pre-wrap;
+  background-color: unset;
+  color: unset;
 }
