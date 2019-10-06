@@ -1,212 +1,215 @@
 .post {
-    padding: 0px 20px;
-    max-width: 1140px;
-    margin: 75px auto;
-    color: $text;
+  padding: 0 20px;
+  max-width: 1140px;
+  margin: 75px auto;
+  color: $text;
 }
 
 .post-heading {
-    margin: 10px 0px 50px 0px;
-    text-align: center;
+  margin: 10px 0 50px 0;
+  text-align: center;
 }
 
 .post-content {
-    font-size: 1.125rem;
-    line-height: 1.7em;
-    letter-spacing: -.009em;
+  font-size: 1.125rem;
+  line-height: 1.7em;
+  letter-spacing: -0.009em;
 
-    h1 {
-        @extend .title;
-        @extend .is-size-3;
-        margin-top: 3rem;
+  h1 {
+    @extend .title;
+    @extend .is-size-3;
+
+    margin-top: 3rem;
+  }
+
+  h2 {
+    @extend .title;
+    @extend .is-size-4;
+
+    margin-top: 2.5rem;
+  }
+
+  h3 {
+    @extend .title;
+    @extend .is-size-5;
+
+    margin-top: 2rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    box-shadow: inset 0 -2px 0 $grey-lighter;
+    color: rgba(0, 0, 0, 0.84);
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -webkit-transition: 0.3s;
+
+    /* ...and now for the proper property */
+    transition: 0.3s;
+    text-decoration: none !important;
+
+    &:hover {
+      color: $text;
+      box-shadow: inset 0 -2px 0 $green;
     }
+  }
 
-    h2 {
-        @extend .title;
-        @extend .is-size-4;
-        margin-top: 2.5rem;
+  code {
+    background: rgba(0, 0, 0, 0.05);
+    margin: 0 1px;
+    color: $text;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.75rem;
+  }
+
+  ul {
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-bottom: 1rem;
+  }
+
+  ol {
+    list-style-position: outside;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+
+    li {
+      padding-left: 0.5rem;
     }
+  }
 
-    h3 {
-        @extend .title;
-        @extend .is-size-5;
-        margin-top: 2rem;
+  figcaption {
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  figure {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  blockquote {
+    margin-bottom: 1.5em;
+    padding: 0 0.75em;
+    border-left: 2px solid $green;
+    font-style: italic;
+  }
+
+  pre {
+    margin-bottom: 1.5em;
+    line-height: 1.5em;
+    white-space: pre-wrap;
+    border-radius: 5px;
+    font-size: 0.75em;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  table {
+    @extend .table;
+
+    margin: auto;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    @media (min-width: $desktop) {
+      display: table !important;
     }
-
-    p {
-        margin-bottom: 1rem;
-    }
-
-    a {
-        box-shadow: inset 0 -2px 0 $grey-lighter;
-        color: rgba(0, 0, 0, 0.84);
-    
-        -o-transition:.3s;
-        -ms-transition:.3s;
-        -moz-transition:.3s;
-        -webkit-transition:.3s;
-        /* ...and now for the proper property */
-        transition:.3s;
-        text-decoration: none!important;
-
-        &:hover {
-            color: $text;
-            box-shadow: inset 0 -2px 0 $green;
-        }
-    }
-
-    code {
-        background: rgba(0,0,0,.05);
-        margin: 0 1px;
-        color: $text;
-        border-radius: 3px;
-        border: 1px solid rgba(0,0,0, 0.1);
-        font-size: 0.75rem;
-    }
-
-    ul {
-        list-style-type: circle;
-        list-style-position: inside;
-        margin-bottom: 1rem;
-    }
-
-    ol {
-        list-style-position: outside;
-        margin-bottom: 1rem;
-        margin-left: 1rem;
-
-        li {
-            padding-left: 0.5rem;
-        }
-    }
-
-    figcaption {
-        font-size: 0.95rem;
-        color: rgba(0, 0, 0, 0.7);
-    }
-
-    figure {
-        margin-top: 30px;
-        margin-bottom: 50px;
-        text-align: center;
-    }
-
-    blockquote {
-        margin-bottom: 1.5em;
-        padding: 0 0.75em;
-        border-left: 2px solid $green;
-        font-style: italic;
-    }
-
-    pre {
-        margin-bottom: 1.5em;
-        line-height: 1.5em;
-        white-space: pre-wrap;
-        border-radius: 5px;
-        font-size: 0.75em;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-    }
-
-    table {
-        @extend .table;
-        margin: auto;
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-
-        @media (min-width: $desktop) {
-            display: table!important;
-        }
-    }
+  }
 }
 
 .post-footer {
-    margin-top: 50px;
-    min-height: 3em;
-    margin-bottom: 15px;
+  margin-top: 50px;
+  min-height: 3em;
+  margin-bottom: 15px;
 }
 
 .tags-container {
-    text-align: right;
-    line-height: 3em;
-    margin-top: -3em;
+  text-align: right;
+  line-height: 3em;
+  margin-top: -3em;
 
-    @media (max-width: $tablet) {
-        line-height: 0em;
-        text-align: center;
-        margin-top: 10px;
-    }
+  @media (max-width: $tablet) {
+    line-height: 0;
+    text-align: center;
+    margin-top: 10px;
+  }
 }
 
 .tag {
-    font-size: 1rem!important;
-    margin: 5px 0;
+  font-size: 1rem !important;
+  margin: 5px 0;
 }
 
 .sharing {
-    align-items: center;
-    text-align: center;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  padding-top: 10px;
 
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
-    padding-top: 10px;
+  a.button {
+    margin: 0 5px;
 
-    a.button {
-        margin: 0px 5px;
+    &.is-twitter {
+      background-color: #00aced;
+      border-color: transparent;
+      color: #fff;
 
-        &.is-twitter {
-            background-color: #00aced;
-            border-color: transparent;
-            color: #fff;
-
-            &:hover {
-                background-color: #0084b4;
-                border-color: transparent;
-                color: #fff;
-            }
-        }
-
-        &.is-facebook {
-            background-color: #3b5998;
-            border-color: transparent;
-            color: #fff;
-        
-            &:hover {
-                background-color: #22407F;
-                border-color: transparent;
-                color: #fff;
-            }
-        }
-        
-        &.is-email {
-            background-color: hsl(0, 0%, 29%);
-            border-color: transparent;
-            color: #fff;
-        
-            &:hover {
-                background-color: hsl(0, 0%, 21%);
-                border-color: transparent;
-                color: #fff;
-            }
-        }
+      &:hover {
+        background-color: #0084b4;
+        border-color: transparent;
+        color: #fff;
+      }
     }
+
+    &.is-facebook {
+      background-color: #3b5998;
+      border-color: transparent;
+      color: #fff;
+
+      &:hover {
+        background-color: #22407f;
+        border-color: transparent;
+        color: #fff;
+      }
+    }
+
+    &.is-email {
+      background-color: hsl(0, 0%, 29%);
+      border-color: transparent;
+      color: #fff;
+
+      &:hover {
+        background-color: hsl(0, 0%, 21%);
+        border-color: transparent;
+        color: #fff;
+      }
+    }
+  }
 }
 
 .post-summary {
-    padding: 25px 25px;
-    border-bottom: rgba(0, 0, 0, 0.25) 1px solid;
+  padding: 25px 25px;
+  border-bottom: rgba(0, 0, 0, 0.25) 1px solid;
 
-    &:last-child {
-        border: 0;
-    }
+  &:last-child {
+    border: 0;
+  }
 }
 
 .excerpt {
-    margin: 20px 0px;
+  margin: 20px 0;
 }
 
 .share-text {
-    margin-bottom: 15px;
-    font-weight: bolder;
-    font-size: 0.9em;
-    color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 15px;
+  font-weight: bolder;
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.7);
 }

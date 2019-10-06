@@ -1,0 +1,6 @@
+name: 'Stylelint'
+description: 'Lint stylesheets'
+author: 'Jamie Brynes'
+runs: 
+  using: 'docker'
+  image: 'Dockerfile'
