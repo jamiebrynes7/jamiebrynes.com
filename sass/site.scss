@@ -1,16 +1,7 @@
 @charset "utf-8";
 
-// Overwrite Bulma primary color
-$primary: #01579b;
-
-// Bulma
-@import "../vendor/bulma/utilities/_all.sass";
-@import "../vendor/bulma/base/_all.sass";
-@import "../vendor/bulma/elements/_all.sass";
-@import "../vendor/bulma/components/_all.sass";
-@import "../vendor/bulma/grid/_all.sass";
-@import "../vendor/bulma/layout/_all.sass";
 @import "./variables";
+@import "../vendor/bulma/bulma";
 @import "./helpers";
 @import "./about";
 @import "./post";
