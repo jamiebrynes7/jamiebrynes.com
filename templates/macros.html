@@ -55,8 +55,7 @@
 {% endmacro footer %}
 
 {% macro toc(h1s) %}
-<aside class="menu sidebar-right">
-  <div class="card toc-card">
+<div class="menu sticky">
   <p class="menu-label">
     Table of Contents
   </p>
@@ -73,8 +72,7 @@
     {% endif %}
     {% endfor %}
   </ul>
-  </div>
-</aside>
+</div>
 {% endmacro %}
 
 {% macro pager(pg) %}
