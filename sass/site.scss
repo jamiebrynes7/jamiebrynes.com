@@ -4,12 +4,12 @@
 $primary: #01579b;
 
 // Bulma
-@import "../_css/utilities/_all.sass";
-@import "../_css/base/_all.sass";
-@import "../_css/elements/_all.sass";
-@import "../_css/components/_all.sass";
-@import "../_css/grid/_all.sass";
-@import "../_css/layout/_all.sass";
+@import "../vendor/bulma/utilities/_all.sass";
+@import "../vendor/bulma/base/_all.sass";
+@import "../vendor/bulma/elements/_all.sass";
+@import "../vendor/bulma/components/_all.sass";
+@import "../vendor/bulma/grid/_all.sass";
+@import "../vendor/bulma/layout/_all.sass";
 @import "./variables";
 @import "./helpers";
 @import "./about";
