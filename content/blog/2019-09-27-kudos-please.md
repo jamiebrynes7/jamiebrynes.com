@@ -4,6 +4,9 @@ description = "A journey into serverless architecture!"
 
 [taxonomies]
 tags = ["website"]
+
+[extra]
+toc = true
 +++
 
 You may have noticed on each of my posts a small UI element like the following:
