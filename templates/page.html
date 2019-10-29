@@ -30,6 +30,9 @@
 
     <div class="columns">
       <div class="column is-2 mobile-hidden">
+        {% if page.extra.toc %}
+        {{ macros::toc(h1s=toc) }}
+        {% endif %}
       </div>
       <div class="column">
         <div class="post-content">
@@ -70,9 +73,6 @@
         </div>
       </div>
       <div class="column is-2 mobile-hidden">
-        {% if page.extra.toc %}
-        {{ macros::toc(h1s=toc) }}
-        {% endif %}
       </div>
     </div>
 
