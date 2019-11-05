@@ -15,6 +15,9 @@
           <div class="column is-one-fifth"></div>
           <div class="column is-three-fifths">
             {% block postsheading %}
+            <div class="has-text-centered">
+              <h1 class="title is-1" style="margin-bottom: 50px">Recent Posts</h1>
+            </div>
             {% endblock postsheading %}
             {% for page in paginator.pages %}
               <div class="post-summary">
