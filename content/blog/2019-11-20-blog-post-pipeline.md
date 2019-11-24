@@ -1,5 +1,5 @@
 +++
-title = "Adding GitHub Actions to a blog"
+title = "Github Actions & This"
 description = "Applying development practices to my personal website."
 
 [taxonomies]
@@ -16,7 +16,7 @@ At the time, I had recently gained access to the [GitHub Actions](https://github
 GitHub Actions is built-in workflow automation for GitHub repositories. Checkout [GitHub's documentation](https://github.com/features/actions) for more info.
 {% end %}
 
-There were a few pre-merge checks that immediately came to mind that I wanted: 
+There were a few merge gates that immediately came to mind: 
 
 **1. Run a website build.**
 
@@ -44,7 +44,7 @@ $ stylelint sass/*.scss
 
 **4. Build Kudos Please.**
 
-The [Kudos Please](/blog/kudos-please) feature requires a Rust AWS Lambda. If I'm making changes to these files I want to lint, build, and test this Rust lambda as a pre-merge gate.
+The [Kudos Please](/blog/kudos-please) feature requires a Rust AWS Lambda. If I'm making changes to these files I want to lint, build, and test this Rust lambda as a merge gate.
 
 ```
 $ cargo fmt && cargo build && cargo test
@@ -57,27 +57,82 @@ You can find the source for all of these actions in [this website's repository](
 
 ### Setting up GitHub Actions
 
-There are a few options for writing and consuming actions. You can:
+There are a few options for writing and/or consuming actions. You can:
 
-1. Reference a pre-built action. An example of this is `actions/checkout@v1` which will checkout the Git reference that triggered the action.
+1. Reference an existing action. An example of this is `actions/checkout@v1` which will checkout the Git reference that triggered the action.
 2. Write an action using Javascript/Typescript.
-3. Write an action that will run in a Docker container.
+3. Write an action that runs in a Docker container.
 
 As you'll see in the section [below](#setting-up-a-local-workflow), one of my requirements is that I can run all these checks locally too. For that reason, I tended to gravitate toward writing my actions to run in Docker containers. 
 
-GitHub Actions are grouped into workflows and jobs. A workflow runs one or more jobs and a job runs one or more actions. I run two workflows as pre-merge gates:
+GitHub Actions are grouped into workflows and jobs. A workflow runs one or more jobs and a job runs one or more actions. I run two workflows as merge gates:
 
 1. [Website checks](https://github.com/jamiebrynes7/website/blob/master/.github/workflows/post-checks.yml). Build the website, spellcheck the blog posts, and lint the SCSS.
 2. [Kudos checks](https://github.com/jamiebrynes7/website/blob/master/.github/workflows/kudos-integration.yml). Build, lint, and test the Rust program.
 
+---
+
+Let's walk through one of the actions I run on this blog: `spellcheck`.
+
+This action consists of three main parts: 
+
+* The `action.yml` definition file. This is a declarative file which describes the action and how it runs.
+	```yaml
+	name: 'Spellcheck'
+	description: 'Spellcheck markdown files'
+	author: 'Jamie Brynes'
+	runs: 
+	  using: 'docker'
+	  image: 'Dockerfile'
+	```
+
+* The `Dockerfile`. Since I'm using Docker, the action needs a container to build and run.
+	```Dockerfile
+	FROM node:latest
+
+	WORKDIR /home/node
+	RUN ["npm", "install", "-g", "spellchecker-cli"]
+
+	COPY entrypoint.sh /entrypoint.sh
+	ENTRYPOINT ["/entrypoint.sh"]
+	```
+
+* The `entrypoint.sh` script reference in the `Dockerfile` above. This executes when the action runs.
+    ```bash
+    #!/bin/bash
+
+    set -e -u -o pipefail
+
+    if [[ -z "${GITHUB_WORKSPACE}" ]]; then
+        echo "Set the GITHUB_WORKSPACE env variable."
+        exit 1
+    fi
+
+    cd "${GITHUB_WORKSPACE}"
+
+    # Omitted: Strip front end matter before spellchecking.
+    # Involves copying into the temp directory.
+
+    pushd "${TMP_DIR}" > /dev/null
+    spellchecker \
+        -f "./*.md" "!1970-01-01-mkdown-test.md" "!_index.md" \
+        -l en-GB \
+        -d "${GITHUB_WORKSPACE}/ci/dictionary"
+    popd > /dev/null
+    ```
+
+{% callout(type="info") %}
+You can find the source for this action in [this website's repository](https://github.com/jamiebrynes7/website/tree/master/.github/actions/spellcheck).
+{% end %}
+
 ### A local workflow
 
-Since my actions are containerized, to run the action locally I need to build and run the container. If you peek at the `entrypoint.sh` scripts for any of my actions, you'll notice they rely on the `$GITHUB_WORKSPACE` variable. When an action runs in the cloud, this environment variable is set to the directory that contains your project (which is mounted into your container).
+Since my actions are containerised, I can build and run the container to run that action. If you peek at the `entrypoint.sh` scripts for any of my actions (like above!), you'll notice they rely on the `$GITHUB_WORKSPACE` environment variable. When an action runs in the cloud, this environment variable is set to the directory that contains your project (which is mounted into your container).
 
 This can be replicated locally:
 
 ```
-$ docker run -v $(pwd):/github/ -e GITHUB_WORKSPACE="/github" zola:latest
+$ docker run --rm -v $(pwd):/github/ -e GITHUB_WORKSPACE="/github" spellcheck:latest
 ```
 These are now wrapped up into a nice [Makefile](https://github.com/jamiebrynes7/website/blob/master/Makefile) such that to spellcheck my blog posts, I just run: 
 
@@ -100,14 +155,14 @@ spellcheck-docker:
 ```
 
 {% callout(type="info") %}
-You'll notice some oddities in escaping leading slashes above, e.g. - `//github`. This is due to a foible of Git Bash on Windows. 
+You'll notice some oddities in the Makefile above, like escaping the leading slashes (e.g. - `//github`). This is due to a foible of Git Bash on Windows. 
 
 If the leading slash _isn't_ escaped this resolves to `${PATH_TO_GIT_BASH}/github`. 🙃
 {% end %}
 
 ### Future actions
 
-This is just the beginning for GitHub Actions for this website. There are already a few extra ones on my backlog: 
+The actions listed above are just the actions that I've implemented so far. There are already a few extra ones on my backlog: 
 
 - Maximum image size. This will stop me from accidentally serving images that are above a certain size. No one likes downloading a huge image when browsing a website.
 - Link checking. This could be an action that would run periodically. Any old links that are broken would get flagged up.

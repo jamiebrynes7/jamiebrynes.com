@@ -2,7 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
-
 @import "./variables";
 @import "../vendor/bulma/bulma";
 @import "./helpers";
@@ -25,7 +24,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Merriweather', serif!important;
+  font-family: 'Merriweather', serif !important;
 }
 
 footer {
