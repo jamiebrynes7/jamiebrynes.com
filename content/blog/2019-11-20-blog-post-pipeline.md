@@ -78,23 +78,23 @@ This action consists of three main parts:
 
 * The `action.yml` definition file. This is a declarative file which describes the action and how it runs.
 	```yaml
-	name: 'Spellcheck'
-	description: 'Spellcheck markdown files'
-	author: 'Jamie Brynes'
-	runs: 
-	  using: 'docker'
-	  image: 'Dockerfile'
+    name: 'Spellcheck'
+    description: 'Spellcheck markdown files'
+    author: 'Jamie Brynes'
+    runs: 
+      using: 'docker'
+      image: 'Dockerfile'
 	```
 
 * The `Dockerfile`. Since I'm using Docker, the action needs a container to build and run.
 	```Dockerfile
-	FROM node:latest
+    FROM node:latest
 
-	WORKDIR /home/node
-	RUN ["npm", "install", "-g", "spellchecker-cli"]
+    WORKDIR /home/node
+    RUN ["npm", "install", "-g", "spellchecker-cli"]
 
-	COPY entrypoint.sh /entrypoint.sh
-	ENTRYPOINT ["/entrypoint.sh"]
+    COPY entrypoint.sh /entrypoint.sh
+    ENTRYPOINT ["/entrypoint.sh"]
 	```
 
 * The `entrypoint.sh` script reference in the `Dockerfile` above. This executes when the action runs.
