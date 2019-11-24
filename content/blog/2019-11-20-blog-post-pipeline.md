@@ -77,49 +77,52 @@ Let's walk through one of the actions I run on this blog: `spellcheck`.
 This action consists of three main parts: 
 
 * The `action.yml` definition file. This is a declarative file which describes the action and how it runs.
-	```yaml
-    name: 'Spellcheck'
-    description: 'Spellcheck markdown files'
-    author: 'Jamie Brynes'
-    runs: 
-      using: 'docker'
-      image: 'Dockerfile'
-	```
+
+```yaml
+name: 'Spellcheck'
+description: 'Spellcheck markdown files'
+author: 'Jamie Brynes'
+runs: 
+    using: 'docker'
+    image: 'Dockerfile'
+```
 
 * The `Dockerfile`. Since I'm using Docker, the action needs a container to build and run.
-	```Dockerfile
-    FROM node:latest
 
-    WORKDIR /home/node
-    RUN ["npm", "install", "-g", "spellchecker-cli"]
+```dockerfile
+FROM node:latest
 
-    COPY entrypoint.sh /entrypoint.sh
-    ENTRYPOINT ["/entrypoint.sh"]
-	```
+WORKDIR /home/node
+RUN ["npm", "install", "-g", "spellchecker-cli"]
+
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+```
 
 * The `entrypoint.sh` script reference in the `Dockerfile` above. This executes when the action runs.
-    ```bash
-    #!/bin/bash
 
-    set -e -u -o pipefail
+```bash
+#!/bin/bash
 
-    if [[ -z "${GITHUB_WORKSPACE}" ]]; then
-        echo "Set the GITHUB_WORKSPACE env variable."
-        exit 1
-    fi
+set -e -u -o pipefail
 
-    cd "${GITHUB_WORKSPACE}"
+if [[ -z "${GITHUB_WORKSPACE}" ]]; then
+    echo "Set the GITHUB_WORKSPACE env variable."
+    exit 1
+fi
 
-    # Omitted: Strip front end matter before spellchecking.
-    # Involves copying into the temp directory.
+cd "${GITHUB_WORKSPACE}"
 
-    pushd "${TMP_DIR}" > /dev/null
-    spellchecker \
-        -f "./*.md" "!1970-01-01-mkdown-test.md" "!_index.md" \
-        -l en-GB \
-        -d "${GITHUB_WORKSPACE}/ci/dictionary"
-    popd > /dev/null
-    ```
+# Omitted: Strip front end matter before spellchecking.
+# Involves copying into the temp directory.
+
+pushd "${TMP_DIR}" > /dev/null
+spellchecker \
+    -f "./*.md" "!1970-01-01-mkdown-test.md" "!_index.md" \
+    -l en-GB \
+    -d "${GITHUB_WORKSPACE}/ci/dictionary"
+popd > /dev/null
+```
 
 {% callout(type="info") %}
 You can find the source for this action in [this website's repository](https://github.com/jamiebrynes7/website/tree/master/.github/actions/spellcheck).
