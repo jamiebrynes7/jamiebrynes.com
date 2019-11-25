@@ -54,3 +54,5 @@ Makefile
 [Ss]hortcodes?
 [Cc]enters?
 [Cc]entered
+SCSS
+Stylelint
