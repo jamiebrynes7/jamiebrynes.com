@@ -1,5 +1,5 @@
 +++
-title = "Github Actions & This"
+title = "GitHub Actions & This"
 description = "Applying development practices to my personal website."
 
 [taxonomies]
