@@ -1,6 +1,9 @@
 TIMESTAMP=$(shell date '+%Y-%m-%d')
 CWD=$(shell pwd)
 
+JS_SOURCES = $(wildcard js/*.js)
+JS_MIN_SOURCES = $(JS_SOURCES:.js=.min.js)
+
 .PHONY: serve build_web zola clean spellcheck spellcheck-docker stylelint stylelint-docker
 
 serve: zola
@@ -11,6 +14,8 @@ build: zola
 	docker run -v /$(CWD):/github/ -e GITHUB_WORKSPACE="//github" zola:latest
 
 lint: spellcheck stylelint
+
+minify: $(JS_MIN_SOURCES)
 
 stylelint: stylelint-docker
 ifdef fix 
@@ -33,3 +38,6 @@ stylelint-docker:
 
 clean:
 	rm -rf ./public/
+
+%.min.js : %.js
+	curl -X POST -s --data-urlencode "input=`cat $<`" https://javascript-minifier.com/raw > "static/$@"
