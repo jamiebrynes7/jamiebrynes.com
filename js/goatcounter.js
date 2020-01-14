@@ -1,5 +1,5 @@
 (function() {
-    if (window.location.host != "jamiebrynes.com") {
+    if (window.location.host != "www.jamiebrynes.com") {
         return;
     }
     
