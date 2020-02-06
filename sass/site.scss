@@ -1,7 +1,8 @@
 @charset "utf-8";
 
 @import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack-subset.css');
 @import "./variables";
 @import "../vendor/bulma/bulma";
 @import "./helpers";
@@ -15,7 +16,7 @@ html {
 }
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1,
@@ -25,6 +26,10 @@ h4,
 h5,
 h6 {
   font-family: 'Merriweather', serif !important;
+}
+
+pre, code {
+  font-family: Hack, monospace;
 }
 
 footer {

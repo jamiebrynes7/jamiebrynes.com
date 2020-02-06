@@ -55,7 +55,7 @@ $ cargo fmt && cargo build && cargo test
 You can find the source for all of these actions in [this website's repository](https://github.com/jamiebrynes7/website/tree/master/.github/actions).
 {% end %}
 
-### Setting up GitHub Actions
+## Setting up GitHub Actions
 
 There are a few options for writing and/or consuming actions. You can:
 
@@ -128,7 +128,7 @@ popd > /dev/null
 You can find the source for this action in [this website's repository](https://github.com/jamiebrynes7/website/tree/master/.github/actions/spellcheck).
 {% end %}
 
-### A local workflow
+## A local workflow
 
 Since my actions are containerised, I can build and run the container to run that action. If you peek at the `entrypoint.sh` scripts for any of my actions (like above!), you'll notice they rely on the `$GITHUB_WORKSPACE` environment variable. When an action runs in the cloud, this environment variable is set to the directory that contains your project (which is mounted into your container).
 
@@ -163,7 +163,7 @@ You'll notice some oddities in the Makefile above, like escaping the leading sla
 If the leading slash _isn't_ escaped this resolves to `${PATH_TO_GIT_BASH}/github`. 🙃
 {% end %}
 
-### Future actions
+## Future actions
 
 The actions listed above are just the actions that I've implemented so far. There are already a few extra ones on my backlog: 
 
