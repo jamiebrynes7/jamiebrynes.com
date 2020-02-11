@@ -8,7 +8,7 @@ JS_MIN_SOURCES = $(JS_SOURCES:.js=.min.js)
 
 serve: zola
 	-docker kill zola 
-	docker run --name "zola" --rm -v /$(CWD):/github/ -e GITHUB_WORKSPACE="//github" -e ZOLA_COMMAND="serve --interface 0.0.0.0" -p 1111:1111 zola:latest
+	docker run -it --name "zola" --rm -v /$(CWD):/github/ -e GITHUB_WORKSPACE="//github" -e ZOLA_COMMAND="serve --interface 0.0.0.0" -p 1111:1111 zola:latest
 
 build: zola
 	docker run -v /$(CWD):/github/ -e GITHUB_WORKSPACE="//github" zola:latest
