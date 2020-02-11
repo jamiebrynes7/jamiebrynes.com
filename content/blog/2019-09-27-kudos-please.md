@@ -15,6 +15,8 @@ You may have noticed on each of my posts a small UI element like the following:
 
 This widget, called "Kudos Please", is a simple way to acknowledge something, somewhat similar to a like or a thumbs up. Simply hover over the element and observe the element begin to animate! Keep your mouse/finger on the element for long enough and... aha! The number of kudos has increased.
 
+<!-- more -->
+
 The basis for this widget is the hard work of [Tim Pietrusky](https://github.com/TimPietrusky) and their [original implementation](http://kudosplease.com/). They deserve all the credit for the CSS and Javascript backing the appearance and animation.
 
 So why did I not use the widget outright, as the website suggests that I could?
