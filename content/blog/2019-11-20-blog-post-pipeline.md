@@ -8,6 +8,8 @@ tags = ["website"]
 
 I'm a fan of development methodologies like [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration), [continuous delivery](https://en.wikipedia.org/wiki/Continuous_delivery), and static analysis tools. They allow you to maintain quality in the software you build by automating many of the checks that you might do manually otherwise. This benefit is twofold: it removes the human element from the checks and removes cognitive overhead of running the checks yourself.
 
+<!-- more -->
+
 After setting up this website, I thought: **why couldn't I do the same for website**? 
 
 At the time, I had recently gained access to the [GitHub Actions](https://github.com/features/actions) beta. This website seemed like a perfect opportunity to test out GitHub Actions.
