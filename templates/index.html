@@ -1,6 +1,11 @@
 {% import "macros.html" as macros %}
 {% extends "base.html" %}
 
+{% block js %}
+<script src="/js/nav.min.js"></script>
+<script src="/js/github-buttons.min.js"></script>
+{% endblock js %}
+
 {% block content %}
   <div class="hero is-primary is-fullheight zip-zag-bottom">
     <div class="hero-head">
@@ -70,6 +75,19 @@
                 {{ project.role }}
               </strong>
             </p>
+            {% if project.github_slug %}
+            <p>
+              <a 
+                class="github-button" 
+                href="https://github.com/{{ project.github_slug }}" 
+                data-icon="octicon-star" 
+                data-size="large" 
+                data-show-count="true" 
+                aria-label="Star {{ project.github_slug }} on GitHub">
+                Star
+              </a>
+            </p>
+          {% endif %}
             {% for desc in project.desc %}
             <br />
             <p>{{ desc }}</p>
