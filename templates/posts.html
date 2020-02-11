@@ -21,10 +21,15 @@
             {% endblock postsheading %}
             {% for page in paginator.pages %}
               <div class="post-summary">
-                <a href="{{ page.permalink }}"><h2 class="title is-size-5">{{ page.title }}</h2></a>
-                <p class="excerpt has-text-grey-dark is-size-6">{{ page.description }}</p>
+                <h2 class="title is-size-4"><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
+                {% if page.summary %}
+                {% set summary = page.summary %}
+                {% else %}
+                {% set summary = page.description %}
+                {% endif %}
+                <div class="excerpt has-text-grey-dark is-size-6">{{ summary | safe | striptags | truncate(length=250, end="...") }}</div>
                 <p class="has-text-grey-dark is-size-6-5">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min
-                    read{% if page.taxonomies.tags %} &#X00B7 {% for tag in page.taxonomies.tags %}<a class="has-text-grey-dark" href="/tags/{{ tag }}"> #{{ tag }}</a>{% if loop.index != page.taxonomies.tags | length %} &#X00B7{% endif %}
+                    read{% if page.taxonomies.tags %} &#X00B7 {% for tag in page.taxonomies.tags %}<a class="has-text-grey-dark tag-link" href="/tags/{{ tag }}"> #{{ tag }}</a>{% if loop.index != page.taxonomies.tags | length %} &#X00B7{% endif %}
                       {% endfor %}{% endif %}
                 </p>
               </div>
