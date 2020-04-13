@@ -94,3 +94,40 @@
 </nav>
 {% endif %}
 {% endmacro %}
+
+{% macro month(month_num) %}
+{% if month_num == 1 %}
+{% set m = "Jan" %}
+{% elif month_num == 2 %}
+{% set m = "Feb" %}
+{% elif month_num == 3 %}
+{% set m = "Mar" %}
+{% elif month_num == 4 %}
+{% set m = "Apr" %}
+{% elif month_num == 5 %}
+{% set m = "May" %}
+{% elif month_num == 6 %}
+{% set m = "Jun" %}
+{% elif month_num == 7 %}
+{% set m = "Jul" %}
+{% elif month_num == 8 %}
+{% set m = "Aug" %}
+{% elif month_num == 9 %}
+{% set m = "Sep" %}
+{% elif month_num == 10 %}
+{% set m = "Oct" %}
+{% elif month_num == 11 %}
+{% set m = "Nov" %}
+{% elif month_num == 12 %}
+{% set m = "Dec" %}
+{% endif %}
+{{ m }}
+{% endmacro %}
+
+{% macro pad_day(day) %}
+{% if day < 10 %}
+0{{ day }}
+{% else %}
+{{ day }}
+{% endif %}
+{% endmacro %}

@@ -32,9 +32,14 @@
 </head>
 
 <body>
+  <div class="content-wrapper">
     {% block content %}
     {% endblock content %}
     <script src="/js/goatcounter.min.js"></script>
+    <!-- <pre>
+      {{ __tera_context }}
+    </pre> -->
+  </div>
+  {{ macros::footer() }}
 </body>
 
-{{ macros::footer() }}

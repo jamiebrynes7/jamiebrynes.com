@@ -14,15 +14,15 @@
           <div class="column is-one-fifth"></div>
           <div class="column is-three-fifths">
             <div class="has-text-centered">
-              <h1 class="title is-1" style="margin-bottom: 50px;">Tags</h1>
+              <h1 class="title is-2" style="margin-bottom: 50px;">Tags</h1>
             </div>
 
             {% for term in terms %}
-              <div class="post-summary">
-                <a href="{{ term.permalink }}"><h2 class="title is-size-5">#{{ term.name }}</h2></a>
-                <p class="excerpt has-text-grey-dark is-size-6">{% if config.extra.tags is containing(term.name) %}{{ config.extra.tags[term.name] }}{% endif %}</p>
-                <p class="has-text-grey-dark is-size-6-5">{{ term.pages | length }} posts</p>
-              </div>
+            <li class="post-item">
+              <a href="{{ term.permalink }}">#{{ term.name }}</a>
+              <hr class="post-divider"/>
+              <small class="post-date">{{ term.pages | length }} posts</small>
+            </li>
             {% endfor %}
           </div>
           <div class="column is-one-fifth"></div>

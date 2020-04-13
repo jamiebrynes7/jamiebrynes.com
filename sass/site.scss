@@ -13,10 +13,16 @@
 
 html {
   scroll-behavior: smooth;
+  position: relative;
+  min-height: 100%;
 }
 
 body {
   font-family: 'Inter', sans-serif;
+}
+
+.content-wrapper {
+  margin-bottom: 200px;
 }
 
 h1,
@@ -34,7 +40,11 @@ code {
 }
 
 footer {
-  padding-bottom: 3rem !important;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height:100px;
 }
 
 ::selection {

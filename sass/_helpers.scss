@@ -3,8 +3,8 @@
 }
 
 .no-underline {
-  color: hsl(0, 0%, 14%) !important;
-  border-bottom: none !important;
+  text-decoration: none!important;
+  color: $text!important;
 }
 
 .has-text-green {
