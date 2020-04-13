@@ -3,10 +3,10 @@
 
 {% block content %}
 <div class="hero">
-    <div class="hero-head">
-      {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
-    </div>
+  <div class="hero-head">
+    {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
   </div>
+ </div>
 
 <section>
   <div class="container">
@@ -16,25 +16,21 @@
           <div class="column is-three-fifths">
             {% block postsheading %}
             <div class="has-text-centered">
-              <h1 class="title is-1" style="margin-bottom: 50px">Recent Posts</h1>
+              <h1 class="title is-2" style="margin-bottom: 50px">Posts</h1>
             </div>
             {% endblock postsheading %}
-            {% for page in paginator.pages %}
-              <div class="post-summary">
-                <h2 class="title is-size-4"><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
-                {% if page.summary %}
-                {% set summary = page.summary %}
-                {% else %}
-                {% set summary = page.description %}
-                {% endif %}
-                <div class="excerpt has-text-grey-dark is-size-6">{{ summary | safe | striptags | truncate(length=250, end="...") }}</div>
-                <p class="has-text-grey-dark is-size-6-5">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min
-                    read{% if page.taxonomies.tags %} &#X00B7 {% for tag in page.taxonomies.tags %}<a class="has-text-grey-dark tag-link" href="/tags/{{ tag }}"> #{{ tag }}</a>{% if loop.index != page.taxonomies.tags | length %} &#X00B7{% endif %}
-                      {% endfor %}{% endif %}
-                </p>
-              </div>
+            {% set grouped = paginator.pages | group_by(attribute="year") %}
+            {% for year, posts in grouped %}
+            <h2 class="year-marker">{{ year}}</h2>
+            {% for post in posts %}
+              <li class="post-item">
+              <a href="{{ post.permalink }}">{{ post.title }}</a>
+              <hr class="post-divider"/>
+              <small class="post-date">{{ macros::month(month_num = post.month) }} {{macros::pad_day(day = post.day) }}</small>
+              </li>
             {% endfor %}
-            {{ macros::pager(pg=paginator) }}
+            {% endfor %}
+
           </div>
           <div class="column is-one-fifths">
           </div>
