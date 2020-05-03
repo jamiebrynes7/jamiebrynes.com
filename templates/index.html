@@ -1,11 +1,6 @@
 {% import "macros.html" as macros %}
 {% extends "base.html" %}
 
-{% block js %}
-<script src="/js/nav.min.js"></script>
-<script src="/js/github-buttons.min.js"></script>
-{% endblock js %}
-
 {% block content %}
   <div class="hero is-primary is-fullheight zip-zag-bottom">
     <div class="hero-head">
@@ -13,89 +8,12 @@
     </div>
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h2 class="subtitle">Hi there 👋</h2>
-        <h1 class="title is-1">I'm Jamie</h1>
-        <h2 class="subtitle is-2">A Software Engineer</h2>
-        <a class="subtitle" href="#about">
-          <i class="fas fa-chevron-down"></i>
-        </a>
+        <h1 class="title is-1">Hi there, I'm Jamie 👋</h1>
+        <br/>
+        <h3 class="subtitle is-6">Welcome to my corner of the internet!</h3>
+        <h3 class="subtitle is-6">I work in software engineering, primarily with C# (professionally) and Rust (hobby projects).</h3>
+        <h3 class="subtitle is-6">You can learn <a href="/resume">more about me</a>, see what <a href="/projects">projects</a> I've been working on, or read my (rare) <a href="/blog">writings</a>.</h3>
       </div>
     </div>
-  </div>
-  <div>
-    <section class="section">
-      <div class="container has-text-centered">
-        <a name="about"></a>
-        <h1 class="title about-section">Here's what I've done so far</h1>
-      </div>
-      <div class="container about-body">
-        {% for entry in section.extra.entries %}
-        <div class="columns about-entry">
-          <div class="column is-one-third">
-            <img class="is-rounded-corners" src="{{ entry.img_link }}" />
-          </div>
-          <div class="column is-two-thirds">
-            <p class="is-size-4">
-              <a href="{{ entry.heading_link }}">{{ entry.heading }}</a>
-            </p>
-            <p>
-              <strong class="has-text-green">
-                {{ entry.role }}, <em>{{ entry.timeframe }}</em>
-              </strong>
-            </p>
-            <p><strong class="is-size-6">{{ entry.location }}</strong></p>
-            {% for desc in entry.desc %}
-            <br />
-            <p>{{ desc }}</p>
-            {% endfor %}
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </section>
-    <section class="section">
-      <div class="container has-text-centered">
-        <a name="projects"></a>
-        <h1 class="title about-section">Here's what I do in my free time</h1>
-      </div>
-      <div class="container about-body">
-        {% for project in section.extra.projects %}
-        <div class="columns about-entry">
-          <div class="column is-one-third">
-            {% if project.img_link %}
-            <img class="is-rounded-corners" src="{{ project.img_link }}" />
-            {% endif %}
-          </div>
-          <div class="column is-two-thirds">
-            <p class="is-size-4">
-              <a href="{{ project.title_link }}">{{ project.title }}</a>
-            </p>
-            <p>
-              <strong class="has-text-green">
-                {{ project.role }}
-              </strong>
-            </p>
-            {% if project.github_slug %}
-            <p>
-              <a 
-                class="github-button" 
-                href="https://github.com/{{ project.github_slug }}" 
-                data-icon="octicon-star" 
-                data-size="large" 
-                data-show-count="true" 
-                aria-label="Star {{ project.github_slug }} on GitHub">
-                Star
-              </a>
-            </p>
-          {% endif %}
-            {% for desc in project.desc %}
-            <br />
-            <p>{{ desc }}</p>
-            {% endfor %}
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </section>
   </div>
 {% endblock content %}

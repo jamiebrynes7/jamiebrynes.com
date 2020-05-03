@@ -1,8 +1,6 @@
 {% extends "posts.html" %}
 
-{% block postsheading %}
-<div class="has-text-centered">
-  <h1 class="title is-2">#{{ term.name }}</h1>
-  <h3 style="margin-bottom: 50px;">{{ term.pages | length }} posts</h3>
-</div>
-{% endblock postsheading %}
+{% block page_title %}
+<h1 class="page-title">#{{ term.name }}</h1>
+<h3 style="margin-bottom: 50px;">{{ term.pages | length }} posts</h3>
+{% endblock page_title %}

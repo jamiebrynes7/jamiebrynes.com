@@ -1,33 +1,15 @@
-{% extends "base.html" %}
+{% extends "content.html" %}
 
-{% block content %}
-<div class="hero">
-  <div class="hero-head">
-    {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
-  </div>
-</div>
+{% block page_title %}
+<h1 class="page-title" style="margin-bottom: 50px;">Tags</h1>
+{% endblock page_title %}
 
-<section>
-  <div class="container">
-    <article class="post">
-      <div class="columns">
-          <div class="column is-one-fifth"></div>
-          <div class="column is-three-fifths">
-            <div class="has-text-centered">
-              <h1 class="title is-2" style="margin-bottom: 50px;">Tags</h1>
-            </div>
-
-            {% for term in terms %}
-            <li class="post-item">
-              <a href="{{ term.permalink }}">#{{ term.name }}</a>
-              <hr class="post-divider"/>
-              <small class="post-date">{{ term.pages | length }} posts</small>
-            </li>
-            {% endfor %}
-          </div>
-          <div class="column is-one-fifth"></div>
-      </div>
-    </article>
-  </div>
-</section>
-{% endblock content %}
+{% block page_content %}
+{% for term in terms %}
+<li class="post-item">
+  <a href="{{ term.permalink }}">#{{ term.name }}</a>
+  <hr class="post-divider"/>
+  <small class="post-date">{{ term.pages | length }} posts</small>
+</li>
+{% endfor %}
+{% endblock page_content %}
