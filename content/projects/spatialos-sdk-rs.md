@@ -9,7 +9,7 @@ description = '''
 weight = 0
 
 [extra]
-img_path = "imgs/rust-sdk.PNG"
+img_path = "/imgs/rust-sdk.PNG"
 github_slug = "jamiebrynes7/spatialos-sdk-rs"
 +++
 

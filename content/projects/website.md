@@ -7,7 +7,7 @@ description = '''
 weight = 1
 
 [extra]
-img_path = "imgs/website.png"
+img_path = "/imgs/website.png"
 github_slug = "jamiebrynes7/website"
 +++
 
