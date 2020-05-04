@@ -1,0 +1,48 @@
+{% extends "content.html" %}
+
+{% block js %}
+<script src="/js/nav.min.js"></script>
+<script src="/js/github-buttons.min.js"></script>
+{% endblock js %}
+
+
+{% block page_title %}
+<h1 class="page-title">Projects</h1>
+{% endblock page_title %}
+
+{% block page_content %}
+{% for page in paginator.pages  %}
+
+<div class="columns about-entry">
+  <div class="column is-one-third">
+    {% if page.extra.img_path %}
+    <img class="is-rounded-corners" src="{{ page.extra.img_path }}" />
+    {% endif %}
+  </div>
+  <div class="column is-two-thirds">
+    <p class="is-size-4">
+      <a href="{{ page.permalink }}">{{ page.title }}</a>
+    </p>
+    {% if page.extra.github_slug %}
+    <p>
+      <a 
+        class="github-button" 
+        href="https://github.com/{{ page.extra.github_slug }}" 
+        data-icon="octicon-star" 
+        data-size="large" 
+        data-show-count="true" 
+        aria-label="Star {{ page.extra.github_slug }} on GitHub">
+        Star
+      </a>
+    </p>
+  {% endif %}
+  <p>{{ page.description | safe }}</p>
+  </div>
+</div>
+
+{% if not loop.last %}
+<hr/>
+{% endif %}
+
+{% endfor %}
+{% endblock page_content %}
