@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./static/imgs/website.png" width="450" />
+  <img src="./static/imgs/website.png" width="300" />
 
   <h1>Personal website</h1>
 
@@ -9,7 +9,7 @@
 
   <p>
     <img alt="Netlify deploy status" src="https://api.netlify.com/api/v1/badges/af1f3486-98da-4b30-a5a9-680e656c709c/deploy-status"/>
-    <img alt="Blog build status" src="https://github.com/jamiebrynes7/website/workflows/Check%20blog%20posts/badge.sv"/>
+    <img alt="Blog build status" src="https://github.com/jamiebrynes7/website/workflows/Check%20blog%20posts/badge.svg"/>
     <img alt="Kudos please build status" src="https://github.com/jamiebrynes7/website/workflows/Build%20Kudos%20Please/badge.svg"/>
   </p>
 </div>
