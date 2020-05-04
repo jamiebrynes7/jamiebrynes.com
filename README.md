@@ -41,6 +41,6 @@ This site is built using the [Zola](http://getzola.org) static site generator.
 - `kudos/` contains the Rust source code for the backend of the [Kudos Please](https://www.jamiebrynes.com/blog/kudos-please/) feature
 - `sass/` contains the style of the website
 - `templates/` contains the templated HTML that underpin the website
-- `vedor/` contains the [Bulma](https://bulma.io/) SASS source
+- `vendor/` contains the [Bulma](https://bulma.io/) SASS source
 
 It also has a small `runner.sh` script for running common jobs (its only tested on Git Bash for Windows, your mileage may vary!).
