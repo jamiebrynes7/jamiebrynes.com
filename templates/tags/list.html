@@ -1,6 +1,24 @@
-{% extends "content.html" %}
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
 
-{% block page_title %}
+{% block content %}
+
+<h1 class="text-6xl font-extrabold text-gray-800 mb-12">Tags</h1>
+
+{% for term in terms %}
+  <div class="flex items-center justify-between py-2">
+    <a class="text-gray-800 hover:text-blue-500 duration-300" href="{{ term.permalink }}">#{{ term.name }}</a>
+    <hr class="flex-grow mx-4 bg-blue-500" />
+    <small class="font-mono text-gray-600">{{ term.pages | length }} posts</small>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock content %}
+
+...
+
+<!-- {% block page_title %}
 <h1 class="page-title" style="margin-bottom: 50px;">Tags</h1>
 {% endblock page_title %}
 
@@ -12,4 +30,4 @@
   <small class="post-date">{{ term.pages | length }} posts</small>
 </li>
 {% endfor %}
-{% endblock page_content %}
+{% endblock page_content %} -->

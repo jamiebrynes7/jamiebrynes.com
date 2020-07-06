@@ -21,7 +21,7 @@
   {% endif %}
 
   {% block css %}
-  <link rel="stylesheet" href="/site.css">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   {% endblock css %}
@@ -32,7 +32,8 @@
 </head>
 
 <body>
-  <div class="content-wrapper">
+  {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
+  <div class="w-full min-h-screen lg:w-3/4 max-w-screen-xl mx-auto px-6 lg:px-0 pt-12">
     {% block content %}
     {% endblock content %}
     <script src="/js/goatcounter.min.js"></script>
@@ -40,6 +41,6 @@
       {{ __tera_context }}
     </pre> -->
   </div>
-  {{ macros::footer() }}
+  {{ macros::footer(extra=config.extra) }}
 </body>
 

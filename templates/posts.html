@@ -1,21 +1,24 @@
-{% extends "content.html" %}
+{% extends "base.html" %}
 {% import "macros.html" as macros %}
 
+{% block content %}
+
 {% block page_title %}
-<h1 class="page-title" style="margin-bottom: 50px">Posts</h1>
+<h1 class="text-6xl font-extrabold text-gray-800">Posts</h1>
 {% endblock page_title %}
 
-{% block page_content %}
 {% set grouped = paginator.pages | group_by(attribute="year") %}
 {% for year, posts in grouped %}
-<h2 class="year-marker">{{ year}}</h2>
+<h2 class="text-3xl font-bold text-gray-600 mt-12">{{ year}}</h2>
+<div class="pl-2">
 {% for post in posts %}
-  <li class="post-item">
-  <a href="{{ post.permalink }}">{{ post.title }}</a>
-  <hr class="post-divider"/>
-  <small class="post-date">{{ macros::month(month_num = post.month) }} {{macros::pad_day(day = post.day) }}</small>
-  </li>
+  <div class="flex items-center justify-between py-2">
+    <a class="text-gray-800 hover:text-blue-500 duration-300" href="{{ post.permalink }}">{{ post.title }}</a>
+    <hr class="flex-grow mx-4 bg-blue-500" />
+    <small class="font-mono text-gray-600">{{ macros::month(month_num = post.month) }} {{macros::pad_day(day = post.day) }}</small>
+  </div>
 {% endfor %}
+</div>
 {% endfor %}
-{% endblock page_content %}
 
+{% endblock content %}

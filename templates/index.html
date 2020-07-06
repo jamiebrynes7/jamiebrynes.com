@@ -2,18 +2,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="hero is-primary is-fullheight zip-zag-bottom">
-    <div class="hero-head">
-      {{ macros::nav(site_url=config.base_url, extra=config.extra) }}
-    </div>
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title is-1">Hi there, I'm Jamie 👋</h1>
-        <br/>
-        <h3 class="subtitle is-6">Welcome to my corner of the internet!</h3>
-        <h3 class="subtitle is-6">I work in software engineering, primarily with C# (professionally) and Rust (hobby projects).</h3>
-        <h3 class="subtitle is-6">You can learn <a href="/resume">more about me</a>, see what <a href="/projects">projects</a> I've been working on, or read my (rare) <a href="/blog">writings</a>.</h3>
-      </div>
-    </div>
-  </div>
+  <h1 class="text-6xl font-extrabold text-gray-800 mb-4">Jamie Brynes</h1>
+  <h2 class="text-3xl text-gray-700 font-serif w-2/3 mb-4">
+    Designs and builds software that makes people more efficient in what they do.
+  </h2>
+  <h3 class="text-xl text-gray-600 w-2/3">
+    Sofware Engineer at <a class="text-blue-500 hover:text-blue-600 duration-300" href="https://improbable.io">Improbable</a>.
+  </h3>
 {% endblock content %}

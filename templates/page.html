@@ -10,9 +10,9 @@
 {% endblock js %}
 
 {% block page_title %}
-<h1 class="page-title">{{ page.title }}</h1>
-<span class="has-text-grey-dark is-size-6">{{ page.date | date(format="%d %b %Y") }} &#X00B7
-  {{page.reading_time }} min read</span>
+<h1 class="text-3xl font-bold text-gray-800 mb-2">{{ page.title }}</h1>
+<p class="mb-12 text-gray-600">{{ page.date | date(format="%d %b %Y") }} &#X00B7
+  {{page.reading_time }} min read</p>
 {% endblock page_title %}
 
 {% block page_content %}
@@ -22,7 +22,6 @@
 {% block page_footer %}
 {% if page.taxonomies.tags %}
 <div class="post-footer">
-  <div class="kudos" data-amount="0" data-url="{{ page.permalink }}"></div>
   <div class="tags-container">
   {% for tag in page.taxonomies.tags %}
       <span class="tag is-light"><a class="no-underline" href="/tags/{{ tag }}">{{ tag }}</a></span>
