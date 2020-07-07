@@ -2,7 +2,7 @@
 title = "Personal Website"
 template = "projects/project.html"
 description = '''
-<p>This website is fully open source and is handcrafted using Zola and the Bulma CSS framework.</p>
+This website is fully open source and is handcrafted using Zola and the Bulma CSS framework.
 '''
 weight = 1
 

@@ -2,9 +2,7 @@
 title = "SpatialOS SDK for Rust"
 template = "projects/project.html"
 description = '''
-<p>The Rust SpatialOS SDK is a hobby project Rust implementation of the Worker SDK for SpatialOS.</p>
-
-<p>The goal of this project is to wrap the C SDK in a <em>safe</em> and native Rust interface.</p>
+The Rust SpatialOS SDK is a hobby project Rust implementation of the Worker SDK for SpatialOS. The goal of this project is to wrap the C SDK in a <em>safe</em> and native Rust interface.
 '''
 weight = 0
 

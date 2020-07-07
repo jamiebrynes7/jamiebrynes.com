@@ -10,9 +10,10 @@
 {% endblock js %}
 
 {% block page_title %}
-<h1 class="text-3xl font-bold text-gray-800 mb-2">{{ page.title }}</h1>
-<p class="mb-12 text-gray-600">{{ page.date | date(format="%d %b %Y") }} &#X00B7
-  {{page.reading_time }} min read</p>
+<div class="text-center">
+  <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ page.title }}</h1>
+  <p class="mb-2 text-gray-600">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min read</p>
+</div>
 {% endblock page_title %}
 
 {% block page_content %}

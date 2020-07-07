@@ -1,0 +1,22 @@
+{
+  "name": "jamiebrynes.com",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">\r   <img src=\"./static/imgs/website.png\" width=\"300\" />",
+  "main": "index.js",
+  "dependencies": {
+    "postcss-cli": "^7.1.1",
+    "tailwindcss": "^1.4.6"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamiebrynes7/website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamiebrynes7/website/issues"
+  },
+  "homepage": "https://github.com/jamiebrynes7/website#readme"
+}

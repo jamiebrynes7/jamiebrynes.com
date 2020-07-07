@@ -1,18 +1,18 @@
 {% set additional_class = "" %}
 {% if type %}
   {% if type == "dark" %} 
-  {% set additional_class = "is-dark"%}
+  {% set additional_class = "is-dark" %}
   {% elif type == "info" %}
-  {% set additional_class = "is-info" %}
+  {% set additional_class = "bg-blue-100 border-blue-500 text-blue-700" %}
   {%elif type == "warning" %}
-  {% set additional_class = "is-warning" %}
+  {% set additional_class = "bg-yellow-100 border-yellow-500 text-yellow-700" %}
   {%elif type == "danger" %}
-  {% set additional_class = "is-danger" %}
+  {% set additional_class = "bg-red-100 border-red-500 text-red-700" %}
   {% endif %}
 
 {% endif %}
-<article class="message {{ additional_class }}">
-    <div class="message-body">
-      {{ body | safe | markdown(inline=true) }}
-    </div>
-</article>
+<div class="border-t border-b px-4 py-3 text-sm {{ additional_class }}" role="alert">
+  <p>
+  {{ body | markdown(inline=true) | safe }}
+  </p>
+</div>

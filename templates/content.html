@@ -6,33 +6,13 @@
 {% endblock js %}
 
 {% block content %}
-
-<div class="container">
-  <article class="post">
-    <div class="post-heading">
-      {% block page_title %}
-      {% endblock page_title %}
-    </div>
-
-    <div class="columns">
-      <div class="column is-2 mobile-hidden">
-        {% if page.extra.toc %}
-        {{ macros::toc(h1s=toc) }}
-        {% endif %}
-      </div>
-      <div class="column">
-        <div class="post-content">
-          {% block page_content %}
-          {% endblock page_content %}
-        </div>
-
-        {% block content_footer %}
-        {% endblock content_footer %}
-      </div>
-      <div class="column is-2 mobile-hidden">
-      </div>
-    </div>
-  </article>
+<div class="lg:w-3/4 mx-auto pb-12">
+  {% block page_title %}
+  {% endblock page_title %}
+  <hr class="mb-8 border-b"/>
+  <div class="post-content">
+    {% block page_content %}
+    {% endblock page_content %}
+  </div>
 </div>
-
 {% endblock content %}

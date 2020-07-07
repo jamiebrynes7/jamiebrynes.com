@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .post-content a {
+    @apply text-blue-500 duration-300;
+}
+
+.post-content a:hover {
+    @apply text-blue-800;
+}
+
+.post-content pre {
+    @apply px-6 py-4 text-xs border rounded border-gray-500 bg-gray-300;
+}
+
+.post-content code {
+    @apply px-1 py-1 text-xs border rounded border-gray-500 bg-gray-300;
+}
+
+.post-content p, a, pre, code, ol, ul {
+    @apply mb-3;
+}
+
+.post-content h1 {
+    @apply text-3xl text-gray-800 font-bold mt-8;
+}
+
+.post-content h2 {
+    @apply text-2xl text-gray-700 font-bold mt-6;
+}
+
+.post-content h3 {
+    @apply text-xl text-gray-600 font-bold mt-4;
+}
+
+.post-content ol, ul {
+    @apply list-inside;
+}
+
+.post-content ul {
+    @apply list-disc;
+}
+
+.post-content ol {
+    @apply list-decimal;
+} */
+
+/* Additional vertical padding used by kbd tag. */
+.py-05 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.post-content {
+  @apply text-gray-900 leading-normal break-words;
+}
+
+.post-content > * + * {
+  @apply mt-0 mb-4;
+}
+
+.post-content li + li {
+  @apply mt-1;
+}
+
+.post-content li > p + p {
+  @apply mt-6;
+}
+
+.post-content strong {
+  @apply font-semibold;
+}
+
+.post-content a {
+  @apply text-blue-600 font-semibold duration-300;
+}
+
+.post-content a:hover {
+    @apply text-blue-800;
+}
+
+.post-content strong a {
+  @apply font-bold;
+}
+
+.post-content h1 {
+  @apply leading-tight border-b text-4xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.post-content h2 {
+  @apply leading-tight border-b text-2xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.post-content h3 {
+  @apply leading-snug text-lg font-semibold mb-4 mt-6;
+}
+
+.post-content h4 {
+  @apply leading-none text-base font-semibold mb-4 mt-6;
+}
+
+.post-content h5 {
+  @apply leading-tight text-sm font-semibold mb-4 mt-6;
+}
+
+.post-content h6 {
+  @apply leading-tight text-sm font-semibold text-gray-600 mb-4 mt-6;
+}
+
+.post-content blockquote {
+  @apply text-base border-l-4 border-gray-300 pl-4 pr-4 text-gray-600;
+}
+
+.post-content code {
+  @apply font-mono text-xs inline bg-gray-200 rounded px-1 py-05;
+}
+
+.post-content pre {
+  @apply bg-gray-100 rounded p-4 text-xs;
+}
+
+.post-content pre code {
+  @apply block bg-transparent p-0 overflow-visible rounded-none;
+}
+
+.post-content ul {
+  @apply text-base pl-8 list-disc;
+}
+
+.post-content ol {
+  @apply text-base pl-8 list-decimal;
+}
+
+.post-content kbd {
+  @apply text-xs inline-block rounded border px-1 py-05 align-middle font-normal font-mono shadow;
+}
+
+.post-content table {
+  @apply text-base border-gray-600;
+}
+
+.post-content th {
+  @apply border py-1 px-3;
+}
+
+.post-content td {
+  @apply border py-1 px-3;
+}
+
+/* Override pygments style background color. */
+.post-content .highlight pre {
+  @apply bg-gray-100 !important;
+}

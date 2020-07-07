@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-ENV ZOLA_VERSION v0.7.0
+ENV ZOLA_VERSION v0.11.0
 
 WORKDIR /workdir
 RUN apt-get update \
