@@ -8,7 +8,10 @@
     "tailwindcss": "^1.4.6"
   },
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+    "dev": "npx postcss main.css -o static/main.css -w",
+    "build": "npx postcss main.css -o static/main.css"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jamiebrynes7/website.git"
