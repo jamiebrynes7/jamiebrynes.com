@@ -7,34 +7,15 @@
 {% endblock js %}
 
 {% block page_title %}
-
-<h1 class="page-title">
-{%if page.extra.github_slug %}
-<a href="https://github.com/{{ page.extra.github_slug }}">
-{% endif %}
-{{ page.title }}
-{%if page.extra.github_slug %}
-</a>
-{% endif %}
-</h1>
-
-{% if page.extra.github_slug %}
-<p>
-  <a 
-    class="github-button" 
-    href="https://github.com/{{ page.extra.github_slug }}" 
-    data-icon="octicon-star" 
-    data-size="large" 
-    data-show-count="true" 
-    aria-label="Star {{ page.extra.github_slug }} on GitHub">
-    Star
-  </a>
+<h1 class="text-4xl font-bold text-gray-800 text-center">{{ page.title }}</h1>
+<p class="text-center text-blue-500 hover:text-blue-600">
+    <a href="https://github.com/{{ page.extra.github_slug }}">
+        <i class="fab fa-github"></i> GitHub repository
+    </a>
 </p>
-{% endif %}
 {% endblock page_title %}
 
 
 {% block page_content %}
 {{ page.content | safe }}
 {% endblock page_content %}
-

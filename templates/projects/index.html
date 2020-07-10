@@ -1,48 +1,27 @@
-{% extends "content.html" %}
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
 
 {% block js %}
 <script src="/js/nav.min.js"></script>
 <script src="/js/github-buttons.min.js"></script>
 {% endblock js %}
 
+{% block content %}
 
 {% block page_title %}
-<h1 class="page-title">Projects</h1>
+<h1 class="text-6xl font-extrabold text-gray-800 text-center mb-24">Projects</h1>
 {% endblock page_title %}
 
-{% block page_content %}
-{% for page in paginator.pages  %}
-
-<div class="columns about-entry">
-  <div class="column is-one-third">
-    {% if page.extra.img_path %}
-    <img class="is-rounded-corners" src="{{ page.extra.img_path }}" />
-    {% endif %}
-  </div>
-  <div class="column is-two-thirds">
-    <p class="is-size-4">
-      <a href="{{ page.permalink }}">{{ page.title }}</a>
-    </p>
-    {% if page.extra.github_slug %}
-    <p>
-      <a 
-        class="github-button" 
-        href="https://github.com/{{ page.extra.github_slug }}" 
-        data-icon="octicon-star" 
-        data-size="large" 
-        data-show-count="true" 
-        aria-label="Star {{ page.extra.github_slug }} on GitHub">
-        Star
-      </a>
-    </p>
-  {% endif %}
-  <p>{{ page.description | safe }}</p>
-  </div>
+<div class="lg:w-3/4 mx-auto lg:grid lg:grid-cols-3 lg:gap-8">
+  {% for project in paginator.pages %}
+  <a href="{{ project.permalink }}" class="rounded-md border-gray-300 border shadow-sm transition transform flex flex-col hover:scale-105 hover:shadow hover:border-blue-300 duration-500">
+    <img class="mb-2 rounded-md" src="{{ project.extra.img_path }}"/>
+    <div class="py-4 px-4 flex flex-col flex-grow">
+      <p class="text-gray-700 font-bold text-md mb-2">{{ project.title }}</p>
+      <p class="text-sm text-gray-600">{{ project.description | safe }}</p>
+    </div>
+  </a>
+  {% endfor %}
 </div>
 
-{% if not loop.last %}
-<hr/>
-{% endif %}
-
-{% endfor %}
-{% endblock page_content %}
+{% endblock content %}

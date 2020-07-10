@@ -11,7 +11,7 @@ toc = true
 
 You may have noticed on each of my posts a small UI element like the following:
 
-{{ figure(src="/blog/kudos-please-snippet.png", caption="The curious UI element.") }}
+{{ image(src="/blog/kudos-please-snippet.png", caption="The curious UI element.") }}
 
 This widget, called "Kudos Please", is a simple way to acknowledge something, somewhat similar to a like or a thumbs up. Simply hover over the element and observe the element begin to animate! Keep your mouse/finger on the element for long enough and... aha! The number of kudos has increased.
 
@@ -335,9 +335,9 @@ Let's return to the requirements and evaluate how we fared:
 
 To answer that final question, lets fall back onto our trusty Chrome Developer Tools.
 
-{{ lightbox(src="/blog/kudos-please-benchmark.png", caption="A quick benchmark of fetching kudos on page load.") }}
+{{ image(src="/blog/kudos-please-benchmark.png", caption="A quick benchmark of fetching kudos on page load.") }}
 
-{{ lightbox(src="/blog/kudos-please-benchmark-increment.png", caption="A quick benchmark of giving kudos.") }}
+{{ image(src="/blog/kudos-please-benchmark-increment.png", caption="A quick benchmark of giving kudos.") }}
 
 I think both these request/response times are well within the acceptable range. Particularly given that I put no time in optimising the lambda code. You can notice the kudos initially loading on a page if you look quick enough, but its not a huge problem for the UX.
 
