@@ -2,9 +2,9 @@
 template = "resume.html"
 +++
 
-## Work History
+# Work History
 
-### Improbable
+## Improbable
 
 _Software Engineer · September 2017 to present_
 
@@ -16,7 +16,7 @@ The GDK focuses on providing Unity game developers with a powerful networking sy
 
 Unity Engine, C#
 
-### Hewlett Packard Enterprise
+## Hewlett Packard Enterprise
 
 _ASIC R&D Intern · Summer 2016_
 
@@ -28,9 +28,9 @@ Designed and developed a flexible and permutable code generator for microcode pr
 
 Python, C++
 
-## Education
+# Education
 
-### University of Oxford
+## University of Oxford
 
 _MEng in Engineering Science · October 2013 - June 2017_
 

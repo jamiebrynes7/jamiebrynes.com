@@ -9,4 +9,38 @@
   <h3 class="text-xl text-gray-600 w-2/3">
     Sofware Engineer at <a class="text-blue-500 hover:text-blue-600 duration-300" href="https://improbable.io">Improbable</a>.
   </h3>
+
+  {% set blog=get_section(path="blog/_index.md") %}
+  {% set projects=get_section(path="projects/_index.md") %}
+  <div class="mt-24 lg:mt-36 lg:flex">
+    <div class="lg:w-2/5 lg:pr-12">
+      <h3 class="text-3xl text-gray-700 font-bold mb-8">Writing</h3>
+      {% set recent = blog.pages | slice(end=5) %}
+      {% for post in recent %}
+      <a href="{{ post.permalink }}">
+        <div class="w-full py-4 px-4 mt-4 rounded-md border-gray-300 border shadow-sm transition transform hover:scale-105 hover:shadow hover:border-blue-300 duration-500">
+          <p class="text-gray-700 font-bold text-md mb-2">{{ post.title }}</p>
+          <p class="text-gray-600 text-sm">{{ macros::month(month_num = post.month) }} {{ macros::pad_day(day = post.day) }}, {{ post.year }}</small>
+        </div>
+      </a>
+      {% endfor %}
+      <a href="/blog" class="float-right mr-2 mt-8 text-lg text-blue-500 border-b border-blue-500 transition transform hover:scale-105 hover:text-blue-600 duration-300">Read More</a>
+    </div>
+    <div class="lg:w-3/5 lg:pl-12">
+      <h3 class="text-3xl text-gray-700 font-bold mb-8">Projects</h3>
+      {% set highlighted = projects.pages | slice(end=6) %}
+      <div class="lg:grid lg:grid-cols-2 lg:gap-4">
+        {% for project in highlighted %}
+        <a href="{{ project.permalink }}" class="rounded-md border-gray-300 border shadow-sm transition transform hover:scale-105 hover:shadow hover:border-blue-300 duration-500">
+            <img class="mb-2 rounded-md" src="{{ project.extra.img_path }}"/>
+            <div class="py-4 px-4">
+              <p class="text-gray-700 font-bold text-md mb-2">{{ project.title }}</p>
+              <p class="text-sm text-gray-600">{{ project.description | safe }}</p>
+            </div>
+        </a>
+        {% endfor %}
+      </div>
+      <a href="/projects" class="float-right mr-2 mt-8 text-lg text-blue-500 border-b border-blue-500 transition transform hover:scale-105 hover:text-blue-600 duration-300">See More</a>
+    </div>
+  </div>
 {% endblock content %}

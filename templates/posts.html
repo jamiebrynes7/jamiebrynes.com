@@ -4,9 +4,10 @@
 {% block content %}
 
 {% block page_title %}
-<h1 class="text-6xl font-extrabold text-gray-800">Posts</h1>
+<h1 class="text-6xl font-extrabold text-gray-800 text-center">Posts</h1>
 {% endblock page_title %}
 
+<div class="lg:w-3/4 mx-auto">
 {% set grouped = paginator.pages | group_by(attribute="year") %}
 {% for year, posts in grouped %}
 <h2 class="text-3xl font-bold text-gray-600 mt-12">{{ year}}</h2>
@@ -20,5 +21,6 @@
 {% endfor %}
 </div>
 {% endfor %}
+</div>
 
 {% endblock content %}

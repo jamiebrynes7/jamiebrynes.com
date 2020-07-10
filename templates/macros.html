@@ -6,7 +6,7 @@
   <nav role="navigation" aria-label="main navigation" class="w-full block items-center text-gray-600 lg:w-auto lg:flex">
     <div class="text-lg lg:flex-grow">
       <a href="{{ site_url }}/blog" class="block mt-4 lg:inline-block lg:mt-0 hover:text-blue-500 duration-300 mr-6">
-        Blog
+        Writing
       </a>
       <a href="{{ site_url }}/projects" class="block mt-4 lg:inline-block lg:mt-0 hover:text-blue-500 duration-300 mr-6">
         Projects
@@ -109,10 +109,4 @@
 {{ m }}
 {% endmacro %}
 
-{% macro pad_day(day) %}
-{% if day < 10 %}
-0{{ day }}
-{% else %}
-{{ day }}
-{% endif %}
-{% endmacro %}
+{% macro pad_day(day) %}{% if day < 10 %}0{{ day }}{% else %}{{ day }}{% endif %}{% endmacro %}
