@@ -3,8 +3,9 @@
 
 {% block content %}
 
-<h1 class="text-6xl font-extrabold text-gray-800 mb-12">Tags</h1>
+<h1 class="text-6xl font-extrabold text-gray-800 mb-12 text-center">Tags</h1>
 
+<div class="lg:w-3/4 mx-auto">
 {% for term in terms %}
   <div class="flex items-center justify-between py-2">
     <a class="text-gray-800 hover:text-blue-500 duration-300" href="{{ term.permalink }}">#{{ term.name }}</a>
@@ -13,21 +14,7 @@
   </div>
 {% endfor %}
 </div>
+</div>
 
 {% endblock content %}
 
-...
-
-<!-- {% block page_title %}
-<h1 class="page-title" style="margin-bottom: 50px;">Tags</h1>
-{% endblock page_title %}
-
-{% block page_content %}
-{% for term in terms %}
-<li class="post-item">
-  <a href="{{ term.permalink }}">#{{ term.name }}</a>
-  <hr class="post-divider"/>
-  <small class="post-date">{{ term.pages | length }} posts</small>
-</li>
-{% endfor %}
-{% endblock page_content %} -->

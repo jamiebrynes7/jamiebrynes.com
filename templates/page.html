@@ -12,7 +12,9 @@
 {% block page_title %}
 <div class="text-center">
   <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ page.title }}</h1>
-  <p class="mb-2 text-gray-600">{{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min read</p>
+  <p class="mb-2 text-gray-600">
+    {{ page.date | date(format="%d %b %Y") }} &#X00B7 {{page.reading_time }} min read
+  </p>
 </div>
 {% endblock page_title %}
 
@@ -20,36 +22,34 @@
 {{ page.content | safe }}
 {% endblock page_content %}
 
-{% block page_footer %}
-{% if page.taxonomies.tags %}
-<div class="post-footer">
-  <div class="tags-container">
-  {% for tag in page.taxonomies.tags %}
-      <span class="tag is-light"><a class="no-underline" href="/tags/{{ tag }}">{{ tag }}</a></span>
-  {% endfor %}
-</div>
-</div>
-{% endif %}
+{% block footer %}
 
-<div class="sharing">
-  <p class="share-text">SHARE ON</p>
-  <a class="button is-twitter" href="javascript:tweetCurrentPage('{{ page.title }}')">
-    <span class="icon">
-      <i class="fab fa-twitter"></i>
-    </span>
-    <span>Twitter</span>
-  </a>
-  <a class="button is-facebook" href="javascript:shareOnFacebook()">
-    <span class="icon">
-      <i class="fab fa-facebook"></i>
-    </span>
-    <span>Facebook</span>
-  </a>
-  <a class="button is-email" href="javascript:shareViaEmail('{{ page.title }}')">
-    <span class="icon">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span>Email</span>
-  </a>
+<hr class="mt-8 mb-1"/>
+<div class="flex justify-between">
+  {% if page.taxonomies.tags %}
+  <div class="flex justify-start">
+    {% for tag in page.taxonomies.tags %}
+    <a class="text-xs text-gray-600 hover:text-gray-900 mx-1" href="/tags/{{ tag }}">#{{ tag }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="text-gray-600 flex justify-end">
+    <a alt="Share on Twitter" class="ml-4 hover:text-gray-900 is-twitter" href="javascript:tweetCurrentPage('{{ page.title }}')">
+      <span class="icon">
+        <i class="fab fa-twitter"></i>
+      </span>
+    </a>
+    <a alt="Share on Facebook" class="ml-4 hover:text-gray-900 is-facebook" href="javascript:shareOnFacebook()">
+      <span class="icon">
+        <i class="fab fa-facebook"></i>
+      </span>
+    </a>
+    <a alt="Share via email" class="ml-4 hover:text-gray-900 is-email" href="javascript:shareViaEmail('{{ page.title }}')">
+      <span class="icon">
+        <i class="fas fa-envelope"></i>
+      </span>
+    </a>
+  </div>
 </div>
-{% endblock page_footer %}
+
+{% endblock footer %}
