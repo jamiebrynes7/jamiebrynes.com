@@ -38,7 +38,7 @@ histogram_metric.add_sample(0.5);
 ```
 
 - Writing more unit tests and integration tests to guarantee behaviour correctness.
-- Catching up with the SpatialOS SDK release cycle (at the time of writing, pinned to `13.5.0`!)
+- Catching up with the SpatialOS SDK release cycle [^1]
 
 In parallel, [a colleague and friend of mine](http://dga.me.uk/) has been working on the generated code MVP so that you can use schema types in Rust in a native way. I'm still pondering on how to structure a SpatialOS & Rust project - do you have a local crate for generated code? Does the code generation happen at build time? Some questions to answer when testing the workflow.
 
@@ -47,3 +47,5 @@ In parallel, [a colleague and friend of mine](http://dga.me.uk/) has been workin
 This last month I've started to revisit this project with fresh eyes as I've gained more Rustlang experience. I upgraded the project to Rust 2018 edition (super easy thanks to `cargo fix`!) and started to port the tools across to use the [`git2-rs`](https://github.com/alexcrichton/git2-rs) crate instead of invoking commands directly.
 
 I'm hoping to complete this in the next month and I look forward to doing another release once complete. On the note of releases - I'll be looking to refactor the CI setup so that I can build Windows, Linux, and MacOS binaries.
+
+[^1]: At the time of writing, pinned to `13.5.0`

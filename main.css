@@ -112,3 +112,20 @@
 .post-content .highlight pre {
   @apply bg-gray-100 !important;
 }
+
+.footnote-definition {
+  @apply flex text-sm;
+}
+
+.footnote-definition-label {
+  line-height: unset;
+  @apply mr-1 top-0;
+}
+
+.post-content > .footnote-definition:first-of-type {
+  @apply mt-8;
+}
+
+.post-content > .footnote-definition:last-of-type {
+  @apply mb-8;
+}

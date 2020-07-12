@@ -18090,6 +18090,25 @@ video {
   background-color: rgba(247, 250, 252, var(--bg-opacity)) !important;
 }
 
+.footnote-definition {
+  display: flex;
+  font-size: 0.875rem;
+}
+
+.footnote-definition-label {
+  line-height: unset;
+  margin-right: 0.25rem;
+  top: 0;
+}
+
+.post-content > .footnote-definition:first-of-type {
+  margin-top: 2rem;
+}
+
+.post-content > .footnote-definition:last-of-type {
+  margin-bottom: 2rem;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
