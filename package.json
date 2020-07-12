@@ -9,8 +9,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "npx postcss main.css -o static/main.css -w",
-    "build": "npx postcss main.css -o static/main.css"
+    "dev-css": "npx postcss main.css -o static/main.css -w",
+    "build-css": "npx postcss main.css -o static/main.css"
   },
   "repository": {
     "type": "git",

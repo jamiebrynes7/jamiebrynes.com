@@ -33,16 +33,11 @@ maybe_rebuild_docker() {
 
 build_docker() {
     spellcheck_docker
-    stylelint_docker
     zola_docker
 }
 
 spellcheck_docker() {
     maybe_rebuild_docker ./.github/actions/spellcheck/Dockerfile ./.github/actions/spellcheck spellcheck
-}
-
-stylelint_docker() {
-    maybe_rebuild_docker ./.github/actions/stylelint/Dockerfile ./.github/actions/stylelint stylelint
 }
 
 zola_docker() {
@@ -82,18 +77,8 @@ spellcheck() {
         spellcheck:latest
 }
 
-stylelint() {
-    stylelint_docker
-
-    docker run --rm \
-        -v "${CWD}:/github/" \
-        -e GITHUB_WORKSPACE="//github" \
-        stylelint:latest "$@"
-}
-
 lint() {
     spellcheck
-    stylelint
 }
 
 premerge() {

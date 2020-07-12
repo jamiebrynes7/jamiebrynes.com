@@ -1,0 +1,29 @@
+name: Premerge
+on: [push]
+
+jobs:
+  spell-check: 
+    name: Spell check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v1
+
+      - name: Spellcheck blog posts
+        uses: ./.github/actions/spellcheck
+
+  build-website:
+    name: Build website
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v1
+        
+      - name: Install NPM dependencies
+        run: npm install
+      
+      - name: Build CSS
+        run: npm run build-css
+      
+      - name: Build website
+        uses: ./.github/actions/zola
