@@ -1,16 +1,14 @@
-{% extends "base.html" %}
+{% extends "list_base.html" %}
 {% import "macros.html" as macros %}
 
-{% block content %}
-
 {% block page_title %}
-<h1 class="text-6xl font-extrabold text-gray-800 text-center">Posts</h1>
+Posts
 {% endblock page_title %}
 
-<div class="lg:w-3/4 mx-auto">
+{% block page_content %}
 {% set grouped = paginator.pages | group_by(attribute="year") %}
 {% for year, posts in grouped %}
-<h2 class="text-3xl font-bold text-gray-600 mt-12">{{ year}}</h2>
+<h2 class="text-3xl font-bold text-gray-700 mt-12">{{ year }}</h2>
 <div class="pl-2">
 {% for post in posts %}
   <div class="flex items-center justify-between py-2">
@@ -21,6 +19,4 @@
 {% endfor %}
 </div>
 {% endfor %}
-</div>
-
-{% endblock content %}
+{% endblock page_content %}

@@ -1,4 +1,4 @@
-{% extends "content.html" %}
+{% extends "page_base.html" %}
 
 {% block js %}
 <script src="/js/nav.min.js"></script>
@@ -7,14 +7,16 @@
 {% endblock js %}
 
 {% block page_title %}
-<h1 class="text-4xl font-bold text-gray-800 text-center">{{ page.title }}</h1>
+{{ page.title }}
+{% endblock page_title %}
+
+{% block page_subtitle %}
 <p class="text-center text-blue-500 hover:text-blue-600">
     <a href="https://github.com/{{ page.extra.github_slug }}">
         <i class="fab fa-github"></i> GitHub repository
     </a>
 </p>
-{% endblock page_title %}
-
+{% endblock page_subtitle %}
 
 {% block page_content %}
 {{ page.content | safe }}

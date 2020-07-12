@@ -1,11 +1,10 @@
-{% extends "base.html" %}
-{% import "macros.html" as macros %}
+{% extends "list_base.html" %}
 
-{% block content %}
+{% block page_title %}
+Tags
+{% endblock page_title %}
 
-<h1 class="text-6xl font-extrabold text-gray-800 mb-12 text-center">Tags</h1>
-
-<div class="lg:w-3/4 mx-auto">
+{% block page_content %}
 {% for term in terms %}
   <div class="flex items-center justify-between py-2">
     <a class="text-gray-800 hover:text-blue-500 duration-300" href="{{ term.permalink }}">#{{ term.name }}</a>
@@ -13,8 +12,4 @@
     <small class="font-mono text-gray-600">{{ term.pages | length }} posts</small>
   </div>
 {% endfor %}
-</div>
-</div>
-
-{% endblock content %}
-
+{% endblock page_content %}

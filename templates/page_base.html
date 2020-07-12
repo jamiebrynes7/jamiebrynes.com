@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
 
 {% block js %}
 <script src="/js/nav.min.js"></script>
@@ -7,8 +6,14 @@
 
 {% block content %}
 <div class="lg:w-3/4 mx-auto pb-12">
-  {% block page_title %}
-  {% endblock page_title %}
+  <div class="text-center">
+    <h1 class="text-4xl font-bold text-gray-800 mb-2">
+      {% block page_title %}
+      {% endblock page_title %}
+    </h1>
+    {% block page_subtitle %}
+    {% endblock page_subtitle %}
+  </div>
   <div class="mb-24"></div>
   <div class="post-content">
     {% block page_content %}

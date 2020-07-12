@@ -1,18 +1,16 @@
-{% extends "base.html" %}
-{% import "macros.html" as macros %}
+{% extends "list_base.html" %}
 
 {% block js %}
 <script src="/js/nav.min.js"></script>
-<script src="/js/github-buttons.min.js"></script>
 {% endblock js %}
 
-{% block content %}
 
 {% block page_title %}
-<h1 class="text-6xl font-extrabold text-gray-800 text-center mb-24">Projects</h1>
+Projects
 {% endblock page_title %}
 
-<div class="lg:w-3/4 mx-auto lg:grid lg:grid-cols-3 lg:gap-8">
+{% block page_content %}
+<div class="lg:grid lg:grid-cols-3 lg:gap-8">
   {% for project in paginator.pages %}
   <a href="{{ project.permalink }}" class="rounded-md border-gray-300 border shadow-sm transition transform flex flex-col hover:scale-105 hover:shadow hover:border-blue-300 duration-500">
     <img class="mb-2 rounded-md" src="{{ project.extra.img_path }}"/>
@@ -23,5 +21,5 @@
   </a>
   {% endfor %}
 </div>
+{% endblock page_content %}
 
-{% endblock content %}
