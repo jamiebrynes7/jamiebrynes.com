@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev-css": "npx postcss main.css -o static/main.css -w --verbose",
-    "build-css": "npx postcss main.css -o static/main.css --verbose"
+    "build-css": "npx postcss main.css -o static/main.css --verbose --env production"
   },
   "repository": {
     "type": "git",
