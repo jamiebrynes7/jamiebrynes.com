@@ -12,8 +12,7 @@
   },
   "scripts": {
     "dev-css": "npx postcss main.css -o static/main.css -w --verbose",
-    "build-css": "npx postcss main.css -o static/main.css --verbose",
-    "purge-css": "npx purgecss --css ./static/main.css --content ./public/* -o ./public/main.css"
+    "build-css": "npx postcss main.css -o static/main.css --verbose"
   },
   "repository": {
     "type": "git",
