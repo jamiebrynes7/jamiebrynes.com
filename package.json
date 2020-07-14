@@ -7,10 +7,13 @@
     "postcss-cli": "^7.1.1",
     "tailwindcss": "^1.4.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "purgecss": "^2.3.0"
+  },
   "scripts": {
     "dev-css": "npx postcss main.css -o static/main.css -w --verbose",
-    "build-css": "npx postcss main.css -o static/main.css --verbose"
+    "build-css": "npx postcss main.css -o static/main.css --verbose",
+    "purge-css": "npx purgecss --css ./static/main.css --content ./public/* -o ./public/main.css"
   },
   "repository": {
     "type": "git",
