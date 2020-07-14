@@ -1,11 +1,10 @@
 {% extends "page_base.html" %}
+{% import "macros.html" as macros %}
 
 {% block js %}
 <script src="/js/kudosplease.min.js"></script>
 <script src="/js/kudosplease-bootstrap.min.js"></script>
-<script src="/js/social.min.js"></script>
 <script src="/js/nav.min.js"></script>
-<script src="/js/lightbox.min.js"></script>
 {% endblock js %}
 
 {% block page_title %}
@@ -33,19 +32,14 @@
   </div>
   {% endif %}
   <div class="text-gray-600 flex justify-end">
-    <a alt="Share on Twitter" class="ml-4 hover:text-gray-900 is-twitter" href="javascript:tweetCurrentPage('{{ page.title }}')">
+    <a alt="Share on Twitter" class="ml-4 hover:text-gray-900 is-twitter" target="_blank" href="{{ macros::twitter_share_link(permalink=page.permalink, title=page.title) }}">
       <span class="icon">
         <i class="fab fa-twitter"></i>
       </span>
     </a>
-    <a alt="Share on Facebook" class="ml-4 hover:text-gray-900 is-facebook" href="javascript:shareOnFacebook()">
+    <a alt="Share on Facebook" class="ml-4 hover:text-gray-900 is-facebook" target="_blank" href="{{ macros::facebook_share_link(permalink=page.permalink) }}">
       <span class="icon">
         <i class="fab fa-facebook"></i>
-      </span>
-    </a>
-    <a alt="Share via email" class="ml-4 hover:text-gray-900 is-email" href="javascript:shareViaEmail('{{ page.title }}')">
-      <span class="icon">
-        <i class="fas fa-envelope"></i>
       </span>
     </a>
   </div>

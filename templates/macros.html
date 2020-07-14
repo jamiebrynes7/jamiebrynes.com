@@ -49,3 +49,11 @@
 {% endmacro %}
 
 {% macro pad_day(day) %}{% if day < 10 %}0{{ day }}{% else %}{{ day }}{% endif %}{% endmacro %}
+
+{% macro twitter_share_link(permalink, title) %}
+  https://twitter.com/share?url={{ permalink | urlencode}}&text={{ title | urlencode }}{{ ' - @jamiebrynes' | urlencode}}
+{% endmacro %}
+
+{% macro facebook_share_link(permalink) %}
+  https://www.facebook.com/sharer/sharer.php?u={{ permalink | urlencode}}
+{% endmacro %}
