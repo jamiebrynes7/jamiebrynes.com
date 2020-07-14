@@ -55,10 +55,14 @@ serve() {
         -p 1111:1111 \
         -e GITHUB_WORKSPACE="//github" \
         -e ZOLA_COMMAND="serve --interface 0.0.0.0" \
-        zola:latest
+        zola:latest & 
+    
+    npm run dev-css && fg
 }
 
 build() {
+    npm run build-css
+
     zola_docker
 
     docker run --rm \
