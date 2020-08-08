@@ -73,7 +73,7 @@
 }
 
 .post-content code {
-  @apply font-mono text-xs inline bg-gray-200 rounded px-1 py-05;
+  @apply font-mono text-xs inline bg-gray-200 rounded px-1 py-05 ;
 }
 
 .post-content pre {
@@ -81,7 +81,7 @@
 }
 
 .post-content pre code {
-  @apply block bg-transparent p-0 overflow-visible rounded-none;
+  @apply block bg-transparent p-0 overflow-scroll rounded-none;
 }
 
 .post-content ul {

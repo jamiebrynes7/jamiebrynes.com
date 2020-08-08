@@ -5,7 +5,7 @@ Projects
 {% endblock page_title %}
 
 {% block page_content %}
-<div class="lg:grid lg:grid-cols-3 lg:gap-8">
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
   {% for project in paginator.pages %}
   <a href="{{ project.permalink }}" class="rounded-md border-gray-300 border shadow-sm transition transform flex flex-col hover:scale-105 hover:shadow hover:border-blue-300 duration-500">
     <img class="mb-2 rounded-md" src="{{ project.extra.img_path }}"/>
