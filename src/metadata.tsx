@@ -5,9 +5,22 @@ export interface PostMetadata {
   date: number;
 }
 
-export function parseMetadata(data: any): PostMetadata {
+export function parsePostMetadata(data: any): PostMetadata {
   return {
     title: data.title,
     date: dayjs(data.date).unix(),
   };
+}
+
+export interface ProjectMetadata {
+  title: string;
+  githubSlug: string;
+  tech: {
+    name: string;
+    url: string;
+  }[];
+}
+
+export function parseProjectMetadata(data: any): ProjectMetadata {
+  return data;
 }

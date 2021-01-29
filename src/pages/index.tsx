@@ -1,13 +1,18 @@
 import dayjs from "dayjs";
 import { GetStaticProps } from "next";
-import { getPostPreviews, PostPreviewData } from "src/getPostPreviews";
+import { getPostPreviews, getProjects, PreviewData } from "src/data";
 import Link from "next/link";
+import postcss from "postcss";
+import { PostMetadata, ProjectMetadata } from "src/metadata";
 
 interface Props {
-  posts: PostPreviewData[];
+  posts: PreviewData<PostMetadata>[];
+  projects: PreviewData<ProjectMetadata>[];
 }
 
-const PostList: React.FC<{ posts: PostPreviewData[] }> = ({ posts }) => {
+const PostList: React.FC<{ posts: PreviewData<PostMetadata>[] }> = ({
+  posts,
+}) => {
   return (
     <>
       <div className="space-y-5">
@@ -39,7 +44,39 @@ const PostList: React.FC<{ posts: PostPreviewData[] }> = ({ posts }) => {
   );
 };
 
-const Index: React.FC<Props> = ({ posts }) => {
+const ProjectList: React.FC<{ projects: PreviewData<ProjectMetadata>[] }> = ({
+  projects,
+}) => {
+  return (
+    <>
+      <div className="space-y-10">
+        {projects.map((prj) => {
+          return (
+            <div key={prj.link}>
+              <div className="xl:flex xl:justify-between xl:items-center">
+                <h5 className="text-lg leading-8 font-bold tracking-tight text-gray-700 cursor-pointer">
+                  <Link href={prj.link}>
+                    <a>{prj.metadata.title}</a>
+                  </Link>
+                </h5>
+                <div className="text-base leading-6 font-medium">
+                  <Link href={prj.link}>
+                    <a className="text-blue-500 hover:text-blue-600 cursor-pointer">
+                      Read →
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+};
+
+const Index: React.FC<Props> = ({ posts, projects }) => {
+  console.log(projects);
   return (
     <>
       <h1 className="text-6xl font-extrabold text-gray-800 mb-4">
@@ -70,7 +107,7 @@ const Index: React.FC<Props> = ({ posts }) => {
           <h4 className="text-2xl text-gray-600 font-bold pb-2 border-gray-200 border-b mb-5">
             Selected Projects
           </h4>
-          {/* TODO: Project list. */}
+          <ProjectList projects={projects} />
         </div>
       </div>
     </>
@@ -83,6 +120,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
   return {
     props: {
       posts: getPostPreviews(),
+      projects: getProjects(),
     },
   };
 };

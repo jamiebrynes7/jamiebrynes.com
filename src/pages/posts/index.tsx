@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import { getPostPreviews, PostPreviewData } from "src/getPostPreviews";
+import { getPostPreviews, PostPreviewData } from "src/data";
 import Link from "next/link";
 import dayjs from "dayjs";
 

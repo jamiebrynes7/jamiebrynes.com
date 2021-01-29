@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { parseMetadata, PostMetadata } from "src/metadata";
+import { parsePostMetadata } from "src/metadata";
 import PageContainer from "./PageContainer";
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Post: React.FC<Props> = ({ meta, children }) => {
-  const parsedMeta = parseMetadata(meta);
+  const parsedMeta = parsePostMetadata(meta);
   return (
     <PageContainer title={parsedMeta.title}>
       <div className="divide-y xl:divide-y-0 divide-gray-200 xl:grid xl:grid-cols-5 xl:gap-x-6 pb-16 xl:pb-20">
