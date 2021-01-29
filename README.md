@@ -1,46 +1,34 @@
-<div align="center">
-  <img src="./static/imgs/website.png" width="300" />
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-  <h1>Personal website</h1>
+## Getting Started
 
-  <p>
-    <strong>The source & content for my <a href="https://jamiebrynes.com">personal website</a>.</strong>
-  </p>
+First, run the development server:
 
-  <p>
-    <img alt="Netlify deploy status" src="https://api.netlify.com/api/v1/badges/af1f3486-98da-4b30-a5a9-680e656c709c/deploy-status"/>
-    <img alt="Blog build status" src="https://github.com/jamiebrynes7/website/workflows/Check%20blog%20posts/badge.svg"/>
-    <img alt="Kudos please build status" src="https://github.com/jamiebrynes7/website/workflows/Build%20Kudos%20Please/badge.svg"/>
-  </p>
-</div>
-
-This website is built using the [Zola](http://getzola.org) static site generator and styled using the [Bulma](https://bulma.io/) CSS framework.
-
-__Feel free to fork the repository to use it as a reference for your own website!__
-
-## 🚀 Quick start
-
-First, clone the repository:
-
-```
-$ git clone git@github.com:jamiebrynes7/personal-website.git
+```bash
+npm run dev
+# or
+yarn dev
 ```
 
-Then to build and serve the website (requires Docker):
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```
-$ ./runner.sh serve
-```
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## 🧐 What's inside?
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-This site is built using the [Zola](http://getzola.org) static site generator. 
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-- `content/` contains the Markdown content of the website & blog
-- `js/` contains the _un-minified_ Javascript source of the blog.
-- `kudos/` contains the Rust source code for the backend of the [Kudos Please](https://www.jamiebrynes.com/blog/kudos-please/) feature
-- `sass/` contains the style of the website
-- `templates/` contains the templated HTML that underpin the website
-- `vendor/` contains the [Bulma](https://bulma.io/) SASS source
+## Learn More
 
-It also has a small `runner.sh` script for running common jobs (its only tested on Git Bash for Windows, your mileage may vary!).
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
