@@ -1,11 +1,14 @@
-import { GetStaticProps } from "next";
-import { getPostPreviews, PostPreviewData } from "src/data";
+import { getPostPreviews, PreviewData } from "src/data";
 import Link from "next/link";
 import dayjs from "dayjs";
+import { PostMetadata } from "src/metadata";
 
-const BlogPostPreview: React.FC<PostPreviewData> = ({
+const posts = getPostPreviews();
+
+const BlogPostPreview: React.FC<PreviewData<PostMetadata>> = ({
   link,
   metadata: { title, date },
+  component: Component,
   ...props
 }) => {
   return (
@@ -24,7 +27,7 @@ const BlogPostPreview: React.FC<PostPreviewData> = ({
               </Link>
             </h2>
             <div className="prose max-w-none text-gray-500">
-              {/* TODO: <p>{previewContent}</p> */}
+              <Component />
             </div>
           </div>
           <div className="text-base leading-6 font-medium">
@@ -40,7 +43,7 @@ const BlogPostPreview: React.FC<PostPreviewData> = ({
   );
 };
 
-const Index: React.FC<PostIndexProps> = ({ posts, ...props }) => {
+const Index: React.FC<{}> = ({ ...props }) => {
   return (
     <>
       <div className="divide-y divide-gray-200">
@@ -63,16 +66,3 @@ const Index: React.FC<PostIndexProps> = ({ posts, ...props }) => {
 };
 
 export default Index;
-
-export const getStaticProps: GetStaticProps<PostIndexProps> = async (_ctx) => {
-  const posts = getPostPreviews();
-  return {
-    props: {
-      posts,
-    },
-  };
-};
-
-interface PostIndexProps {
-  posts: PostPreviewData[];
-}

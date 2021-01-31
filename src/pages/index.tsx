@@ -2,13 +2,14 @@ import dayjs from "dayjs";
 import { GetStaticProps } from "next";
 import { getPostPreviews, getProjects, PreviewData } from "src/data";
 import Link from "next/link";
-import postcss from "postcss";
 import { PostMetadata, ProjectMetadata } from "src/metadata";
 
 interface Props {
-  posts: PreviewData<PostMetadata>[];
   projects: PreviewData<ProjectMetadata>[];
 }
+
+const posts = getPostPreviews().slice(0, 5);
+const projects = getProjects();
 
 const PostList: React.FC<{ posts: PreviewData<PostMetadata>[] }> = ({
   posts,
@@ -75,8 +76,7 @@ const ProjectList: React.FC<{ projects: PreviewData<ProjectMetadata>[] }> = ({
   );
 };
 
-const Index: React.FC<Props> = ({ posts, projects }) => {
-  console.log(projects);
+const Index: React.FC<Props> = ({}) => {
   return (
     <>
       <h1 className="text-6xl font-extrabold text-gray-800 mb-4">
@@ -115,12 +115,3 @@ const Index: React.FC<Props> = ({ posts, projects }) => {
 };
 
 export default Index;
-
-export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-  return {
-    props: {
-      posts: getPostPreviews(),
-      projects: getProjects(),
-    },
-  };
-};

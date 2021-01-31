@@ -13,13 +13,14 @@ function importAll<TMetadata>(
   return ctx.keys().map((filename) => ({
     link: `/${prefix}${filename.substr(1).replace(/\/index\.mdx$/, "")}`,
     metadata: parseMetadata(ctx(filename).meta),
+    component: ctx(filename).default,
   }));
 }
 
 export function getPostPreviews(): PreviewData<PostMetadata>[] {
-  const ctx = require.context("./pages/posts", true, /\.mdx$/);
+  const ctx = require.context("./pages/posts/?preview", true, /\.mdx$/);
   return importAll(ctx, "posts", parsePostMetadata).sort(
-    (first, second) => first.metadata.date - second.metadata.date
+    (first, second) => second.metadata.date - first.metadata.date
   );
 }
 
@@ -31,4 +32,5 @@ export function getProjects(): PreviewData<ProjectMetadata>[] {
 export interface PreviewData<TMetadata> {
   link: string;
   metadata: TMetadata;
+  component: any;
 }
