@@ -15,9 +15,11 @@ After setting up this website, I thought: why couldn't I do the same for website
 
 At the time, I had recently gained access to the [GitHub Actions](https://github.com/features/actions) beta. This website seemed like a perfect opportunity to test out GitHub Actions.
 
-{% callout(type="info") %}
+<Callout type="info">
+
 GitHub Actions is built-in workflow automation for GitHub repositories. Checkout [GitHub's documentation](https://github.com/features/actions) for more info.
-{% end %}
+
+</Callout>
 
 There were a few merge gates that immediately came to mind:
 
@@ -152,7 +154,7 @@ $ make spellcheck
 
 The Makefile handles building and running the Docker container. For example:
 
-```make
+```makefile
 CWD=$(shell pwd)
 
 .PHONY: spellcheck spellcheck-docker

@@ -1,4 +1,6 @@
 const { createLoader } = require("simple-functional-loader");
+const { remarkPrism } = require("@mapbox/rehype-prism");
+const rehypePrism = require("@mapbox/rehype-prism");
 
 const wrapPostContent = (src) => {
   return [
@@ -86,7 +88,9 @@ const mdx = (opts) => {
           opts.defaultLoaders.babel,
           {
             loader: "@mdx-js/loader",
-            options: {},
+            options: {
+              rehypePlugins: [rehypePrism],
+            },
           },
           createLoader(function (src) {
             const content = getContent(src, this._module);

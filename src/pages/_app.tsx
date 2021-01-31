@@ -4,6 +4,7 @@ import Header from "@components/Header";
 import "tailwindcss/tailwind.css";
 import SectionContainer from "@components/SectionContainer";
 import Footer from "@components/Footer";
+import "../syntax-highlighting.css";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
