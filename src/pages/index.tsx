@@ -3,6 +3,9 @@ import { GetStaticProps } from "next";
 import { getPostPreviews, getProjects, PreviewData } from "src/data";
 import Link from "next/link";
 import { PostMetadata, ProjectMetadata } from "src/metadata";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
   projects: PreviewData<ProjectMetadata>[];
@@ -50,10 +53,19 @@ const ProjectList: React.FC<{ projects: PreviewData<ProjectMetadata>[] }> = ({
 }) => {
   return (
     <>
-      <div className="space-y-10">
+      <div className="space-y-5">
         {projects.map((prj) => {
+          const githubLink = `https://github.com/${prj.metadata.githubSlug}`;
           return (
             <div key={prj.link}>
+              <p className="text-sm leading-6 font-medium text-gray-500">
+                <div>
+                  <a href={githubLink}>
+                    <FontAwesomeIcon icon={faGithub} />
+                    <span> {prj.metadata.githubSlug}</span>
+                  </a>
+                </div>
+              </p>
               <div className="xl:flex xl:justify-between xl:items-center">
                 <h5 className="text-lg leading-8 font-bold tracking-tight text-gray-700 cursor-pointer">
                   <Link href={prj.link}>
