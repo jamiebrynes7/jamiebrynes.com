@@ -1,50 +1,6 @@
 const { createLoader } = require("simple-functional-loader");
 const rehypePrism = require("@mapbox/rehype-prism");
 
-const wrapPostContent = (src) => {
-  return [
-    'import Post from "@components/Post";',
-    "",
-    src,
-    "export default Post;",
-  ].join("\n");
-};
-
-const wrapProjectContent = (src) => {
-  return [
-    'import Project from "@components/Project";',
-    "",
-    src,
-    "export default Project;",
-  ].join("\n");
-};
-
-const wrapStandalonePage = (src) => {
-  return [
-    'import Page from "@components/Page";',
-    "",
-    src,
-    "export default Page;",
-  ].join("\n");
-};
-
-const getContent = (src, _module) => {
-  let content = null;
-
-  if (_module.resource.includes("pages\\posts")) {
-    content = wrapPostContent(src);
-  } else if (_module.resource.includes("pages\\projects")) {
-    content = wrapProjectContent(src);
-  } else if (_module.resource.includes("pages\\resume")) {
-    content = wrapStandalonePage(src);
-  } else {
-    console.warn(`mdx file found in unknown context: ${this._module.context}`);
-    content = "";
-  }
-
-  return content;
-};
-
 const imageRule = {
   test: /\.(svg|png|jpe?g|gif|mp4)$/i,
   use: [
@@ -91,18 +47,13 @@ const mdx = (opts) => {
             },
           },
           createLoader(function (src) {
-            const content = getContent(src, this._module);
-
-            if (content.includes("<!--more-->")) {
-              return this.callback(
-                null,
-                content.split("<!--more-->").join("\n")
-              );
+            if (src.includes("<!--more-->")) {
+              return this.callback(null, src.split("<!--more-->").join("\n"));
             }
 
             return this.callback(
               null,
-              content.replace(/<!--excerpt-->.*<!--\/excerpt-->/s, "")
+              src.replace(/<!--excerpt-->.*<!--\/excerpt-->/s, "")
             );
           }),
         ],

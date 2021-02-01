@@ -1,18 +1,18 @@
-import { getPostPreviews, PreviewData } from "src/data";
+import { getPostPreviews, PageData } from "src/data";
 import Link from "next/link";
 import dayjs from "dayjs";
 import { PostMetadata } from "src/metadata";
 
 const posts = getPostPreviews();
 
-const BlogPostPreview: React.FC<PreviewData<PostMetadata>> = ({
+const BlogPostPreview: React.FC<PageData<PostMetadata>> = ({
   link,
   metadata: { title, date },
   component: Component,
   ...props
 }) => {
   return (
-    <li className="py-12" key={title}>
+    <li className="py-12">
       <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
         <dl>
           <dd className="text-base leading-6 font-medium text-gray-500">
@@ -43,7 +43,7 @@ const BlogPostPreview: React.FC<PreviewData<PostMetadata>> = ({
   );
 };
 
-const Index: React.FC<{}> = ({ ...props }) => {
+const Index: React.FC<{}> = ({}) => {
   return (
     <>
       <div className="divide-y divide-gray-200">
@@ -57,7 +57,7 @@ const Index: React.FC<{}> = ({ ...props }) => {
         </div>
         <ul className="divide-y divide-gray-200">
           {posts.map((post) => (
-            <BlogPostPreview {...post} />
+            <BlogPostPreview {...post} key={post.metadata.title} />
           ))}
         </ul>
       </div>

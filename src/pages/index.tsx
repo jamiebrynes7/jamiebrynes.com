@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { GetStaticProps } from "next";
-import { getPostPreviews, getProjects, PreviewData } from "src/data";
+import { getPostPreviews, getProjects, PageData } from "src/data";
 import Link from "next/link";
 import { PostMetadata, ProjectMetadata } from "src/metadata";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -8,15 +8,13 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
-  projects: PreviewData<ProjectMetadata>[];
+  projects: PageData<ProjectMetadata>[];
 }
 
 const posts = getPostPreviews().slice(0, 5);
 const projects = getProjects();
 
-const PostList: React.FC<{ posts: PreviewData<PostMetadata>[] }> = ({
-  posts,
-}) => {
+const PostList: React.FC<{ posts: PageData<PostMetadata>[] }> = ({ posts }) => {
   return (
     <>
       <div className="space-y-5">
@@ -48,7 +46,7 @@ const PostList: React.FC<{ posts: PreviewData<PostMetadata>[] }> = ({
   );
 };
 
-const ProjectList: React.FC<{ projects: PreviewData<ProjectMetadata>[] }> = ({
+const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
   projects,
 }) => {
   return (
