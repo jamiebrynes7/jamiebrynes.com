@@ -46,8 +46,12 @@ export function getPostBySlug(slug: string): PageData<PostMetadata> {
   };
 }
 
-export function getProjects(): PageData<ProjectMetadata>[] {
-  return importAll(prjCtx, "projects", parseProjectMetadata);
+export function getProjectsPreview(): PageData<ProjectMetadata>[] {
+  return importAll(
+    require.context("./../content/projects?preview", true, /\.mdx$/),
+    "projects",
+    parseProjectMetadata
+  );
 }
 
 export function getProjectBySlug(slug: string): PageData<ProjectMetadata> {

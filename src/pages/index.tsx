@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { GetStaticProps } from "next";
-import { getPostPreviews, getProjects, PageData } from "src/data";
+import { getPostPreviews, getProjectsPreview, PageData } from "src/data";
 import Link from "next/link";
 import { PostMetadata, ProjectMetadata } from "src/metadata";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const posts = getPostPreviews().slice(0, 5);
-const projects = getProjects();
+const projects = getProjectsPreview().slice(0, 5);
 
 const PostList: React.FC<{ posts: PageData<PostMetadata>[] }> = ({ posts }) => {
   return (
@@ -73,7 +73,6 @@ const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
                   </Link>
                 </div>
               </div>
-              <img src={prj.metadata.cardImage} />
             </div>
           );
         })}
