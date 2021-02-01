@@ -7,7 +7,7 @@ const imageRule = {
     {
       loader: "file-loader",
       options: {
-        publicPath: "/_assets",
+        publicPath: "/_next",
         name: "static/media/[name].[hash].[ext]",
       },
     },

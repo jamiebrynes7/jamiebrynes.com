@@ -53,7 +53,6 @@ const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
     <>
       <div className="space-y-5">
         {projects.map((prj) => {
-          const githubLink = `https://github.com/${prj.metadata.githubSlug}`;
           return (
             <div key={prj.link}>
               <div className="text-sm leading-6 font-medium text-gray-500">
@@ -74,6 +73,7 @@ const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
                   </Link>
                 </div>
               </div>
+              <img src={prj.metadata.cardImage} />
             </div>
           );
         })}

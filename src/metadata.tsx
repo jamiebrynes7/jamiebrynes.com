@@ -19,6 +19,7 @@ export interface ProjectMetadata {
     name: string;
     url: string;
   }[];
+  cardImage: string;
 }
 
 export function parseProjectMetadata(data: any): ProjectMetadata {
