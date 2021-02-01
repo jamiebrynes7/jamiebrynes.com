@@ -72,7 +72,6 @@ const mdx = (opts) => {
             options: {},
           },
           createLoader(function (src) {
-            console.log("In preview!");
             if (src.includes("<!--more-->")) {
               const [preview] = src.split("<!--more-->");
               return this.callback(null, preview);

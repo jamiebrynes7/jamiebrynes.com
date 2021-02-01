@@ -58,14 +58,10 @@ const ProjectList: React.FC<{ projects: PreviewData<ProjectMetadata>[] }> = ({
           const githubLink = `https://github.com/${prj.metadata.githubSlug}`;
           return (
             <div key={prj.link}>
-              <p className="text-sm leading-6 font-medium text-gray-500">
-                <div>
-                  <a href={githubLink}>
-                    <FontAwesomeIcon icon={faGithub} />
-                    <span> {prj.metadata.githubSlug}</span>
-                  </a>
-                </div>
-              </p>
+              <div className="text-sm leading-6 font-medium text-gray-500">
+                <FontAwesomeIcon icon={faGithub} />
+                <span> {prj.metadata.githubSlug}</span>
+              </div>
               <div className="xl:flex xl:justify-between xl:items-center">
                 <h5 className="text-lg leading-8 font-bold tracking-tight text-gray-700 cursor-pointer">
                   <Link href={prj.link}>
