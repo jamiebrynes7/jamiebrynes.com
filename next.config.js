@@ -1,5 +1,4 @@
 const { createLoader } = require("simple-functional-loader");
-const { remarkPrism } = require("@mapbox/rehype-prism");
 const rehypePrism = require("@mapbox/rehype-prism");
 
 const wrapPostContent = (src) => {
@@ -112,7 +111,11 @@ const mdx = (opts) => {
   };
 };
 
-module.exports = {
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+module.exports = withBundleAnalyzer({
   pageExtensions: ["ts", "tsx", "mdx"],
   webpack: (config, options) => {
     config.module.rules.push(imageRule);
@@ -120,4 +123,4 @@ module.exports = {
 
     return config;
   },
-};
+});
