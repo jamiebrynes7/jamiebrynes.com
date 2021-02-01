@@ -15,17 +15,23 @@ const imageRule = {
 };
 
 const mdx = (opts) => {
+  const common = [
+    opts.defaultLoaders.babel,
+    {
+      loader: "@mdx-js/loader",
+      options: {
+        rehypePlugins: [rehypePrism],
+      },
+    },
+  ];
+
   return {
     test: /\.mdx$/,
     oneOf: [
       {
         resourceQuery: /preview/,
         use: [
-          opts.defaultLoaders.babel,
-          {
-            loader: "@mdx-js/loader",
-            options: {},
-          },
+          ...common,
           createLoader(function (src) {
             if (src.includes("<!--more-->")) {
               const [preview] = src.split("<!--more-->");
@@ -39,13 +45,7 @@ const mdx = (opts) => {
       },
       {
         use: [
-          opts.defaultLoaders.babel,
-          {
-            loader: "@mdx-js/loader",
-            options: {
-              rehypePlugins: [rehypePrism],
-            },
-          },
+          ...common,
           createLoader(function (src) {
             if (src.includes("<!--more-->")) {
               return this.callback(null, src.split("<!--more-->").join("\n"));
