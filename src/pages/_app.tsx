@@ -1,10 +1,16 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import Header from "@components/Header";
-import "tailwindcss/tailwind.css";
 import SectionContainer from "@components/SectionContainer";
 import Footer from "@components/Footer";
+
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "tailwindcss/tailwind.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../syntax-highlighting.css";
+
+// Prevent fontawesome from dynamically adding its css since we did it manually above
+config.autoAddCss = false;
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
