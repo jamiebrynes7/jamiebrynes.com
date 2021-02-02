@@ -1,9 +1,9 @@
 import { getProjectsPreview, PageData } from "src/data";
 import Link from "next/link";
 import { ProjectMetadata } from "src/metadata";
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import Head from "next/head";
 
 const projects = getProjectsPreview();
 
@@ -45,6 +45,9 @@ const ProjectPreview: React.FC<PageData<ProjectMetadata>> = ({
 const Index: React.FC<{}> = ({}) => {
   return (
     <>
+      <Head>
+        <title>Projects | Jamie Brynes</title>
+      </Head>
       <div className="divide-y divide-gray-200">
         <div className="pt-6 pb-8 space-y-5">
           <h1 className="text-6xl font-extrabold leading-14 text-gray-900 tracking-tight">

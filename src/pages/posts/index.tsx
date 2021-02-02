@@ -2,6 +2,7 @@ import { getPostPreviews, PageData } from "src/data";
 import Link from "next/link";
 import dayjs from "dayjs";
 import { PostMetadata } from "src/metadata";
+import Head from "next/head";
 
 const posts = getPostPreviews();
 
@@ -46,6 +47,9 @@ const BlogPostPreview: React.FC<PageData<PostMetadata>> = ({
 const Index: React.FC<{}> = ({}) => {
   return (
     <>
+      <Head>
+        <title>Writing | Jamie Brynes</title>
+      </Head>
       <div className="divide-y divide-gray-200">
         <div className="pt-6 pb-8 space-y-5">
           <h1 className="text-6xl font-extrabold leading-14 text-gray-900 tracking-tight">
