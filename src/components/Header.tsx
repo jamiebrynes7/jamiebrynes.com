@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Brand from "./Brand";
 
 const HeaderLink: React.FC<{ url: string; display: string }> = ({
   url,
@@ -21,9 +22,8 @@ const Header: React.FC = () => {
         <div className="m-auto mb-12 lg:items-center lg:justify-between lg:flex lg:h-16 lg:py-4 lg:mb-20">
           <div className="flex items-center flex-shrink-0">
             <Link href="/">
-              {/* TODO: Replace with logo. */}
-              <a className="text-gray-500 font-semibold text-xl tracking-tight hover:text-gray-900 duration-300">
-                JB
+              <a className="text-gray-500 hover:text-blue-500">
+                <Brand height={48} width={48} />
               </a>
             </Link>
           </div>
