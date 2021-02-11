@@ -12,8 +12,8 @@ const Project: React.FC<Props> = ({ slug }) => {
   return (
     <PageContainer title={metadata.title}>
       <div className="divide-y xl:divide-y-0 divide-gray-200 xl:grid xl:grid-cols-5 xl:gap-x-6 pb-16 xl:pb-20">
-        <div className="pt-6 pb-10 xl:pt-11 xl:border-b xl:border-gray-200 space-y-5">
-          <div>
+        <div>
+          <div className="pt-6 pb-6 pl-2 xl:border-b xl:border-gray-200">
             <p className="text-gray-700 font-semibold">
               <FontAwesomeIcon icon={faGithub} />
               <span> GitHub:</span>
@@ -25,7 +25,7 @@ const Project: React.FC<Props> = ({ slug }) => {
               {metadata.githubSlug}
             </a>
           </div>
-          <div>
+          <div className="pt-6 pb-6 pl-2 xl:border-b xl:border-gray-200">
             <p className="text-gray-700 font-semibold">Tech Stack</p>
             <ul className="list-disc mt-2 list-inside">
               {metadata.tech.map(({ name, url }) => (

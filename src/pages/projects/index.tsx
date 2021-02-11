@@ -2,35 +2,42 @@ import { getProjectsPreview, PageData } from "src/data";
 import Link from "next/link";
 import { ProjectMetadata } from "src/metadata";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Head from "next/head";
+import { faHammer, faSnowflake } from "@fortawesome/free-solid-svg-icons";
+import { stat } from "fs";
 
 const projects = getProjectsPreview();
 
+const ProjectStatus: React.FC<{ status: "active" | "maintenance" }> = ({
+  status,
+}) => {
+  const icon = status == "active" ? faHammer : faSnowflake;
+  const color = status == "active" ? "text-green-600" : "text-yellow-600";
+  const text = status == "active" ? "Active" : "Maintained";
+  return (
+    <span className={color + " text-sm"}>
+      <FontAwesomeIcon icon={icon} /> {text}
+    </span>
+  );
+};
+
 const ProjectPreview: React.FC<PageData<ProjectMetadata>> = ({
   link,
-  metadata: { title, githubSlug, cardImage },
+  metadata: { title, status, cardImage },
   component: Component,
 }) => {
-  const githubLink = `https://github.com/${githubSlug}`;
-
   return (
     <Link href={link}>
       <div className="max-w-md rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
         <img className="w-full" src={cardImage} />
         <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">{title}</div>
+          <div className="text-gray-800 font-bold text-xl mb-2">{title}</div>
           <div className="prose text-gray-500">
             <Component />
           </div>
         </div>
         <div className="px-6 pt-6 pb-4 flex justify-between">
-          <a
-            href={githubLink}
-            className="text-gray-600 hover:text-blue-500 text-lg"
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
+          <ProjectStatus status={status} />
           <Link href={link}>
             <a className="text-blue-500 hover:text-blue-600 cursor-pointer">
               Read more →

@@ -22,6 +22,7 @@ export function parsePostMetadata(data: any): PostMetadata {
 
 export interface ProjectMetadata {
   title: string;
+  status: "maintenance" | "active";
   githubSlug: string;
   tech: {
     name: string;
@@ -32,6 +33,7 @@ export interface ProjectMetadata {
 
 const projectSchema = joi.object({
   title: joi.string().required(),
+  status: joi.string().valid("maintenance", "active").required(),
   githubSlug: joi
     .string()
     .pattern(/(.*)\/(.*)/)

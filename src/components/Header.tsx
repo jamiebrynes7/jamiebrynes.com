@@ -23,7 +23,7 @@ const Header: React.FC = () => {
           <div className="flex items-center flex-shrink-0">
             <Link href="/">
               <a className="text-gray-500 hover:text-blue-500">
-                <Brand height={48} width={48} />
+                <Brand height={32} width={32} />
               </a>
             </Link>
           </div>
