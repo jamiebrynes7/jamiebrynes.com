@@ -8,7 +8,7 @@ const Figure: React.FC<{
       <img
         onClick={onClick}
         className={onClick && "cursor-pointer"}
-        style={{ marginBottom: 0 }}
+        style={{ marginBottom: 0, marginTop: 0 }}
         src={src}
         alt={caption}
       />
