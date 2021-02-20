@@ -101,14 +101,14 @@ const Index: React.FC<Props> = ({}) => {
         </a>
         .
       </h3>
-      <div className="xl:grid xl:grid-cols-2 xl:gap-12 mt-32">
+      <div className="xl:grid xl:grid-cols-2 xl:gap-12 mt-16 lg:mt-32">
         <div>
           <h4 className="text-2xl text-gray-600 font-bold pb-2 border-gray-200 border-b mb-5">
             Latest Writing
           </h4>
           <PostList posts={posts} />
         </div>
-        <div>
+        <div className="mt-16 lg:mt-0">
           <h4 className="text-2xl text-gray-600 font-bold pb-2 border-gray-200 border-b mb-5">
             Selected Projects
           </h4>
