@@ -34,7 +34,7 @@ const Footer: React.FC<{}> = () => {
           icon={faLinkedin}
         ></FooterLink>
       </div>
-      <div className="text-md text-gray-500 font-semibold text-center flex">
+      <div className="text-sm xl:text-md text-gray-500 font-semibold text-center flex">
         Jamie Brynes &copy; 2021
       </div>
     </footer>
