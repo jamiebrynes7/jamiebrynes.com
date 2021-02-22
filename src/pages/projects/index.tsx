@@ -4,7 +4,6 @@ import { ProjectMetadata } from "src/metadata";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
 import { faHammer, faSnowflake } from "@fortawesome/free-solid-svg-icons";
-import { stat } from "fs";
 
 const projects = getProjectsPreview();
 
@@ -31,15 +30,17 @@ const ProjectPreview: React.FC<PageData<ProjectMetadata>> = ({
       <div className="max-w-md rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
         <img className="w-full" src={cardImage} />
         <div className="px-6 py-4">
-          <div className="text-gray-800 font-bold text-xl mb-2">{title}</div>
-          <div className="prose text-gray-500">
+          <div className="text-gray-800 dark:text-gray-200 font-bold text-xl mb-2">
+            {title}
+          </div>
+          <div className="prose dark:prose-dark text-gray-500 dark:text-gray-400">
             <Component />
           </div>
         </div>
         <div className="px-6 pt-6 pb-4 flex justify-between">
           <ProjectStatus status={status} />
           <Link href={link}>
-            <a className="text-blue-500 hover:text-blue-600 cursor-pointer">
+            <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 cursor-pointer">
               Read more →
             </a>
           </Link>
@@ -55,12 +56,12 @@ const Index: React.FC<{}> = ({}) => {
       <Head>
         <title>Projects | Jamie Brynes</title>
       </Head>
-      <div className="divide-y divide-gray-200">
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-5">
-          <h1 className="text-6xl font-extrabold leading-14 text-gray-900 tracking-tight">
+          <h1 className="text-6xl font-extrabold leading-14 text-gray-900 dark:text-gray-100 tracking-tight">
             Projects
           </h1>
-          <p className="text-lg leading-7 text-gray-500">
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             What I'm currently working on or maintaining
           </p>
         </div>

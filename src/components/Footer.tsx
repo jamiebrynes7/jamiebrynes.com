@@ -20,7 +20,7 @@ const FooterLink: React.FC<{ url: string; icon: IconDefinition }> = ({
 const Footer: React.FC<{}> = () => {
   return (
     <footer className="items-center justify-between mt-16 h-16 flex flex-row-reverse">
-      <div className="flex text-gray-500 text-md xl:text-xl text-center justify-center">
+      <div className="flex text-gray-500 dark:text-gray-400 text-md xl:text-xl text-center justify-center">
         <FooterLink
           url="https://www.github.com/jamiebrynes7"
           icon={faGithub}
@@ -34,7 +34,7 @@ const Footer: React.FC<{}> = () => {
           icon={faLinkedin}
         ></FooterLink>
       </div>
-      <div className="text-sm xl:text-md text-gray-500 font-semibold text-center flex">
+      <div className="text-sm xl:text-md text-gray-500 dark:text-gray-400 font-semibold text-center flex">
         Jamie Brynes &copy; 2021
       </div>
     </footer>

@@ -13,7 +13,7 @@ const Figure: React.FC<{
         alt={caption}
       />
       <p
-        className="text-gray-500 text-sm mx-auto"
+        className="text-gray-500 dark:text-gray-400 text-sm mx-auto"
         style={{ marginTop: "0.5rem" }}
       >
         {caption}

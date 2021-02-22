@@ -1,5 +1,4 @@
 import { useRouter } from "next/dist/client/router";
-import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Brand from "./Brand";
@@ -37,12 +36,12 @@ const Header: React.FC = () => {
         <div className="m-auto py-2 items-center justify-between flex lg:h-16 lg:py-4 lg:mb-20">
           <div className="flex items-center flex-shrink-0">
             <Link href="/">
-              <a className="text-gray-500 hover:text-blue-500">
+              <a className="text-gray-500 dark:text-gray-400 hover:text-blue-500">
                 <Brand height={32} width={32} />
               </a>
             </Link>
           </div>
-          <nav className="hidden md:block items-center text-gray-500 lg:flex lg:w-auto">
+          <nav className="hidden md:block items-center text-gray-400 lg:flex lg:w-auto">
             <div className="text-lg flex lg:flex-grow">
               <HeaderLink url="/posts" display="Writing" />
               <HeaderLink url="/projects" display="Projects" />
@@ -50,7 +49,7 @@ const Header: React.FC = () => {
             </div>
           </nav>
           <div
-            className="block md:hidden"
+            className="block md:hidden text-gray-400 dark:text-gray-500"
             onClick={() => toggleMobileMenu(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen && (
@@ -90,7 +89,7 @@ const Header: React.FC = () => {
           </div>
         </div>
         {isMobileMenuOpen && (
-          <div className="pb-4 pt-2 pl-2 space-y-2 border-b border-gray-400 text-gray-500">
+          <div className="pb-4 pt-2 pl-2 space-y-2 border-b border-gray-700 text-gray-500 dark:text-gray-400">
             <HeaderLink url="/posts" display="Writing" />
             <HeaderLink url="/projects" display="Projects" />
             <HeaderLink url="/resume" display="Resume" />

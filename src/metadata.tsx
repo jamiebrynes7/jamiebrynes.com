@@ -24,10 +24,6 @@ export interface ProjectMetadata {
   title: string;
   status: "maintenance" | "active";
   githubSlug: string;
-  tech: {
-    name: string;
-    url: string;
-  }[];
   cardImage: string;
 }
 
@@ -38,12 +34,6 @@ const projectSchema = joi.object({
     .string()
     .pattern(/(.*)\/(.*)/)
     .required(),
-  tech: joi.array().items(
-    joi.object({
-      name: joi.string().required(),
-      url: joi.string().uri().required(),
-    })
-  ),
   cardImage: joi.string().required(),
 });
 

@@ -37,17 +37,19 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
         <title>Jamie Brynes</title>
       </Head>
-      <div className="min-h-screen">
+      <div className="dark:bg-gray-900">
+        <div className="min-h-screen">
+          <SectionContainer>
+            <Header />
+          </SectionContainer>
+          <SectionContainer>
+            <Component {...pageProps} />
+          </SectionContainer>
+        </div>
         <SectionContainer>
-          <Header />
-        </SectionContainer>
-        <SectionContainer>
-          <Component {...pageProps} />
+          <Footer />
         </SectionContainer>
       </div>
-      <SectionContainer>
-        <Footer />
-      </SectionContainer>
     </>
   );
 };

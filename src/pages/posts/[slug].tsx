@@ -1,7 +1,4 @@
 import PageContainer from "@components/PageContainer";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dayjs from "dayjs";
 import { readdirSync } from "fs";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -14,13 +11,13 @@ const Post: React.FC<Props> = ({ slug }) => {
     <PageContainer
       title={metadata.title}
       subtitle={
-        <p className="text-base leading-6 font-medium text-gray-500">
+        <p className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
           {dayjs.unix(metadata.date).format("MMMM DD, YYYY")}
         </p>
       }
     >
       <div className="pb-16 xl:pb-20">
-        <div className="prose max-w-none pt-10 pb-8">
+        <div className="prose dark:prose-dark max-w-none pt-10 pb-8">
           <Component />
         </div>
       </div>

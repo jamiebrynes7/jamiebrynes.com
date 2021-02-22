@@ -21,18 +21,18 @@ const PostList: React.FC<{ posts: PageData<PostMetadata>[] }> = ({ posts }) => {
         {posts.map((post) => {
           return (
             <div key={post.link}>
-              <p className="text-sm leading-6 font-medium text-gray-500">
+              <p className="text-sm leading-6 font-medium text-gray-500 dark:text-gray-400">
                 {dayjs.unix(post.metadata.date).format("MMM DD, YYYY")}
               </p>
               <div className="xl:flex xl:justify-between xl:items-center">
-                <h5 className="text-lg leading-8 font-bold tracking-tight text-gray-700 cursor-pointer">
+                <h5 className="text-lg leading-8 font-bold tracking-tight text-gray-700 dark:text-gray-300 cursor-pointer">
                   <Link href={post.link}>
                     <a>{post.metadata.title}</a>
                   </Link>
                 </h5>
                 <div className="text-base leading-6 font-medium">
                   <Link href={post.link}>
-                    <a className="text-blue-500 hover:text-blue-600 cursor-pointer">
+                    <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 cursor-pointer">
                       Read →
                     </a>
                   </Link>
@@ -55,19 +55,19 @@ const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
         {projects.map((prj) => {
           return (
             <div key={prj.link}>
-              <div className="text-sm leading-6 font-medium text-gray-500">
+              <div className="text-sm leading-6 font-medium text-gray-500 dark:text-gray-400">
                 <FontAwesomeIcon icon={faGithub} />
                 <span> {prj.metadata.githubSlug}</span>
               </div>
               <div className="xl:flex xl:justify-between xl:items-center">
-                <h5 className="text-lg leading-8 font-bold tracking-tight text-gray-700 cursor-pointer">
+                <h5 className="text-lg leading-8 font-bold tracking-tight text-gray-700 dark:text-gray-300 cursor-pointer">
                   <Link href={prj.link}>
                     <a>{prj.metadata.title}</a>
                   </Link>
                 </h5>
                 <div className="text-base leading-6 font-medium">
                   <Link href={prj.link}>
-                    <a className="text-blue-500 hover:text-blue-600 cursor-pointer">
+                    <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 cursor-pointer">
                       Read →
                     </a>
                   </Link>
@@ -84,17 +84,17 @@ const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
 const Index: React.FC<Props> = ({}) => {
   return (
     <>
-      <h1 className="text-6xl font-extrabold text-gray-800 mb-4">
+      <h1 className="text-6xl font-extrabold text-gray-800 dark:text-gray-200 mb-4">
         Jamie Brynes
       </h1>
-      <h2 className="text-3xl text-gray-700 font-serif lg:w-2/3 mb-4">
+      <h2 className="text-3xl text-gray-700 dark:text-gray-300 font-serif lg:w-2/3 mb-4">
         Designs and builds software that makes people more efficient in what
         they do.
       </h2>
-      <h3 className="text-xl text-gray-600 lg:w-2/3">
+      <h3 className="text-xl text-gray-600 dark:text-gray-400 lg:w-2/3">
         Software Engineer at{" "}
         <a
-          className="text-blue-500 hover:text-blue-600 duration-300"
+          className="text-blue-500 hover:text-blue-600 dark:text-blue-400 duration-300"
           href="https://improbable.io"
         >
           Improbable
@@ -103,13 +103,13 @@ const Index: React.FC<Props> = ({}) => {
       </h3>
       <div className="xl:grid xl:grid-cols-2 xl:gap-12 mt-16 lg:mt-32">
         <div>
-          <h4 className="text-2xl text-gray-600 font-bold pb-2 border-gray-200 border-b mb-5">
+          <h4 className="text-2xl text-gray-600 dark:text-gray-300 font-bold pb-2 border-gray-200 dark:border-gray-700 border-b mb-5">
             Latest Writing
           </h4>
           <PostList posts={posts} />
         </div>
         <div className="mt-16 xl:mt-0">
-          <h4 className="text-2xl text-gray-600 font-bold pb-2 border-gray-200 border-b mb-5">
+          <h4 className="text-2xl text-gray-600 dark:text-gray-300 font-bold pb-2 border-gray-200 dark:border-gray-700 border-b mb-5">
             Selected Projects
           </h4>
           <ProjectList projects={projects} />
