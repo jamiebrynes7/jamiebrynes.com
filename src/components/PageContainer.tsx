@@ -2,17 +2,19 @@ import Head from "next/head";
 
 interface Props {
   title: string;
+  subtitle?: JSX.Element;
 }
 
-const PageContainer: React.FC<Props> = ({ title, children }) => {
+const PageContainer: React.FC<Props> = ({ title, children, subtitle }) => {
   return (
     <>
       <Head>
         <title>{title} | Jamie Brynes</title>
       </Head>
-      <article className="xl:divide-y xl:divide-gray-200">
-        <header className="pt-6 xl:pb-10">
-          <div className="space-y-1 lg:text-center">
+      <article className="divide-y divide-gray-200">
+        <header className="pt-6 pb-6 xl:pb-10">
+          <div className="space-y-1 xl:text-center">
+            {subtitle}
             <h1 className="text-3xl leading-9 font-extrabold text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
               {title}
             </h1>

@@ -64,7 +64,7 @@ const Index: React.FC<{}> = ({}) => {
             What I'm currently working on or maintaining
           </p>
         </div>
-        <div className="pt-12 grid items-center justify-items-center grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="pt-12 grid items-center justify-items-center grid-cols-1 xl:grid-cols-3 gap-4">
           {projects.map((prj) => (
             <ProjectPreview {...prj} key={prj.metadata.title} />
           ))}

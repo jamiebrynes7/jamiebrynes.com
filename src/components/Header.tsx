@@ -1,6 +1,7 @@
+import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Brand from "./Brand";
 
 const HeaderLink: React.FC<{ url: string; display: string }> = ({
@@ -9,7 +10,7 @@ const HeaderLink: React.FC<{ url: string; display: string }> = ({
 }) => {
   return (
     <Link href={url}>
-      <a className="block font-semibold lg:inline-block hover:text-blue-500 duration-300 mr-6">
+      <a className="block font-semibold lg:inline-block hover:text-blue-500 duration-300 mr-6 last:mr-0">
         {display}
       </a>
     </Link>
@@ -18,6 +19,18 @@ const HeaderLink: React.FC<{ url: string; display: string }> = ({
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, toggleMobileMenu] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const onRouteChangeComplete = (url, { shallow }) => {
+      toggleMobileMenu(false);
+    };
+    router.events.on("routeChangeComplete", onRouteChangeComplete);
+
+    return () => {
+      router.events.off("routeChangeComplete", onRouteChangeComplete);
+    };
+  });
   return (
     <>
       <header className="mb-6 lg:mb-12">
@@ -30,7 +43,7 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <nav className="hidden md:block items-center text-gray-500 lg:flex lg:w-auto">
-            <div className="text-lg lg:flex-grow">
+            <div className="text-lg flex lg:flex-grow">
               <HeaderLink url="/posts" display="Writing" />
               <HeaderLink url="/projects" display="Projects" />
               <HeaderLink url="/resume" display="Resume" />
@@ -50,9 +63,9 @@ const Header: React.FC = () => {
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
@@ -67,9 +80,9 @@ const Header: React.FC = () => {
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>

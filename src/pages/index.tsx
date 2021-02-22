@@ -108,7 +108,7 @@ const Index: React.FC<Props> = ({}) => {
           </h4>
           <PostList posts={posts} />
         </div>
-        <div className="mt-16 lg:mt-0">
+        <div className="mt-16 xl:mt-0">
           <h4 className="text-2xl text-gray-600 font-bold pb-2 border-gray-200 border-b mb-5">
             Selected Projects
           </h4>
