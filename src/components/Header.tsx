@@ -3,6 +3,45 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Brand from "./Brand";
 
+const DarkModeToggle: React.FC = () => {
+  const [toggled, setToggled] = useState(false);
+
+  useEffect(() => {
+    setToggled(
+      window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+    );
+  }, []);
+
+  useEffect(() => {
+    if (toggled) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [toggled]);
+
+  return (
+    <div
+      onClick={() => setToggled(!toggled)}
+      className="relative inline-block w-16 h-8 align-middle select-none transition duration-200 ease-in rounded-full bg-blue-300 cursor-pointer"
+    >
+      {!toggled && (
+        <>
+          <div className="absolute block w-6 h-6 top-1 left-1 rounded-full bg-blue-400 border-4 border-blue-100 cursor-pointer"></div>
+          <span className="absolute right-1">☀</span>
+        </>
+      )}
+      {toggled && (
+        <>
+          <span className="absolute left-1">🌙</span>
+          <div className="absolute block w-6 h-6 top-1 right-1 rounded-full bg-blue-400 border-4 border-blue-100 cursor-pointer"></div>
+        </>
+      )}
+    </div>
+  );
+};
+
 const HeaderLink: React.FC<{ url: string; display: string }> = ({
   url,
   display,
@@ -36,7 +75,7 @@ const Header: React.FC = () => {
         <div className="m-auto py-2 items-center justify-between flex lg:h-16 lg:py-4 lg:mb-20">
           <div className="flex items-center flex-shrink-0">
             <Link href="/">
-              <a className="text-gray-500 dark:text-gray-400 hover:text-blue-500">
+              <a className="text-gray-500 dark:text-gray-300 hover:text-blue-500">
                 <Brand height={32} width={32} />
               </a>
             </Link>
@@ -46,6 +85,7 @@ const Header: React.FC = () => {
               <HeaderLink url="/posts" display="Writing" />
               <HeaderLink url="/projects" display="Projects" />
               <HeaderLink url="/resume" display="Resume" />
+              <DarkModeToggle />
             </div>
           </nav>
           <div
