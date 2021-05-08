@@ -2,11 +2,11 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class CustomDocument extends Document {
   render() {
-    console.log("Hello!");
     return (
       <Html lang="en">
         <Head />
         <body>
+          <script src="/dark-mode.js" />
           <Main />
           <NextScript />
         </body>

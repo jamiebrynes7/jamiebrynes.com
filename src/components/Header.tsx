@@ -7,17 +7,23 @@ const DarkModeToggle: React.FC = () => {
   const [toggled, setToggled] = useState(false);
 
   useEffect(() => {
-    setToggled(
-      window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-    );
+    if ("theme" in localStorage) {
+      setToggled(localStorage.theme === "dark");
+    } else {
+      setToggled(
+        window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+      );
+    }
   }, []);
 
   useEffect(() => {
     if (toggled) {
-      document.body.classList.add("dark");
+      localStorage.theme = "dark";
+      document.documentElement.classList.add("dark");
     } else {
-      document.body.classList.remove("dark");
+      localStorage.theme = "light";
+      document.documentElement.classList.remove("dark");
     }
   }, [toggled]);
 
