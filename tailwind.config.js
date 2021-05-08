@@ -26,6 +26,18 @@ function codeModifications(color, backgroundColor) {
   };
 }
 
+function linkModifications(color, hoverColor) {
+  return {
+    a: {
+      color: color,
+      textDecoration: "none",
+    },
+    "a:hover": {
+      color: hoverColor,
+    },
+  };
+}
+
 module.exports = {
   purge: ["./src/pages/**/*.tsx", "./src/components/*.tsx"],
   darkMode: "class", // or 'media' or 'class'
@@ -38,9 +50,6 @@ module.exports = {
               color: theme("colors.gray.400"),
               '[class~="lead"]': {
                 color: theme("colors.gray.300"),
-              },
-              a: {
-                color: theme("colors.white"),
               },
               strong: {
                 color: theme("colors.white"),
@@ -91,6 +100,10 @@ module.exports = {
                 theme("colors.gray.200"),
                 "rgba(255, 255, 255, 0.15)"
               ),
+              ...linkModifications(
+                theme("colors.blue.400"),
+                theme("colors.blue.300")
+              ),
             },
           ],
         },
@@ -100,6 +113,10 @@ module.exports = {
               ...codeModifications(
                 theme("colors.gray.800"),
                 "rgba(0, 0, 0, 0.1)"
+              ),
+              ...linkModifications(
+                theme("colors.blue.500"),
+                theme("colors.blue.400")
               ),
             },
           ],

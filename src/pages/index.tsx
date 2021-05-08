@@ -32,7 +32,7 @@ const PostList: React.FC<{ posts: PageData<PostMetadata>[] }> = ({ posts }) => {
                 </h5>
                 <div className="text-base leading-6 font-medium">
                   <Link href={post.link}>
-                    <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 cursor-pointer">
+                    <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer">
                       Read →
                     </a>
                   </Link>
@@ -67,7 +67,7 @@ const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
                 </h5>
                 <div className="text-base leading-6 font-medium">
                   <Link href={prj.link}>
-                    <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 cursor-pointer">
+                    <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer">
                       Read →
                     </a>
                   </Link>
@@ -94,7 +94,7 @@ const Index: React.FC<Props> = ({}) => {
       <h3 className="text-xl text-gray-600 dark:text-gray-400 lg:w-2/3">
         Software Engineer at{" "}
         <a
-          className="text-blue-500 hover:text-blue-600 dark:text-blue-400 duration-300"
+          className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 duration-300"
           href="https://improbable.io"
         >
           Improbable
