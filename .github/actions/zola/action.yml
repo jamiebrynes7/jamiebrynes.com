@@ -1,6 +1,0 @@
-name: 'Zola'
-description: 'Build a Zola site.'
-author: 'Jamie Brynes'
-runs: 
-  using: 'docker'
-  image: 'Dockerfile'

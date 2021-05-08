@@ -1,6 +1,0 @@
-name: 'Build Rust'
-description: 'Build a Rust binary for x86_64-unknown-linux-musl'
-author: 'Jamie Brynes'
-runs: 
-  using: 'docker'
-  image: 'Dockerfile'
