@@ -24,16 +24,8 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
         <link rel="shortcut icon" sizes="196x196" href="/favicon-196.png" />
 
-        <link
-          rel="apple-touch-icon"
-          href="path/to/favicon-152.png"
-          sizes="152x152"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="path/to/favicon-180.png"
-          sizes="180x180"
-        />
+        <link rel="apple-touch-icon" href="/favicon-152.png" sizes="152x152" />
+        <link rel="apple-touch-icon" href="/favicon-180.png" sizes="180x180" />
 
         <title>Jamie Brynes</title>
       </Head>
