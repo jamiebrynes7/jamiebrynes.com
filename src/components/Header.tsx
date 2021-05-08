@@ -24,18 +24,18 @@ const DarkModeToggle: React.FC = () => {
   return (
     <div
       onClick={() => setToggled(!toggled)}
-      className="relative inline-block w-16 h-8 align-middle select-none transition duration-200 ease-in rounded-full bg-blue-300 cursor-pointer"
+      className="relative inline-block w-16 h-8 align-middle select-none transition duration-200 ease-in rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer"
     >
       {!toggled && (
         <>
-          <div className="absolute block w-6 h-6 top-1 left-1 rounded-full bg-blue-400 border-4 border-blue-100 cursor-pointer"></div>
+          <div className="absolute block w-6 h-6 top-1 left-1 rounded-full bg-gray-500 dark:bg-gray-900 border-4 border-gray-100 cursor-pointer"></div>
           <span className="absolute right-1">☀</span>
         </>
       )}
       {toggled && (
         <>
           <span className="absolute left-1">🌙</span>
-          <div className="absolute block w-6 h-6 top-1 right-1 rounded-full bg-blue-400 border-4 border-blue-100 cursor-pointer"></div>
+          <div className="absolute block w-6 h-6 top-1 right-1 rounded-full bg-gray-500 dark:bg-gray-800 border-4 border-gray-100 cursor-pointer"></div>
         </>
       )}
     </div>
