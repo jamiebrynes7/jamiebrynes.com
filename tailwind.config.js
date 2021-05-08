@@ -1,3 +1,31 @@
+function codeModifications(color, backgroundColor) {
+  return {
+    code: {
+      color: color,
+      backgroundColor: backgroundColor,
+      borderRadius: "0.25rem",
+      padding: "0.2rem 0.25rem",
+      fontWeight: "400",
+      "--tw-bg-opacity": "1",
+    },
+    "code::before": {
+      content: '""',
+    },
+    "code::after": {
+      content: '""',
+    },
+    "pre code": {
+      backgroundColor: "unset",
+    },
+    "pre code::before": {
+      content: "unset",
+    },
+    "pre code::after": {
+      content: "unset",
+    },
+  };
+}
+
 module.exports = {
   purge: ["./src/pages/**/*.tsx", "./src/components/*.tsx"],
   darkMode: "class", // or 'media' or 'class'
@@ -45,9 +73,6 @@ module.exports = {
               "figure figcaption": {
                 color: theme("colors.gray.400"),
               },
-              code: {
-                color: theme("colors.white"),
-              },
               "a code": {
                 color: theme("colors.white"),
               },
@@ -62,6 +87,20 @@ module.exports = {
               "tbody tr": {
                 borderBottomColor: theme("colors.gray.600"),
               },
+              ...codeModifications(
+                theme("colors.gray.200"),
+                "rgba(255, 255, 255, 0.15)"
+              ),
+            },
+          ],
+        },
+        DEFAULT: {
+          css: [
+            {
+              ...codeModifications(
+                theme("colors.gray.800"),
+                "rgba(0, 0, 0, 0.1)"
+              ),
             },
           ],
         },
