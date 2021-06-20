@@ -1,19 +1,211 @@
 import Callout from "@components/Callout.tsx";
 
 export const meta = {
-  title: "TODO: Come up with title",
+  title: "Website Rewrite",
   date: "2021-05-08",
 };
 
-As an engineer, nothing is more distracting than new and shiny tech. That's why I decided to rewrite my website using [NextJS](http://nextjs.org/) and [TailwindCSS](https://tailwindcss.com/).
+As an engineer, nothing is more distracting than new and shiny tech. That's why I decided to rewrite my website using [NextJS](http://nextjs.org/) and [TailwindCSS](https://tailwindcss.com/). In this post, I cover what motivated me to rewrite this website and some of features I built during the process.
 
 <!--more-->
 
-<!--
-Talk about:
+Previously, I used [Zola](https://www.getzola.org/), which I still heartily recommend. There were a few reasons for a rewrite:
 
-- Migrating to Tailwind, using Typography & JIT. Customizing code variants.
-- MDX => page pipeline
-- Advantages of NextJS vs previous approach (Zola).
+- I wanted to learn how to use React and NextJ as a way of extending my skillset.
+- I wanted a type-safe and fully featured language for templating. Zola uses the [Tera](https://tera.netlify.app/) engine for templating, which is _fine_, but I prefer something a little more structured and composable.
+- Related to the point above, but writing custom components with interactivity is simpler in NextJS.
 
--->
+  In Zola, I would need to generate out some HTML that standalone Javascript would hook into on page load.
+
+  In NextJS, its a simple React component which I can include through [mdx](https://mdxjs.com/). This is easier to reason about and maintain going forward.
+
+- I wanted to use [TailwindCSS](https://tailwindcss.com/) as the backing CSS framework. Since that involved rewriting all my templates already, why not go one step further?
+
+In the sections below, I'll cover some of the features I built during this process. Hopefully someone will find them useful if they take on a similar endeavour.
+
+## Tailwind CSS
+
+As stated above, one of the motivations for rewriting this website was to utilize Tailwind CSS as a styling framework. One of the first choices I had was to decide how to use it in conjunction with React. There appears to be a wealth of libraries for managing styling in React components, much of the discourse about the various pros and cons goes over my head.
+
+In the end, I decided to try the simplest way forward, annotate components with Tailwind utilities, and see how things go. As it turns out, this has been largely fine.
+
+I had one gripe: the compile times of running PostCSS & purging on each build. While not ridiculously long, it took long enough (~10 seconds on first build) that it was noticeable. The introduction of [Tailwind's fantastic JIT mode](https://tailwindcss.com/docs/just-in-time-mode) solved this problem instantly.
+
+I made use of the [Typography plugin](https://github.com/tailwindlabs/tailwindcss-typography) to make the generated content from Markdown look pretty. I had a few customizations for this plugin:
+
+1. Complete restyling of `inline code` blocks.
+2. Restyling link elements.
+3. Adding support for a dark mode. I largely followed [Adam Wathan's guide on GitHub](https://github.com/tailwindlabs/tailwindcss-typography/issues/69#issuecomment-752946920). (see below for [Dark Mode Toggle](#dark-mode-toggle)).
+
+You can checkout my [`tailwind.config.js`](https://github.com/jamiebrynes7/website/blob/master/tailwind.config.js) for the full details of these customizations.
+
+## MDX & Authoring Content
+
+Quite early on, I settled on [mdx](https://mdxjs.com/) for authoring content. This allows you to augment Markdown with React components for custom rendered elements.
+
+For example:
+
+<Callout type="info">
+
+I can have callout blocks like these. I can put **Markdown** _inside_, and it renders correctly!
+
+</Callout>
+
+There are a number of ways to integrate mdx into NextJS, but I broadly followed [the Tailwind's blog](https://blog.tailwindcss.com/building-the-tailwind-blog) in terms of how I reason about the content structure.
+
+I wanted content to be stored separately from the website source:
+
+```
+content/
+├─ posts/
+│  ├─ a-post/
+│  │  ├─ index.mdx
+│  │  ├─ an-image.png
+├─ projects/
+src/
+├─ pages/
+├─ components/
+```
+
+I then utilize Webpack's [loaders](https://webpack.js.org/loaders/) and [resource queries](https://webpack.js.org/configuration/module/#ruleoneof) to load images, transform mdx, and generate page previews.
+
+Let's breakdown how the `mdx` parsing works in my `next.config.js` file.
+
+```js
+const mdx = (opts) => {
+  const common = [
+    opts.defaultLoaders.babel,
+    {
+      loader: "@mdx-js/loader",
+      options: {
+        rehypePlugins: [rehypePrism],
+      },
+    },
+  ];
+
+  const moreIndicator = "<!--more-->";
+
+  return {
+    test: /\.mdx$/,
+    oneOf: [
+      {
+        resourceQuery: /preview/,
+        use: [
+          ...common,
+          createLoader(function (src) {
+            if (src.includes(moreIndicator)) {
+              const [preview] = src.split(moreIndicator);
+              return this.callback(null, preview);
+            }
+
+            const [preview] = src.split("<!--/excerpt-->");
+            return this.callback(null, preview.replace("<!--excerpt-->", ""));
+          }),
+        ],
+      },
+      {
+        use: [
+          ...common,
+          createLoader(function (src) {
+            const firstOccurance = src.indexOf(moreIndicator);
+
+            if (firstOccurance != -1) {
+              const content = [
+                src.substring(0, firstOccurance),
+                src.substring(firstOccurance + moreIndicator.length),
+              ].join("\n");
+
+              return this.callback(null, content);
+            }
+
+            return this.callback(
+              null,
+              src.replace(/<!--excerpt-->.*<!--\/excerpt-->/s, "")
+            );
+          }),
+        ],
+      },
+    ],
+  };
+};
+```
+
+This snippet defines two different loading rules for loading `.mdx` files. The first rule is triggered if the `require` statement has a `preview` parameter. This rule truncates the post after the first `<!--more-->` or extracts any content between `<!--excerpt--> <!--/excerpt-->` tags.
+
+For example:
+
+```ts
+export function getPostPreviews(): PageData<PostMetadata>[] {
+  return importAll(
+    require.context("./../content/posts?preview", true, /\.mdx$/),
+    "posts",
+    parsePostMetadata
+  ).sort((first, second) => second.metadata.date - first.metadata.date);
+}
+```
+
+The second rule is triggered as the fallback case. It will sanitize the post by removing any `<!--more-->` or `<!--excerpt-->` tags. For example:
+
+## Dark Mode Toggle
+
+This website comes replete with a dark mode toggle. This should default to the user's OS preference. If a user toggles the theme, this is stored in the browser and used the next time a user lands on this webpage.
+
+This works by injecting a script in my [`_document.tsx`](https://nextjs.org/docs/advanced-features/custom-document) to read the initial preference and apply the theme.
+
+I found that if you tried to do this in a React component, you would always get a flash before the the theme changed. By adding it as a script inside the `<body>` tags, we ensure this is parsed and executed before rendering the rest of the document.
+
+This script is as follows:
+
+```js
+if (
+  localStorage.theme === "dark" ||
+  (!("theme" in localStorage) &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches)
+) {
+  document.documentElement.classList.add("dark");
+} else {
+  document.documentElement.classList.remove("dark");
+}
+```
+
+Then we have a dark mode toggle in the header which applies any changes from the user.
+
+```tsx
+const DarkModeToggle: React.FC = () => {
+  const [toggled, setToggled] = useState(false);
+
+  useEffect(() => {
+    if ("theme" in localStorage) {
+      setToggled(localStorage.theme === "dark");
+    } else {
+      setToggled(
+        window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    if (toggled) {
+      localStorage.theme = "dark";
+      document.documentElement.classList.add("dark");
+    } else {
+      localStorage.theme = "light";
+      document.documentElement.classList.remove("dark");
+    }
+  }, [toggled]);
+
+  const inner = toggled ? <>...</> : <>...</>;
+
+  return (
+    <div onClick={() => setToggled(!toggled)} className="...">
+      {inner}
+    </div>
+  );
+};
+```
+
+Note that this will also run the same code as the standalone script to read the initial preference. This a little inefficient, but allows:
+
+- loading the expected theme before rendering
+- the user toggling the theme at any time.
