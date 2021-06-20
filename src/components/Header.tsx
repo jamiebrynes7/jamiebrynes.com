@@ -1,3 +1,5 @@
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -82,7 +84,7 @@ const Header: React.FC = () => {
           <div className="flex items-center flex-shrink-0">
             <Link href="/">
               <a className="text-gray-500 dark:text-gray-300 dark:hover:text-blue-300 hover:text-blue-500">
-                <Brand height={32} width={32} />
+                <FontAwesomeIcon icon={faHome} height="32px" width="32px" />
               </a>
             </Link>
           </div>
@@ -135,7 +137,7 @@ const Header: React.FC = () => {
           </div>
         </div>
         {isMobileMenuOpen && (
-          <div className="pb-4 pt-2 pl-2 space-y-2 border-b border-gray-700 text-gray-500 dark:text-gray-400">
+          <div className="pb-4 pt-2 pl-1 space-y-2 border-b border-gray-700 text-gray-500 dark:text-gray-400">
             <HeaderLink url="/posts" display="Writing" />
             <HeaderLink url="/projects" display="Projects" />
             <HeaderLink url="/resume" display="Resume" />
