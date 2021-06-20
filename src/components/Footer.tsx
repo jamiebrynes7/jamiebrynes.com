@@ -5,6 +5,7 @@ import {
   faTwitter,
   IconDefinition,
 } from "@fortawesome/free-brands-svg-icons";
+import socials from "../socials.json";
 
 const FooterLink: React.FC<{ url: string; icon: IconDefinition }> = ({
   url,
@@ -21,18 +22,9 @@ const Footer: React.FC<{}> = () => {
   return (
     <footer className="items-center justify-between mt-16 h-16 flex flex-row-reverse">
       <div className="flex text-gray-500 dark:text-gray-400 text-md xl:text-xl text-center justify-center">
-        <FooterLink
-          url="https://www.github.com/jamiebrynes7"
-          icon={faGithub}
-        ></FooterLink>
-        <FooterLink
-          url="https://www.twitter.com/jamiebrynes"
-          icon={faTwitter}
-        ></FooterLink>
-        <FooterLink
-          url="https://www.linkedin.com/in/jamiesonbrynes/"
-          icon={faLinkedin}
-        ></FooterLink>
+        <FooterLink url={socials.github} icon={faGithub}></FooterLink>
+        <FooterLink url={socials.twitter} icon={faTwitter}></FooterLink>
+        <FooterLink url={socials.linkedin} icon={faLinkedin}></FooterLink>
       </div>
       <div className="text-sm xl:text-md text-gray-500 dark:text-gray-400 font-semibold text-center flex">
         Jamie Brynes &copy; 2021

@@ -3,9 +3,16 @@ import { GetStaticProps } from "next";
 import { getPostPreviews, getProjectsPreview, PageData } from "src/data";
 import Link from "next/link";
 import { PostMetadata, ProjectMetadata } from "src/metadata";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+  faGit,
+  faGithub,
+  faLinkedin,
+  faTwitter,
+  IconDefinition,
+} from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import socials from "../socials.json";
 
 interface Props {
   projects: PageData<ProjectMetadata>[];
@@ -81,6 +88,17 @@ const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
   );
 };
 
+const HeroLink: React.FC<{ url: string }> = ({ url, children }) => {
+  return (
+    <a
+      className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 duration-300"
+      href={url}
+    >
+      {children}
+    </a>
+  );
+};
+
 const Index: React.FC<Props> = ({}) => {
   return (
     <>
@@ -94,18 +112,22 @@ const Index: React.FC<Props> = ({}) => {
             Jamie Brynes
           </h1>
           <h2 className="text-3xl text-gray-700 dark:text-gray-300 font-serif mb-4">
-            Designs and builds software that makes people more efficient in what
-            they do.
+            Software Engineer at{" "}
+            <HeroLink url="https://improbable.io">Improbable</HeroLink>
           </h2>
           <h3 className="text-xl text-gray-600 dark:text-gray-400">
-            Software Engineer at{" "}
-            <a
-              className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 duration-300"
-              href="https://improbable.io"
-            >
-              Improbable
-            </a>
-            .
+            <span className="pr-3">You can find me on:</span>
+            <div className="inline-flex space-x-3">
+              <HeroLink url={socials.github}>
+                <FontAwesomeIcon icon={faGithub} />
+              </HeroLink>
+              <HeroLink url={socials.twitter}>
+                <FontAwesomeIcon icon={faTwitter} />
+              </HeroLink>
+              <HeroLink url={socials.linkedin}>
+                <FontAwesomeIcon icon={faLinkedin} />
+              </HeroLink>
+            </div>
           </h3>
         </div>
       </div>
