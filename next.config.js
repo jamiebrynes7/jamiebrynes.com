@@ -1,5 +1,6 @@
 const { createLoader } = require("simple-functional-loader");
 const rehypePrism = require("@mapbox/rehype-prism");
+const rehypeSlug = require("rehype-slug");
 
 const imageRule = {
   test: /\.(svg|png|jpe?g|gif|mp4)$/i,
@@ -20,10 +21,12 @@ const mdx = (opts) => {
     {
       loader: "@mdx-js/loader",
       options: {
-        rehypePlugins: [rehypePrism],
+        rehypePlugins: [rehypePrism, rehypeSlug],
       },
     },
   ];
+
+  const moreIndicator = "<!--more-->";
 
   return {
     test: /\.mdx$/,
@@ -33,8 +36,8 @@ const mdx = (opts) => {
         use: [
           ...common,
           createLoader(function (src) {
-            if (src.includes("<!--more-->")) {
-              const [preview] = src.split("<!--more-->");
+            if (src.includes(moreIndicator)) {
+              const [preview] = src.split(moreIndicator);
               return this.callback(null, preview);
             }
 
@@ -47,8 +50,15 @@ const mdx = (opts) => {
         use: [
           ...common,
           createLoader(function (src) {
-            if (src.includes("<!--more-->")) {
-              return this.callback(null, src.split("<!--more-->").join("\n"));
+            const firstOccurance = src.indexOf(moreIndicator);
+
+            if (firstOccurance != -1) {
+              const content = [
+                src.substring(0, firstOccurance),
+                src.substring(firstOccurance + moreIndicator.length),
+              ].join("\n");
+
+              return this.callback(null, content);
             }
 
             return this.callback(
