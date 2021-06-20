@@ -84,23 +84,31 @@ const ProjectList: React.FC<{ projects: PageData<ProjectMetadata>[] }> = ({
 const Index: React.FC<Props> = ({}) => {
   return (
     <>
-      <h1 className="text-6xl font-extrabold text-gray-800 dark:text-gray-200 mb-4">
-        Jamie Brynes
-      </h1>
-      <h2 className="text-3xl text-gray-700 dark:text-gray-300 font-serif lg:w-2/3 mb-4">
-        Designs and builds software that makes people more efficient in what
-        they do.
-      </h2>
-      <h3 className="text-xl text-gray-600 dark:text-gray-400 lg:w-2/3">
-        Software Engineer at{" "}
-        <a
-          className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 duration-300"
-          href="https://improbable.io"
-        >
-          Improbable
-        </a>
-        .
-      </h3>
+      <div className="mt-16 lg:mt-0 lg:flex lg:flex-row-reverse lg:justify-between lg:items-center">
+        <img
+          className="rounded-full w-1/2 mb-6 lg:mb-0 lg:w-72 lg:h-72"
+          src="/profile-pic.jpg"
+        />
+        <div className="lg:w-2/3">
+          <h1 className="text-6xl font-extrabold text-gray-800 dark:text-gray-200 mb-4">
+            Jamie Brynes
+          </h1>
+          <h2 className="text-3xl text-gray-700 dark:text-gray-300 font-serif mb-4">
+            Designs and builds software that makes people more efficient in what
+            they do.
+          </h2>
+          <h3 className="text-xl text-gray-600 dark:text-gray-400">
+            Software Engineer at{" "}
+            <a
+              className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 duration-300"
+              href="https://improbable.io"
+            >
+              Improbable
+            </a>
+            .
+          </h3>
+        </div>
+      </div>
       <div className="xl:grid xl:grid-cols-2 xl:gap-12 mt-16 lg:mt-32">
         <div>
           <h4 className="text-2xl text-gray-600 dark:text-gray-300 font-bold pb-2 border-gray-200 dark:border-gray-700 border-b mb-5">
