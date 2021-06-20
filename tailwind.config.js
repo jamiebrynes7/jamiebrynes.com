@@ -35,6 +35,12 @@ function linkModifications(color, hoverColor) {
     "a:hover": {
       color: hoverColor,
     },
+    "a code": {
+      color: color,
+    },
+    "a:hover code": {
+      color: hoverColor,
+    },
   };
 }
 
