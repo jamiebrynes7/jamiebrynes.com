@@ -7,6 +7,7 @@ import { getPostBySlug } from "src/data";
 
 const Post: React.FC<Props> = ({ slug }) => {
   const { metadata, component: Component } = getPostBySlug(slug);
+
   return (
     <PageContainer
       title={metadata.title}

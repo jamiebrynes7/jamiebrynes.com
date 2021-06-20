@@ -1,4 +1,3 @@
-import { join } from "path";
 import {
   parsePostMetadata,
   parseProjectMetadata,
@@ -11,7 +10,7 @@ const prjCtx = require.context("./../content/projects", true, /\.mdx$/);
 
 export interface PageData<TMetadata> {
   link: string;
-  component: any;
+  component: React.FC;
   metadata: TMetadata;
 }
 
