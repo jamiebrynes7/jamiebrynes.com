@@ -84,4 +84,5 @@ module.exports = withBundleAnalyzer({
 
     return config;
   },
+  webpack5: false,
 });
