@@ -9,7 +9,7 @@ As an engineer, nothing is more distracting than new and shiny tech. That's one 
 
 <!--more-->
 
-Previously, I used [Zola](https://www.getzola.org/) to generate this site. There were a few reasons for a rewrite:
+Previously, I used [Zola](https://www.getzola.org/) to generate the last iteration of this site. There were a few reasons for a rewrite:
 
 - **Experimentation**. I wanted to learn how to use React and NextJ as a way of extending my skillset.
 - **Expressiveness**. I wanted a type-safe and fully featured language for templating. Zola uses the [Tera](https://tera.netlify.app/) engine for templating, which is perfectly fine, but I prefer something a little more structured and composable.
@@ -20,13 +20,13 @@ In the sections below, I'll cover some of the features I built during this proce
 
 ## Tailwind CSS
 
-As stated above, using Tailwind CSS for my styling framework was a key rationale for the rewrite. 
+As stated above, using Tailwind CSS for my styling framework was a key rationale for the rewrite.
 
 One of the first choices I had was to decide how to use it in conjunction with React. There appears to be a wealth of libraries for managing styling in React components, much of the discourse about the various pros and cons goes over my head.
 
-In the end, I decided to try the simplest way forward, annotate components with Tailwind utilities, and see how things go. As it turns out, this has been largely fine. I've been using [Tailwind's JIT mode](https://tailwindcss.com/docs/just-in-time-mode) since its introduction and have found it to be _superb_. Its quick, easy, and reliable. 
+In the end, I decided to try the simplest way forward, annotate components with Tailwind utilities, and see how things go. As it turns out, this has been largely fine. I've been using [Tailwind's JIT mode](https://tailwindcss.com/docs/just-in-time-mode) since its introduction and have found it to be _superb_. Its quick, easy, and reliable.
 
-I make use of the [Typography plugin](https://github.com/tailwindlabs/tailwindcss-typography) to make the generated Markdown look pretty. I did however, have a few customizations for this plugin:
+I also use the [Typography plugin](https://github.com/tailwindlabs/tailwindcss-typography) to make the generated Markdown look pretty. I did, however, have a few customizations for this plugin:
 
 1. Complete restyling of `inline code` blocks.
 2. Adding some color to link elements.
@@ -36,7 +36,7 @@ You can checkout my [`tailwind.config.js`](https://github.com/jamiebrynes7/websi
 
 ## MDX & Authoring Content
 
-Quite early on, I settled on [mdx](https://mdxjs.com/) for authoring content. This allows you to augment Markdown with React components for custom elements. This brings a world of extensibility to this website.
+Quite early on, I settled on [mdx](https://mdxjs.com/) for authoring content. This allows you to augment Markdown with React components. This brings a world of extensibility to this authoring content.
 
 For example:
 
@@ -125,21 +125,21 @@ const mdx = (opts) => {
 };
 ```
 
-This snippet defines two different loading rules for loading `.mdx` files. 
+This snippet defines two different loading rules for loading `.mdx` files.
 
 1. The first rule is triggered if the `require` statement has a `preview` parameter in the resource query. This rule truncates the post after the first `<!--more-->` or extracts any content between `<!--excerpt--> <!--/excerpt-->` tags.
 
-    For example:
+   For example:
 
-    ```ts
-    export function getPostPreviews(): PageData<PostMetadata>[] {
-      return importAll(
-        require.context("./../content/posts?preview", true, /\.mdx$/),
-        "posts",
-        parsePostMetadata
-      ).sort((first, second) => second.metadata.date - first.metadata.date);
-    }
-  ```
+   ```ts
+   export function getPostPreviews(): PageData<PostMetadata>[] {
+     return importAll(
+       require.context("./../content/posts?preview", true, /\.mdx$/),
+       "posts",
+       parsePostMetadata
+     ).sort((first, second) => second.metadata.date - first.metadata.date);
+   }
+   ```
 
 2. The second rule is triggered as the fallback case. It will sanitize the post by removing any `<!--more-->` or `<!--excerpt-->` tags.
 
@@ -151,7 +151,7 @@ This website comes replete with a dark mode toggle (as everything should!). I ha
 - the user should manually be able to toggle the theme
 - if a user toggles the theme, this should be remembered
 
-My initial attempt did this entirely within NextJS and the React framework. However, as this would execute _after_ the page load, you would get a flash if the user had it set to 'dark', either through the OS or stored preference. 
+My initial attempt did this entirely within NextJS and the React framework. However, as this would execute _after_ the page load, you would get a flash if the user had it set to 'dark', either through the OS or stored preference.
 
 My solution was to inject a small script in my [`_document.tsx`](https://nextjs.org/docs/advanced-features/custom-document) to read the initial preference and apply the theme. This is executed when the `<script>` tag is parsed in the `<body>` and thus runs before first render. This eliminates the flashing issue.
 
@@ -169,7 +169,7 @@ if (
 }
 ```
 
-Then we have a dark mode toggle in the header which applies any changes from the user.
+We then have a dark mode toggle in the header which applies any changes from the user.
 
 ```tsx
 const DarkModeToggle: React.FC = () => {
