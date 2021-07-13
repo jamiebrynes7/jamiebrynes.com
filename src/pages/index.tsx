@@ -116,18 +116,11 @@ const Index: React.FC<Props> = ({}) => {
             <HeroLink url="https://improbable.io">Improbable</HeroLink>
           </h2>
           <h3 className="text-xl text-gray-600 dark:text-gray-400">
-            <span className="pr-3">You can find me on:</span>
-            <div className="inline-flex space-x-3">
-              <HeroLink url={socials.github}>
-                <FontAwesomeIcon icon={faGithub} />
-              </HeroLink>
-              <HeroLink url={socials.twitter}>
-                <FontAwesomeIcon icon={faTwitter} />
-              </HeroLink>
-              <HeroLink url={socials.linkedin}>
-                <FontAwesomeIcon icon={faLinkedin} />
-              </HeroLink>
-            </div>
+            <span>You can find me on</span>
+            <HeroLink url={socials.github}> GitHub,</HeroLink>
+            <HeroLink url={socials.twitter}> Twitter,</HeroLink>
+            <HeroLink url={socials.linkedin}> LinkedIn</HeroLink>
+            <span>, come say 👋!</span>
           </h3>
         </div>
       </div>
