@@ -24,7 +24,7 @@ export interface ProjectMetadata {
   title: string;
   status: "maintenance" | "active";
   githubSlug: string;
-  cardImage: string;
+  techStack: string[];
 }
 
 const projectSchema = joi.object({
@@ -34,7 +34,7 @@ const projectSchema = joi.object({
     .string()
     .pattern(/(.*)\/(.*)/)
     .required(),
-  cardImage: joi.string().required(),
+  techStack: joi.array().items(joi.string()).required(),
 });
 
 export function parseProjectMetadata(data: any): ProjectMetadata {
