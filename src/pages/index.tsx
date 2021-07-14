@@ -1,15 +1,8 @@
 import dayjs from "dayjs";
-import { GetStaticProps } from "next";
 import { getPostPreviews, getProjectsPreview, PageData } from "src/data";
 import Link from "next/link";
 import { PostMetadata, ProjectMetadata } from "src/metadata";
-import {
-  faGit,
-  faGithub,
-  faLinkedin,
-  faTwitter,
-  IconDefinition,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import socials from "../socials.json";
@@ -104,7 +97,7 @@ const Index: React.FC<Props> = ({}) => {
     <>
       <div className="mt-16 lg:mt-0 lg:flex lg:flex-row-reverse lg:justify-between lg:items-center">
         <img
-          className="rounded-full w-1/2 mb-6 lg:mb-0 lg:w-72 lg:h-72"
+          className="rounded-full w-1/3 mb-6 lg:mb-0 lg:w-72 lg:h-72"
           src="/profile-pic.jpg"
         />
         <div className="lg:w-2/3">
@@ -119,8 +112,10 @@ const Index: React.FC<Props> = ({}) => {
             <span>You can find me on</span>
             <HeroLink url={socials.github}> GitHub,</HeroLink>
             <HeroLink url={socials.twitter}> Twitter,</HeroLink>
+            <span> or</span>
             <HeroLink url={socials.linkedin}> LinkedIn</HeroLink>
-            <span>, come say 👋!</span>
+            <br />
+            <span>... come say 👋!</span>
           </h3>
         </div>
       </div>
