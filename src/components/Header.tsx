@@ -124,7 +124,6 @@ const Header: React.FC = () => {
             <HeaderLink url="/" display="Home" />
             <HeaderLink url="/posts" display="Writing" />
             <HeaderLink url="/projects" display="Projects" />
-            <HeaderLink url="/resume" display="Resume" />
           </nav>
           <div className="hidden md:flex items-center space-x-4">
             {/* <SearchButton /> */}
@@ -177,7 +176,6 @@ const Header: React.FC = () => {
           <div className="block md:hidden pb-4 pt-2 space-y-2 border-b border-gray-500 text-gray-500 dark:text-gray-400">
             <HeaderLink url="/posts" display="Writing" />
             <HeaderLink url="/projects" display="Projects" />
-            <HeaderLink url="/resume" display="Resume" />
           </div>
         )}
       </header>
