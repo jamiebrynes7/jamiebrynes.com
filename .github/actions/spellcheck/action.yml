@@ -1,6 +1,0 @@
-name: 'Spellcheck'
-description: 'Spellcheck markdown files'
-author: 'Jamie Brynes'
-runs: 
-  using: 'docker'
-  image: 'Dockerfile'
