@@ -42,13 +42,17 @@ const Project: React.FC<Props> = ({ slug }) => {
       <div className="pb-16 xl:pb-20">
         <div className="prose dark:prose-dark max-w-none pt-10 pb-8">
           <Component />
-          <hr />
-          <h2>Related Writing</h2>
-          <div className="space-y-4">
-            {relatedPosts.map((post) => (
-              <RelatedPost {...post} key={post.metadata.title} />
-            ))}
-          </div>
+          {relatedPosts.length !== 0 && (
+            <>
+              <hr />
+              <h2>Related Writing</h2>
+              <div className="space-y-4">
+                {relatedPosts.map((post) => (
+                  <RelatedPost {...post} key={post.metadata.title} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </PageContainer>
