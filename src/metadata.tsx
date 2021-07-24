@@ -4,11 +4,14 @@ import joi from "joi";
 export interface PostMetadata {
   title: string;
   date: number;
+
+  tags?: string[];
 }
 
 const postSchema = joi.object({
   title: joi.string().required(),
   date: joi.date().required(),
+  tags: joi.array().items(joi.string()),
 });
 
 export function parsePostMetadata(data: any): PostMetadata {
@@ -17,6 +20,7 @@ export function parsePostMetadata(data: any): PostMetadata {
   return {
     title: data.title,
     date: dayjs(data.date).unix(),
+    tags: data.tags,
   };
 }
 
