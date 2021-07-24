@@ -102,6 +102,9 @@ module.exports = {
               "tbody tr": {
                 borderBottomColor: theme("colors.gray.600"),
               },
+              hr: {
+                borderColor: theme("colors.gray.700"),
+              },
               ...codeModifications(
                 theme("colors.gray.200"),
                 "rgba(255, 255, 255, 0.15)"
