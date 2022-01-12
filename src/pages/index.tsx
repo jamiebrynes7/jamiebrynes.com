@@ -92,7 +92,7 @@ const HeroLink: React.FC<{ url: string }> = ({ url, children }) => {
   );
 };
 
-const Index: React.FC<Props> = ({}) => {
+const Index: React.FC<Props> = ({ }) => {
   return (
     <>
       <div className="mt-16 lg:mt-0 lg:flex lg:flex-row-reverse lg:justify-between lg:items-center">
@@ -106,7 +106,7 @@ const Index: React.FC<Props> = ({}) => {
           </h1>
           <h2 className="text-3xl text-gray-700 dark:text-gray-300 font-serif mb-4">
             Software Engineer at{" "}
-            <HeroLink url="https://improbable.io">Improbable</HeroLink>
+            <HeroLink url="https://www.hyperexponential.com/">Hyperexponential</HeroLink>
           </h2>
           <h3 className="text-xl text-gray-600 dark:text-gray-400">
             <span>You can find me on</span>

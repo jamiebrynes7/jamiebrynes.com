@@ -27,7 +27,7 @@ const Footer: React.FC<{}> = () => {
         <FooterLink url={socials.linkedin} icon={faLinkedin}></FooterLink>
       </div>
       <div className="text-sm xl:text-md text-gray-500 dark:text-gray-400 font-semibold text-center flex">
-        Jamie Brynes &copy; 2021
+        Jamie Brynes &copy; 2022
       </div>
     </footer>
   );
