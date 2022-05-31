@@ -4,15 +4,7 @@ const rehypeSlug = require("rehype-slug");
 
 const imageRule = {
   test: /\.(svg|png|jpe?g|gif|mp4)$/i,
-  use: [
-    {
-      loader: "file-loader",
-      options: {
-        publicPath: "/_next",
-        name: "static/media/[name].[hash].[ext]",
-      },
-    },
-  ],
+  type: 'asset/resource',
 };
 
 const mdx = (opts) => {
@@ -84,5 +76,4 @@ module.exports = withBundleAnalyzer({
 
     return config;
   },
-  webpack5: false,
 });
