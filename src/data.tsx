@@ -19,7 +19,9 @@ function importAll<TMetadata>(
   prefix: string,
   parseMetadata: (data: any) => TMetadata
 ): PageData<TMetadata>[] {
-  return ctx.keys().map((filename) => ({
+  return ctx.keys()
+    .filter((filename) => filename.startsWith("./"))
+    .map((filename) => ({
     link: `/${prefix}${filename.substr(1).replace(/\/index\.mdx$/, "")}`,
     metadata: parseMetadata(ctx(filename).meta),
     component: ctx(filename).default,
