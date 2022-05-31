@@ -1,0 +1,15 @@
+<header class="mb-6 lg:mb-12">
+  <div class="m-auto py-2 items-center justify-between flex lg:h-16 lg:py-4 lg:mb-20">
+    <nav class="hidden md:flex items-center flex-shrink-0">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}"
+        class="block font-semibold text-lg text-gray-500 dark:text-gray-400 lg:inline-block hover:text-blue-500 dark:hover:text-blue-300 duration-300 mr-6 last:mr-0">
+        {{ .Name }}
+      </a>
+      {{ end }}
+    </nav>
+    <div class="hidden md:flex items-center space-x-4">
+      {{ partial "components/dark-mode-toggle.html" . }}
+    </div>
+  </div>
+</header>
