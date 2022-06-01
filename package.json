@@ -1,9 +1,5 @@
 {
   "name": "jamiebrynes.com",
-  "version": "1.0.0",
-  "description": "Source code for jamiebrynes.com",
-  "author": "",
-  "license": "ISC",
   "scripts": {
     "dev": "npx tailwindcss -i assets/css/main.css -o static/main.css -w",
     "build": "npx tailwindcss -i assets/css/main.css -o static/main.min.css --minify"

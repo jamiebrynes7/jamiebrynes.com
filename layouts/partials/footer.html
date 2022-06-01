@@ -1,0 +1,13 @@
+<footer class="items-center justify-between mt-16 h-16 flex flex-row-reverse">
+  <div class="flex text-gray-500 dark:text-gray-400 text-md xl:text-xl text-center justify-center">
+    {{ range .Site.Params.socials }}
+    <a class="mr-4 last:mr-0 hover:text-blue-500 duration-300" href="{{ .url }}">
+      {{ $icon := printf "components/icons/%s.html" .icon }}
+      {{ partial $icon "w-5 h-5" }}
+    </a>
+    {{ end }}
+  </div>
+  <div class="text-sm xl:text-md text-gray-500 dark:text-gray-400 font-semibold text-center flex">
+    Jamie Brynes &copy; 2022
+  </div>
+</footer>
