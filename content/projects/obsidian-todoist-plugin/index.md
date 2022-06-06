@@ -26,6 +26,6 @@ For example, the following query:
 
 Is rendered as:
 
-<Figure src={queryExample} caption="The example rendered query." />
+{{< figure src="./query-example.png" caption="The example rendered query" >}}
 
 This was my first [SvelteJS](https://svelte.dev) project and I've enjoyed the brevity and simplicity of the framework. I can heartily recommend Svelte for rendering data from a remote source and offering a small amount of user interactivity. It also offers a simple API for embedding components within arbitrary DOM and animations out of the box!

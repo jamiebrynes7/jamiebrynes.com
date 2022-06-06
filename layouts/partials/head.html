@@ -6,6 +6,9 @@
 {{ $js := resources.Get "js/main.ts" | js.Build $jsOpts }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
 
+{{ $chromaCss := resources.Get "css/nord-chroma.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $chromaCss.RelPermalink }}" />
+
 {{ if .Site.IsServer }}
 <link rel="stylesheet" href="/main.css" />
 {{ else }}

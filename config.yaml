@@ -25,3 +25,10 @@ params:
     - title: LinkedIn
       icon: linkedin
       url: https://www.linkedin.com/in/jamiesonbrynes/
+
+
+markup:
+  highlight:
+    lineNos: true
+    lineNumbersInTable: false
+    noClasses: false
