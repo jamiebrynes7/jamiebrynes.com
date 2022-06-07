@@ -3,8 +3,8 @@ title: "Obsidian & Todoist Plugin"
 status: "active"
 githubSlug: "jamiebrynes7/obsidian-todoist-plugin"
 techStack:
-  svelte
-  typescript
+  - Svelte
+  - Typescript
 ---
 
 An [Obsidian](https://obsidian.md/) plugin which allows you to materialize [Todoist](https://todoist.com/home) task queries into your notes.
