@@ -5,6 +5,8 @@ githubSlug: jamiebrynes7/jamiebrynes.com
 techStack:
   - Hugo
   - TailwindCSS
+relatedPosts:
+  - "/posts/2021-07-14-website-rewrite"
 ---
 
 
