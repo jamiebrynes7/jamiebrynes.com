@@ -29,14 +29,51 @@
       class="text-2xl text-gray-600 dark:text-gray-300 font-bold pb-2 border-gray-200 dark:border-gray-700 border-b mb-5">
       Latest Writing
     </h4>
-    <!-- TODO: Latest writing -->
+    <div class="space-y-5">
+      {{ range ( where .Site.RegularPages "Type" "posts" | first 5) }}
+      <div>
+        <p class="text-sm leading-6 font-medium text-gray-500 dark:text-gray-400">
+          {{ .Date | time.Format ":date_long" }}
+        </p>
+        <div class="xl:flex xl:justify-between xl:items-center">
+          <h5 class="text-lg leading-8 font-bold tracking-tight text-gray-700 dark:text-gray-300 cursor-pointer">
+            <a href="{{ .RelPermalink}}">{{ .Title }}</a>
+          </h5>
+          <div class="text-base leading-6 font-medium">
+            <a href="{{ .RelPermalink}}" class="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer">
+              Read →
+            </a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
   </div>
   <div class="mt-16 xl:mt-0">
     <h4
       class="text-2xl text-gray-600 dark:text-gray-300 font-bold pb-2 border-gray-200 dark:border-gray-700 border-b mb-5">
       Selected Projects
     </h4>
-    <!-- TODO: Latest writing -->
+    <div class="space-y-5">
+      {{ range ( where .Site.RegularPages "Type" "projects" | first 5) }}
+      <div>
+        <div class="text-sm leading-6 font-medium text-gray-500 dark:text-gray-400 flex items-center space-x-1">
+          {{ partial "components/icons/github.html" "w-3 h-3" }}
+          <span> {{ .Params.githubSlug }}</span>
+        </div>
+        <div class="xl:flex xl:justify-between xl:items-center">
+          <h5 class="text-lg leading-8 font-bold tracking-tight text-gray-700 dark:text-gray-300 cursor-pointer">
+            <a href="{{ .RelPermalink}}">{{ .Title }}</a>
+          </h5>
+          <div class="text-base leading-6 font-medium">
+            <a href="{{ .RelPermalink}}" class="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer">
+              Read →
+            </a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
   </div>
 
 </div>
