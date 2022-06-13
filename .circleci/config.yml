@@ -1,0 +1,29 @@
+version: '2.1'
+
+jobs:
+  build-and-deploy:
+    docker:
+      - image: 154290596490.dkr.ecr.us-east-1.amazonaws.com/jamiebrynes.com:latest
+
+    steps:
+      - checkout
+      - run:
+          name: install deps
+          command: |
+            npm install
+      - run:
+          name: build css
+          command: |
+            npm run build
+      - run:
+          name: build site
+          command: |
+            hugo --minify
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - build-and-deploy
+          context:
+            - aws-ecr-reader
+
