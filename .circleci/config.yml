@@ -11,7 +11,7 @@ jobs:
       - run:
           name: install deps
           command: |
-            npm install
+            npm ci
       - run:
           name: build css
           command: |
@@ -20,6 +20,14 @@ jobs:
           name: build site
           command: |
             hugo --minify
+      - run:
+          name: deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "master" ]; then
+              npx netlify deploy --dir ./public --site optimistic-edison-23360f
+            else 
+              npx netlify deploy --dir ./public --site optimistic-edison-23360f --prod
+            fi
 
 workflows:
   build-and-deploy:
@@ -27,4 +35,5 @@ workflows:
       - build-and-deploy:
           context:
             - aws-ecr-reader
+            - netlify-cli
 
