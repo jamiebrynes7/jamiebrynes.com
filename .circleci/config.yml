@@ -23,7 +23,7 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
-      - build-and-deploy
+      - build-and-deploy:
           context:
             - aws-ecr-reader
 
