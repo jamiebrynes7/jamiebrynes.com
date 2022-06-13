@@ -4,6 +4,7 @@ jobs:
   build-and-deploy:
     docker:
       - image: 154290596490.dkr.ecr.us-east-1.amazonaws.com/jamiebrynes.com:latest
+    resource_class: small
 
     steps:
       - checkout
