@@ -1,6 +1,10 @@
 baseURL: https://jamiebrynes.com
 languageCode: en-us
 title: Jamie Brynes
+disableKinds:
+  - term
+  - taxonomy
+
 
 menu:
   main:
