@@ -11,6 +11,7 @@ if (
 
 document.addEventListener("DOMContentLoaded", function () {
   setupDarkModeToggle();
+  setupMobileMenu();
 });
 
 function setupDarkModeToggle() {
@@ -45,5 +46,33 @@ function setupDarkModeToggle() {
   button.addEventListener("click", () => {
     // Invert the dark mode.
     setDarkMode(localStorage[localStorageKey] !== "dark");
+  });
+}
+
+function setupMobileMenu() {
+  const crossIcon = document.getElementById("mobile-menu_cross-icon");
+  const burgerIcon = document.getElementById("mobile-menu_burger-icon");
+  const linkContainer = document.getElementById("mobile-menu_container");
+
+  const setVisibility = (isOpen: boolean) =>  {
+    if (isOpen) {
+      crossIcon.classList.remove("hidden");
+      burgerIcon.classList.add("hidden");
+      linkContainer.classList.remove("hidden");
+    } else {
+      crossIcon.classList.add("hidden");
+      burgerIcon.classList.remove("hidden");
+      linkContainer.classList.add("hidden");
+    }
+  };
+
+  setVisibility(false);
+
+  crossIcon.addEventListener("click", () => {
+    setVisibility(false);
+  });
+
+  burgerIcon.addEventListener("click", () => {
+    setVisibility(true);
   });
 }

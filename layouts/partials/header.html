@@ -11,5 +11,24 @@
     <div class="hidden md:flex items-center space-x-4">
       {{ partial "components/dark-mode-toggle.html" . }}
     </div>
+    <h1 class="block md:hidden font-bold text-gray-800 dark:text-gray-200 text-xl">
+       Jamie Brynes
+    </h1>
+    <div class="block md:hidden text-gray-400 dark:text-gray-500">
+        <div id="mobile-menu_cross-icon" class="hidden">
+            {{ partial "components/icons/cross.html" "w-6 h-6" }}
+        </div>
+        <div id="mobile-menu_burger-icon" class="hidden">
+            {{ partial "components/icons/burger.html" "w-6 h-6" }}
+        </div>
+    </div>
+  </div>
+  <div id="mobile-menu_container" class="hidden md:hidden pb-4 pt-2 space-y-2 border-b border-gray-500 text-gray-500 dark:text-gray-400">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}"
+        class="block font-semibold text-lg text-gray-500 dark:text-gray-400 lg:inline-block hover:text-blue-500 dark:hover:text-blue-300 duration-300 mr-6 last:mr-0">
+        {{ .Name }}
+      </a>
+      {{ end }}
   </div>
 </header>
