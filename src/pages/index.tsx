@@ -106,7 +106,7 @@ const Index: React.FC<Props> = ({ }) => {
           </h1>
           <h2 className="text-3xl text-gray-700 dark:text-gray-300 font-serif mb-4">
             Software Engineer at{" "}
-            <HeroLink url="https://www.hyperexponential.com/">hyperexponential</HeroLink>
+            <HeroLink url="https://samsara.com/">Samsara</HeroLink>
           </h2>
           <h3 className="text-xl text-gray-600 dark:text-gray-400">
             <span>You can find me on</span>
