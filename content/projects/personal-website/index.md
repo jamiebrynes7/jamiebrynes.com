@@ -5,8 +5,6 @@ githubSlug: jamiebrynes7/jamiebrynes.com
 techStack:
   - Hugo
   - TailwindCSS
-relatedPosts:
-  - "/posts/2021-07-14-website-rewrite"
 ---
 
 
@@ -20,4 +18,3 @@ This website is built using [Hugo](https://gohugo.io) and [TailwindCSS](https://
 - it had to showcase any projects that I've been working on
 - it should be well optimized and bloat free
 
-TODO: Write remainder.

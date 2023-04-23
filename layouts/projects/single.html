@@ -12,20 +12,21 @@
   <div class="pb-16 xl:pb-20">
     <div class="prose dark:prose-invert max-w-none pt-10 pb-8">
       {{ .Content }}
-      {{ with .Params.relatedPosts }}
+      {{ $tags := .Site.Taxonomies.tags }}
+      {{ $tagKey := (printf "@projects/%s" (.Title | anchorize)) }}
+      {{ with (index $tags $tagKey) }}
       <hr />
       <h2>Related Writing</h2>
       <div class="space-y-4">
         {{ range . }}
-        {{ $page := $.Page.GetPage . }}
         <div class="flex flex-col rounded-md p-2">
           <span class="text-xs -mb-4">
-            {{ $page.Date | time.Format ":date_long" }}
+            {{ .Date | time.Format ":date_long" }}
           </span>
-          <h4>{{ $page.Title }}</h4>
-          {{ $page.Summary }}
+          <h4>{{ .Title }}</h4>
+          {{ .Summary }}
           <div class="flex flex-row-reverse">
-            <a href="{{ $page.RelPermalink }}" class="text-blue-500 dark:text-blue-400 hover:text-blue-600 cursor-pointer">
+            <a href="{{ .RelPermalink }}" class="text-blue-500 dark:text-blue-400 hover:text-blue-600 cursor-pointer">
               Read more →
             </a>
           </div>
