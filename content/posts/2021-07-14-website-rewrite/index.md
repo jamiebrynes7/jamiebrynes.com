@@ -1,13 +1,19 @@
 ---
 title: Website Rewrite
+summary: A summary of a personal website rewrite from 2021. This post is now out of date, but might still be of interest!
 date: "2021-07-14"
-tags: 
- - "@projects/personal-website"
+tags:
+  - "@projects/personal-website"
+draft: true
 ---
 
-As an engineer, nothing is more distracting than new and shiny tech. That's one of the reasons I decided to rewrite my website using [NextJS](http://nextjs.org/) and [TailwindCSS](https://tailwindcss.com/). In this post, I cover what motivated me to rewrite this website and some of features I built during the process.
+{{< warning >}}
 
-<!--more-->
+The content in this post is out of date, but has been archived for posterity.
+
+{{< /warning >}}
+
+As an engineer, nothing is more distracting than new and shiny tech. That's one of the reasons I decided to rewrite my website using [NextJS](http://nextjs.org/) and [TailwindCSS](https://tailwindcss.com/). In this post, I cover what motivated me to rewrite this website and some of features I built during the process.
 
 Previously, I used [Zola](https://www.getzola.org/) to generate the last iteration of this site. There were a few reasons for a rewrite:
 
