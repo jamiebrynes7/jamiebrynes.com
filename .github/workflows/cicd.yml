@@ -1,0 +1,38 @@
+name: CI/CD
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.111.3"
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Build CSS
+        run: npm run build
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Deploy site
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: "./public"
+          production-branch: master
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deployed!"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
