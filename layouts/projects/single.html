@@ -12,29 +12,28 @@
   <div class="pb-16 xl:pb-20">
     <div class="prose dark:prose-invert max-w-none pt-10 pb-8">
       {{ .Content }}
-      {{ $tags := .Site.Taxonomies.tags }}
-      {{ $tagKey := (printf "@projects/%s" (.Title | anchorize)) }}
-      {{ with (index $tags $tagKey) }}
       <hr />
-      <h2>Related Writing</h2>
+    </div>
+    {{ $tags := .Site.Taxonomies.tags }}
+    {{ $tagKey := (printf "@projects/%s" (.Title | anchorize)) }}
+    {{ with (index $tags $tagKey) }}
+      <h2 class="text-xl text-gray-800 dark:text-gray-200 mb-4">Related Writing</h2>
       <div class="space-y-4">
         {{ range . }}
-        <div class="flex flex-col rounded-md p-2">
-          <span class="text-xs -mb-4">
-            {{ .Date | time.Format ":date_long" }}
-          </span>
-          <h4>{{ .Title }}</h4>
-          {{ .Summary }}
-          <div class="flex flex-row-reverse">
-            <a href="{{ .RelPermalink }}" class="text-blue-500 dark:text-blue-400 hover:text-blue-600 cursor-pointer">
-              Read more →
-            </a>
+        <a href="{{ .RelPermalink }}">
+          <div class="flex flex-col rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer text-gray-800 dark:text-gray-200 space-y-1">
+            <span class="text-xs text-gray-700 dark:text-gray-300">
+              {{ .Date | time.Format ":date_long" }}
+            </span>
+            <h4 class="text-lg">{{ .Title }}</h4>
+            <div class="prose dark:prose-invert">
+            {{ .Summary }}
+            </div>
           </div>
-        </div>
+        </a>
         {{ end }}
       </div>
       {{ end }}
-    </div>
   </div>
 </article>
 
