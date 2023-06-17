@@ -13,7 +13,7 @@
 
 {{ $jsOpts := dict "minify" true }}
 {{ $js := resources.Get "js/main.ts" | js.Build $jsOpts }}
-<script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
+<script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
 <title>{{ .Site.Title }}</title>
 

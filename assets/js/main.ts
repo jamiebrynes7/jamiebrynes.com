@@ -15,19 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function setupDarkModeToggle() {
-  const sunIcon = document.getElementById("dark-mode-toggle_sun");
-  const moonIcon = document.getElementById("dark-mode-toggle_moon");
-
   const localStorageKey = "theme";
 
   const setDarkMode = (isDarkMode: boolean) => {
     if (isDarkMode) {
-      sunIcon.classList.remove("hidden");
-      moonIcon.classList.add("hidden");
       document.documentElement.classList.add("dark");
     } else {
-      sunIcon.classList.add("hidden");
-      moonIcon.classList.remove("hidden");
       document.documentElement.classList.remove("dark");
     }
 
