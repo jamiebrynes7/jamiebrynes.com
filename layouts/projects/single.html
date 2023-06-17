@@ -20,17 +20,18 @@
       <h2 class="text-xl text-gray-800 dark:text-gray-200 mb-4">Related Writing</h2>
       <div class="space-y-4">
         {{ range . }}
-        <a href="{{ .RelPermalink }}">
-          <div class="flex flex-col rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer text-gray-800 dark:text-gray-200 space-y-1">
-            <span class="text-xs text-gray-700 dark:text-gray-300">
-              {{ .Date | time.Format ":date_long" }}
-            </span>
-            <h4 class="text-lg">{{ .Title }}</h4>
-            <div class="prose dark:prose-invert">
-            {{ .Summary }}
-            </div>
+        <div class="flex flex-col rounded-md p-2 text-gray-800 dark:text-gray-200 space-y-1">
+          <span class="text-xs text-gray-700 dark:text-gray-300">
+            {{ .Date | time.Format ":date_long" }}
+          </span>
+          <h4 class="text-lg">{{ .Title }}</h4>
+          <div class="prose dark:prose-invert max-w-none">
+          {{ .Summary }}
           </div>
-        </a>
+          <a href="{{ .RelPermalink}}" class="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer ml-auto font-semibold">
+            Read more →
+          </a>
+        </div>
         {{ end }}
       </div>
       {{ end }}
