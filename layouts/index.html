@@ -27,7 +27,7 @@
   <div>
     <h4
       class="text-2xl text-gray-600 dark:text-gray-300 font-bold pb-2 border-gray-200 dark:border-gray-700 border-b mb-5">
-      Latest Writing
+      Writing
     </h4>
     <div class="space-y-5">
       {{ range ( where .Site.RegularPages "Type" "posts" | first 5) }}
@@ -52,7 +52,7 @@
   <div class="mt-16 xl:mt-0">
     <h4
       class="text-2xl text-gray-600 dark:text-gray-300 font-bold pb-2 border-gray-200 dark:border-gray-700 border-b mb-5">
-      Selected Projects
+      Projects
     </h4>
     <div class="space-y-5">
       {{ range ( where .Site.RegularPages "Type" "projects" | first 5) }}

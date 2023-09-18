@@ -14,19 +14,18 @@ jobs:
       - name: Setup Magic Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@main
 
-      - name: Install dependencies
-        run: nix develop --impure --command npm install 
+      - name: Build website
+        run: nix build
 
-      - name: Build CSS
-        run: nix develop --impure --command npm run build
-
-      - name: Build site
-        run: nix develop --impure --command hugo --minify
+      # The actions-netlify doesn't seem to like symlinks,
+      # so lets copy the result out of the symlink.
+      - name: Prepare upload
+        run: mkdir -p ./public && cp -r ./result/* ./public
 
       - name: Deploy site
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: "./public"
+          publish-dir: ./public
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deployed!"
