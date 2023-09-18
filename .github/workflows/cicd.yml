@@ -3,24 +3,25 @@ on: [push]
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: "0.111.3"
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Install NPM dependencies
-        run: npm ci
+      - name: Setup Magic Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Install dependencies
+        run: nix develop --impure --command npm install 
 
       - name: Build CSS
-        run: npm run build
+        run: nix develop --impure --command npm run build
 
       - name: Build site
-        run: hugo --minify
+        run: nix develop --impure --command hugo --minify
 
       - name: Deploy site
         uses: nwtgck/actions-netlify@v2.0
