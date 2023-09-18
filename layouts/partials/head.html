@@ -15,7 +15,13 @@
 {{ $js := resources.Get "js/main.ts" | js.Build $jsOpts }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
-<title>{{ .Site.Title }}</title>
+<title>
+  {{ if eq .Page.Title .Site.Title }}
+    {{ .Site.Title }}
+  {{ else }}
+    {{.Page.Title}} | {{ .Site.Title }}
+  {{ end }}
+</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/assets/favicon/favicon-196x196.png" sizes="196x196" />
