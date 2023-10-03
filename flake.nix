@@ -8,10 +8,12 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        revision = if (self ? rev) then self.rev else "dirty";
+        scripts = import ./scripts.nix { inherit pkgs; };
       in {
         packages.website = pkgs.stdenv.mkDerivation rec {
           pname = "jamiebrynes.com";
-          version = "1.0.0";
+          version = revision;
           src = ./.;
           nativeBuildInputs = [ 
             pkgs.hugo
@@ -28,10 +30,9 @@
         defaultPackage = self.packages.${system}.website;
 
         devShell = pkgs.mkShell {
-          buildInputs = [
-            pkgs.hugo
-            pkgs.tailwindcss
-          ];
+          buildInputs = with pkgs; [
+            hugo
+          ] ++ scripts.scripts;
         };
       }
     );
