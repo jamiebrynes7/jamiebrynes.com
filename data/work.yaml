@@ -1,0 +1,15 @@
+- name: Samsara
+  dates: April 2023 - present
+  logo:
+    filename: samsara.png
+    with_background: true
+- name: hyperexponential
+  dates: Jan 2022 - Mar 2023
+  logo:
+    filename: hyperexponential.jpeg
+    with_background: false
+- name: Improbable
+  dates: Sept 2017 - Dec 2021
+  logo:
+    filename: improbable.png
+    with_background: false
