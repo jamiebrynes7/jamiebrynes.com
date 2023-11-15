@@ -15,11 +15,11 @@ A key driver for the change was my desire for simplicity. I don't update this we
 
 HTML templates & Markdown go in, website comes out!
 
-This extends into the tooling as well. On top of Hugo, I only have the [Tailwind standalone CLI](https://tailwindcss.com/blog/standalone-cli) which suffices for my needs.  That mean my build environment is very simple: two binaries and that's it. No `package.json`, no `node_modules`, just bliss.
+This extends into the tooling as well. On top of Hugo, I only use the [Tailwind standalone CLI](https://tailwindcss.com/blog/standalone-cli) which suffices for my needs. That means my build environment is very simple: two binaries and that's it. No `package.json`, no `node_modules`, just bliss.
 
 ### 2. Speed
 
-The other side of the equation is speed, or vanity metrics. I had no real need for NextJS, I didn't use any fancy features, and I certainly wasn't interested in the newer hybrid modes of rendering. The static generation mode of NextJS worked well enough, but it still ended up sending 100s of KBs down the wire to render a static page. Why? There's no need.
+The other side of the equation is speed, also known as vanity metrics. I had no real need for NextJS, I didn't use any fancy features, and I certainly wasn't interested in the newer hybrid modes of rendering. The static generation mode of NextJS worked well enough, but it still ended up sending 100s of KBs down the wire to render a static page. Why? There's no need.
 
 ---
 
