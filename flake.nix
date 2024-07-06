@@ -11,14 +11,11 @@
         revision = if (self ? rev) then self.rev else "dirty";
         scripts = import ./scripts.nix { inherit pkgs; };
       in {
-        packages.website = pkgs.stdenv.mkDerivation rec {
+        packages.website = pkgs.stdenv.mkDerivation {
           pname = "jamiebrynes.com";
           version = revision;
           src = ./.;
-          nativeBuildInputs = [ 
-            pkgs.hugo
-            pkgs.tailwindcss
-          ];
+          nativeBuildInputs = [ pkgs.hugo pkgs.tailwindcss ];
           buildPhase = ''
             tailwindcss -i assets/css/main.css -o static/main.min.css --minify
             hugo --minify
@@ -30,10 +27,7 @@
         defaultPackage = self.packages.${system}.website;
 
         devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            hugo
-          ] ++ scripts.scripts;
+          buildInputs = with pkgs; [ hugo ] ++ scripts.scripts;
         };
-      }
-    );
+      });
 }
