@@ -5,7 +5,7 @@
 {{ $chromaCss := resources.Get "css/nord-chroma.css" | resources.Minify }}
 <link rel="preload stylesheet" as="style" href="{{ $chromaCss.RelPermalink }}" />
 
-{{ if .Site.IsServer }}
+{{ if hugo.IsServer }}
 <link rel="preload stylesheet" as="style" href="/main.css" />
 {{ else }}
 <link rel="preload stylesheet" as="style" href="/main.min.css" />
