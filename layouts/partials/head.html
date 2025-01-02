@@ -14,6 +14,7 @@
 {{ $jsOpts := dict "minify" true }}
 {{ $js := resources.Get "js/main.ts" | js.Build $jsOpts }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="74e6e4ce-e705-49b0-b44e-2685294f68b6"></script>
 
 <title>
   {{ if eq .Page.Title .Site.Title }}
