@@ -1,13 +1,18 @@
-<footer class="items-center justify-between mt-16 h-16 flex flex-row-reverse">
-  <div class="flex text-gray-500 dark:text-gray-400 text-md xl:text-xl text-center justify-center">
+<footer
+  class="
+  sm:items-center justify-start sm:justify-between mt-16 mb-4 flex flex-col sm:flex-row text-gray-400 dark:text-gray-400 space-y-1 sm:space-y-0">
+  <div class="text-sm xl:text-md">
+    <p>Crafted with ❤️ in <a href="https://gohugo.io/" class="hover:text-blue-500 duration-300">Hugo</a></p>
+  </div>
+  <div class="text-sm xl:text-md">
+    &copy; 2025 Jamie Brynes
+  </div>
+  <div class="space-x-4 hidden sm:flex">
     {{ range .Site.Params.socials }}
-    <a class="mr-4 last:mr-0 hover:text-blue-500 duration-300" href="{{ .url }}">
+    <a class="hover:text-blue-500 duration-300" href="{{ .url }}">
       {{ $icon := printf "components/icons/%s.html" .icon }}
-      {{ partial $icon "w-5 h-5" }}
+      {{ partial $icon "w-4 h-4" }}
     </a>
     {{ end }}
-  </div>
-  <div class="text-sm xl:text-md text-gray-500 dark:text-gray-400 font-semibold text-center flex">
-    Jamie Brynes &copy; 2023
   </div>
 </footer>
