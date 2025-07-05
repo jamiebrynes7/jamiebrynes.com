@@ -4,9 +4,9 @@
 
 <body class="dark:bg-gray-900 pt-4">
   <div class="min-h-screen">
-    <div class="px-4 sm:px-6 xl:px-0">
+    <div class="px-4 sm:px-6 max-w-4xl xl:max-w-5xl mx-auto">
       {{ partial "header.html" . }}
-      <main class="max-w-4xl xl:max-w-5xl mx-auto">
+      <main>
         {{ block "main" . }} {{ end }}
       </main>
     </div>
