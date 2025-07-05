@@ -21,9 +21,9 @@ params:
     - title: GitHub
       icon: github
       url: https://www.github.com/jamiebrynes7
-    - title: Twitter
-      icon: twitter
-      url: https://www.twitter.com/jamiebrynes
+    - title: Bluesky
+      icon: bsky
+      url: https://bsky.app/profile/jamiebrynes.com
     - title: LinkedIn
       icon: linkedin
       url: https://www.linkedin.com/in/jamiesonbrynes/
