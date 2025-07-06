@@ -7,13 +7,13 @@ taxonomies:
 menu:
   main:
     - name: Home
-      url: /
+      pageRef: /
       weight: 1
     - name: Writing
-      url: /posts
+      pageRef: /posts
       weight: 2
     - name: Projects
-      url: /projects
+      pageRef: /projects
       weight: 3
 
 params:

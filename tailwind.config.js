@@ -30,7 +30,6 @@ function linkModifications(color, hoverColor) {
   return {
     a: {
       color: color,
-      textDecoration: "none",
     },
     "a:hover": {
       color: hoverColor,
@@ -63,7 +62,7 @@ module.exports = {
               ),
               ...linkModifications(
                 theme("colors.blue.500"),
-                theme("colors.blue.400")
+                theme("colors.blue.600")
               ),
             },
           ]

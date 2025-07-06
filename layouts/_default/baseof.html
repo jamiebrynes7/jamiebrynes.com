@@ -2,17 +2,17 @@
 <html lang="{{ .Site.LanguageCode }}">
 {{ partial "head.html" . }}
 
-<body class="dark:bg-gray-900 pt-4">
-  <div class="min-h-screen">
-    <div class="px-4 sm:px-6 max-w-4xl xl:max-w-5xl mx-auto">
+<body class="bg-slate-50 dark:bg-slate-950 pt-4">
+  <div class="min-h-screen flex flex-col justify-between">
+    <div class="px-4 sm:px-6 max-w-4xl xl:max-w-5xl mx-auto w-full">
       {{ partial "header.html" . }}
       <main>
         {{ block "main" . }} {{ end }}
       </main>
     </div>
-  </div>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
-    {{ partial "footer.html" . }}
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 xl:max-w-5xl w-full pb-8">
+      {{ partial "footer.html" . }}
+    </div>
   </div>
 </body>
 
