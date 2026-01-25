@@ -9,7 +9,6 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         revision = if (self ? rev) then self.rev else "dirty";
-        scripts = import ./scripts.nix { inherit pkgs; };
       in {
         packages.website = pkgs.stdenv.mkDerivation {
           pname = "jamiebrynes.com";
@@ -27,7 +26,7 @@
         defaultPackage = self.packages.${system}.website;
 
         devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [ hugo ] ++ scripts.scripts;
+          buildInputs = with pkgs; [ hugo tailwindcss just ];
         };
       });
 }
