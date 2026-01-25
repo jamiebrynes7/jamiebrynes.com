@@ -11,3 +11,4 @@ serde_yaml = "0.9"
 walkdir = "2"
 notify = { version = "8", features = ["macos_fsevent"] }
 anyhow = "1"
+owo-colors = "4"

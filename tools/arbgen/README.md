@@ -28,4 +28,4 @@ The YAML frontmatter supports the following keys:
 
 - `lang`: the language of the snippet
 
-For a given `file.snippet`, `arbgen` should generate `file.html`.
+For a given `file.snippet`, `arbgen` should generate `file.gen.html`.
