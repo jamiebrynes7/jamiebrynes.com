@@ -2,31 +2,38 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, rust-overlay, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
-        revision = if (self ? rev) then self.rev else "dirty";
-      in {
-        packages.website = pkgs.stdenv.mkDerivation {
-          pname = "jamiebrynes.com";
-          version = revision;
-          src = ./.;
-          nativeBuildInputs = [ pkgs.hugo pkgs.tailwindcss ];
-          buildPhase = ''
-            tailwindcss -i assets/css/main.css -o static/main.min.css --minify
-            hugo --minify
-          '';
-          installPhase = ''
-            cp -r public $out
-          '';
-        };
-        defaultPackage = self.packages.${system}.website;
+        overlays = [ (import rust-overlay) ];
+        pkgs = import nixpkgs { inherit system overlays; };
 
+        rustToolchain = pkgs.rust-bin.stable.latest.default.override {
+          extensions = [ "rust-analyzer" "rust-src" ];
+        };
+      in {
         devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [ hugo tailwindcss just ];
+          buildInputs = with pkgs; [
+            # General tools
+            just
+
+            # For editing Nix
+            nil
+            nixfmt-classic
+
+            # Static site tools
+            hugo
+            tailwindcss
+
+            # Rust toolchain
+            rustToolchain
+          ];
         };
       });
 }
