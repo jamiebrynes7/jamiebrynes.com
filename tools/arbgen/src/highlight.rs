@@ -14,7 +14,12 @@ impl HtmlHighlighter {
 
     pub fn highlight(&self, lang: &str, code: &str) -> Result<String> {
         let mut hl = self.highlighter.fork();
-        hl.highlight(lang, code)
-            .with_context(|| format!("Failed to highlight code with language '{}'", lang))
+        let html = hl
+            .highlight(lang, code)
+            .with_context(|| format!("Failed to highlight code with language '{}'", lang))?;
+
+        let formatted = format!("<pre class=\"arbgen-code not-prose\">{}</pre>", html);
+
+        Ok(formatted)
     }
 }
