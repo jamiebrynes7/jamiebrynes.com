@@ -6,10 +6,12 @@ Arbgen is a CLI tool that uses [Arborium](https://arborium.bearcove.eu/) to pre-
 
 ```bash
 # Recursively scan ${path} for fragments and generate HTML from them
-arbgen --target-dir=${path}
+arbgen snippets --target-dir=${path}
 
 # As above, but will watch for file changes and regenerate the affected files.
-arbgen --target-dir=${path} --watch
+arbgen snippets --target-dir=${path} --watch
+
+arbgen theme --light=${theme} --dark=${theme} --out=${output_path}
 ```
 
 ## Snippet Reference
