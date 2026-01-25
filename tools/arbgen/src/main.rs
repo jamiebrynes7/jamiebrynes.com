@@ -1,9 +1,11 @@
 mod highlight;
+mod output;
 mod scanner;
 mod snippet;
+mod target;
 mod watcher;
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 use clap::Parser;
 use std::path::PathBuf;
 
@@ -23,11 +25,15 @@ struct Args {
 fn main() -> Result<()> {
     let args = Args::parse();
 
-    // Initial scan and process
-    scanner::scan_and_process(&args.target_dir)?;
+    let canonical_dir = args
+        .target_dir
+        .canonicalize()
+        .with_context(|| format!("Failed to canonicalize path: {}", args.target_dir.display()))?;
+
+    scanner::scan_and_process(&canonical_dir)?;
 
     if args.watch {
-        watcher::watch(&args.target_dir)?;
+        watcher::watch(&canonical_dir)?;
     }
 
     Ok(())
