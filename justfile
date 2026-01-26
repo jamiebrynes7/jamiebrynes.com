@@ -16,7 +16,7 @@ tailwind-build:
   tailwindcss -i assets/css/main.css -o static/main.min.css --minify
 
 arbgen-dev:
-  cd tools/arbgen && cargo run -- --config={{justfile_directory()}}/arbgen.toml --watch
+  cargo run -p arbgen -- --watch
 
 arbgen-gen:
-  cd tools/arbgen && cargo run -- --config={{justfile_directory()}}/arbgen.toml
+  cargo run -p arbgen
