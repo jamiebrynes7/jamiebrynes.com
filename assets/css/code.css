@@ -8,9 +8,35 @@
 }
 
 .arbgen-code code {
-    display: block;
+    display: table;
     overflow-x: auto;
-    padding: 0.75em 0em;
+    counter-reset: line-number;
+}
+
+.arbgen-code .line {
+    display: table-row;
+    counter-increment: line-number;
+}
+
+.arbgen-code .ln {
+    display: table-cell;
+    text-align: right;
+    padding-right: 1em;
+    padding-left: 0.75em;
+    user-select: none;
+    -webkit-user-select: none;
+    min-width: 2em;
+    opacity: 0.5;
+}
+
+.arbgen-code .ln::before {
+    content: counter(line-number);
+}
+
+.arbgen-code .lc {
+    display: table-cell;
+    white-space: pre;
+    padding-right: 0.75em;
 }
 
 .dark .arbgen-code {

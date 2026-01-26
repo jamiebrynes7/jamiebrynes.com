@@ -89,7 +89,12 @@ function setupCodeCopyButtons() {
       if (!code) return;
 
       try {
-        await navigator.clipboard.writeText(code.textContent || "");
+        // Extract text from each line content span and join with newlines
+        const lineContents = code.querySelectorAll(".lc");
+        const text = Array.from(lineContents)
+          .map((lc) => lc.textContent || "")
+          .join("\n");
+        await navigator.clipboard.writeText(text);
 
         // Fade out, swap icon, fade in
         button.style.opacity = "0";
