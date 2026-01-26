@@ -21,9 +21,16 @@ pub fn finish(message: &str) {
     println!("{}", message.bold().green());
 }
 
-pub fn watching(path: &Path) {
-    println!("{} {}", "Watching".yellow().bold(), path.display());
+pub fn watching(paths: &[&Path]) {
+    println!("{}", "Watching".yellow().bold());
+    for path in paths {
+        println!("  {} {}", "-".dimmed(), path.display());
+    }
     println!("  Press {} to stop", "Ctrl+C".dimmed());
+}
+
+pub fn config_reloaded() {
+    println!("{}", "Config reloaded".cyan().bold());
 }
 
 pub fn error(context: &str, err: &anyhow::Error) {

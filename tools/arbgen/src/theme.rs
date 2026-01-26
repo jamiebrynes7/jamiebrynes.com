@@ -1,20 +1,20 @@
 use anyhow::{Context, Result};
-use std::path::Path;
 
+use crate::config::ThemeConfig;
 use crate::output;
 
-pub fn generate_theme_css(light: &str, dark: &str, out: &Path) -> Result<()> {
+pub fn generate_theme_css(config: &ThemeConfig) -> Result<()> {
     let themes = arborium::theme::builtin::all();
 
     let light_theme = themes
         .iter()
-        .find(|t| t.name == light)
-        .ok_or_else(|| anyhow::anyhow!("Light theme '{}' not found", light))?;
+        .find(|t| t.name == config.light)
+        .ok_or_else(|| anyhow::anyhow!("Light theme '{}' not found", config.light))?;
 
     let dark_theme = themes
         .iter()
-        .find(|t| t.name == dark)
-        .ok_or_else(|| anyhow::anyhow!("Dark theme '{}' not found", dark))?;
+        .find(|t| t.name == config.dark)
+        .ok_or_else(|| anyhow::anyhow!("Dark theme '{}' not found", config.dark))?;
 
     output::start("Generating theme CSS...");
 
@@ -23,10 +23,10 @@ pub fn generate_theme_css(light: &str, dark: &str, out: &Path) -> Result<()> {
 
     let combined = format!("{}\n{}", light_css, dark_css);
 
-    std::fs::write(out, combined)
-        .with_context(|| format!("Failed to write theme CSS to {}", out.display()))?;
+    std::fs::write(&config.output, combined)
+        .with_context(|| format!("Failed to write theme CSS to {}", config.output.display()))?;
 
-    output::generated(out);
+    output::generated(&config.output);
 
     Ok(())
 }
