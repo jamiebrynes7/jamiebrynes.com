@@ -13,3 +13,5 @@
 /result
 
 **/target/
+*.gen.html
+*.gen.css
