@@ -1,0 +1,7 @@
+[snippets]
+target_dir = "content"
+
+[theme]
+light = "Catppuccin Latte"
+dark = "Tokyo Night"
+output = "assets/css/code.gen.css"

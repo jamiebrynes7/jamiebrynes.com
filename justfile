@@ -1,7 +1,7 @@
 [parallel]
-dev: hugo-dev tailwind-dev arbgen-dev arbgen-gen-theme
+dev: hugo-dev tailwind-dev arbgen-dev
 
-build: arbgen-gen-theme arbgen-gen tailwind-build hugo
+build: arbgen-gen tailwind-build hugo
 
 hugo-dev:
   hugo serve
@@ -16,10 +16,7 @@ tailwind-build:
   tailwindcss -i assets/css/main.css -o static/main.min.css --minify
 
 arbgen-dev:
-  cd tools/arbgen && cargo run -- snippets --watch --target-dir={{justfile_directory()}}/content
+  cd tools/arbgen && cargo run -- --config={{justfile_directory()}}/arbgen.toml --watch
 
 arbgen-gen:
-  cd tools/arbgen && cargo run snippets --target-dir={{justfile_directory()}}/content
-
-arbgen-gen-theme:
-  cd tools/arbgen && cargo run -- theme --out={{justfile_directory()}}/assets/css/code.gen.css --light="Catppuccin Latte" --dark="Tokyo Night"
+  cd tools/arbgen && cargo run -- --config={{justfile_directory()}}/arbgen.toml
