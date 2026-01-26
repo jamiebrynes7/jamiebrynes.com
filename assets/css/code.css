@@ -1,4 +1,5 @@
 .arbgen-code {
+    position: relative;
     padding: 1.25em;
     border-radius: 10px;
     border-color: rgba(0, 0, 0, 0.1);
@@ -6,6 +7,45 @@
     font-size: 0.875em;
 }
 
+.arbgen-code code {
+    display: block;
+    overflow-x: auto;
+    padding-top: 0.75em;
+}
+
 .dark .arbgen-code {
     border-color: rgba(255, 255, 255, 0.1);
+}
+
+.arbgen-code::before {
+    content: attr(data-code-lang);
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    padding: 0.125rem 0.5rem;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 5px;
+    pointer-events: none;
+    background-color: #64748b;
+    color: #fff;
+}
+
+.arbgen-code[data-code-lang="javascript"]::before,
+.arbgen-code[data-code-lang="js"]::before {
+    background-color: #f7df1e;
+    color: #000;
+}
+
+.arbgen-code[data-code-lang="typescript"]::before,
+.arbgen-code[data-code-lang="ts"]::before {
+    background-color: #3178c6;
+    color: #fff;
+}
+
+.arbgen-code[data-code-lang="rust"]::before,
+.arbgen-code[data-code-lang="rs"]::before {
+    background-color: #dea584;
+    color: #000;
 }

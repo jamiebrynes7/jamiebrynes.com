@@ -19,8 +19,8 @@ impl HtmlHighlighter {
             .with_context(|| format!("Failed to highlight code with language '{}'", lang))?;
 
         let formatted = format!(
-            r#"<pre class="arbgen-code not-prose"><code>{}</code></pre>"#,
-            html
+            r#"<pre class="arbgen-code not-prose" data-code-lang="{}"><code>{}</code></pre>"#,
+            lang, html
         );
 
         Ok(formatted)
