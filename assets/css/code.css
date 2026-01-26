@@ -10,7 +10,7 @@
 .arbgen-code code {
     display: block;
     overflow-x: auto;
-    padding-top: 0.75em;
+    padding: 0.75em 0em;
 }
 
 .dark .arbgen-code {
@@ -48,4 +48,45 @@
 .arbgen-code[data-code-lang="rs"]::before {
     background-color: #dea584;
     color: #000;
+}
+
+.arbgen-code .copy-button {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem;
+    background: transparent;
+    cursor: pointer;
+    color: #64748b;
+    transition: color 0.2s ease, opacity 0.15s ease background 0.2s ease;
+    border-radius: 5px;
+}
+
+.arbgen-code .copy-button:hover {
+    color: #334155;
+    background: rgba(0, 0, 0, 0.07);
+}
+
+.arbgen-code .copy-button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.arbgen-code .copy-button.copied {
+    color: #22c55e;
+    background: transparent;
+}
+
+.dark .arbgen-code .copy-button {
+    color: #94a3b8;
+}
+
+.dark .arbgen-code .copy-button:hover {
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.dark .arbgen-code .copy-button.copied {
+    color: #4ade80;
+    background: transparent;
 }
