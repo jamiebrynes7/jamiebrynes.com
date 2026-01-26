@@ -12,6 +12,7 @@ if (
 document.addEventListener("DOMContentLoaded", function () {
   setupDarkModeToggle();
   setupMobileMenu();
+  setupCodeCopyButtons();
 });
 
 function setupDarkModeToggle() {
@@ -67,5 +68,54 @@ function setupMobileMenu() {
 
   burgerIcon.addEventListener("click", () => {
     setVisibility(true);
+  });
+}
+
+function setupCodeCopyButtons() {
+  const clipboardIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+  const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+
+  const codeBlocks = document.querySelectorAll(".arbgen-code");
+
+  codeBlocks.forEach((block) => {
+    const button = document.createElement("button");
+    button.className = "copy-button";
+    button.innerHTML = clipboardIcon;
+    button.setAttribute("aria-label", "Copy code to clipboard");
+    button.setAttribute("title", "Copy");
+
+    button.addEventListener("click", async () => {
+      const code = block.querySelector("code");
+      if (!code) return;
+
+      try {
+        await navigator.clipboard.writeText(code.textContent || "");
+
+        // Fade out, swap icon, fade in
+        button.style.opacity = "0";
+        setTimeout(() => {
+          button.innerHTML = checkIcon;
+          button.classList.add("copied");
+          button.setAttribute("aria-label", "Copied!");
+          button.setAttribute("title", "Copied!");
+          button.style.opacity = "1";
+        }, 150);
+
+        setTimeout(() => {
+          button.style.opacity = "0";
+          setTimeout(() => {
+            button.innerHTML = clipboardIcon;
+            button.classList.remove("copied");
+            button.setAttribute("aria-label", "Copy code to clipboard");
+            button.setAttribute("title", "Copy");
+            button.style.opacity = "1";
+          }, 150);
+        }, 1500);
+      } catch (err) {
+        console.error("Failed to copy code:", err);
+      }
+    });
+
+    block.appendChild(button);
   });
 }
