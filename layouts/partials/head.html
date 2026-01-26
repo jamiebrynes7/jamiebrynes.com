@@ -2,8 +2,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-{{ $chromaCss := resources.Get "css/nord-chroma.css" | resources.Minify }}
-<link rel="preload stylesheet" as="style" href="{{ $chromaCss.RelPermalink }}" />
+
+{{ $codeCss := resources.Get "css/code.css" | resources.Minify }}
+{{ $codeGenCss := resources.Get "css/code.gen.css" | resources.Minify }}
+{{ $codeCombined := slice $codeCss $codeGenCss | resources.Concat "code.combined.css" }}
+<link rel="preload stylesheet" as="style" href="{{ $codeCombined.RelPermalink }}" />
 
 {{ if hugo.IsServer }}
 <link rel="preload stylesheet" as="style" href="/main.css" />
@@ -17,9 +20,9 @@
 
 <title>
   {{ if eq .Page.Title .Site.Title }}
-    {{ .Site.Title }}
+  {{ .Site.Title }}
   {{ else }}
-    {{.Page.Title}} | {{ .Site.Title }}
+  {{.Page.Title}} | {{ .Site.Title }}
   {{ end }}
 </title>
 
@@ -27,4 +30,4 @@
 <link rel="icon" type="image/png" href="/assets/favicon/favicon-196x196.png" sizes="196x196" />
 <link rel="icon" type="image/png" href="/assets/favicon/favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="/assets/favicon/favicon-16x16.png" sizes="16x16" />
-<link rel="shortcut icon"  href="/assets/favicon/favicon.ico" sizes="128x128" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" sizes="128x128" />
