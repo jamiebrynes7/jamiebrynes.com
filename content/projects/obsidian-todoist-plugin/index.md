@@ -15,14 +15,7 @@ Todoist is task and project management software that I use extensively. Obsidian
 
 For example, the following query:
 
-```json
-{
-  "name": "",
-  "filter": "#Obsidian x Todoist",
-  "sorting": ["date", "priority"],
-  "group": true
-}
-```
+{{< include-html "example.gen.html" >}}
 
 Is rendered as:
 
