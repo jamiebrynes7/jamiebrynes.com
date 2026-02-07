@@ -19,7 +19,7 @@
           {{ .Title }}
         </h1>
         <div class="leading-relaxed mb-6 prose prose-sm dark:prose-invert">
-          {{ .Summary }}
+          {{ .Params.description | markdownify }}
         </div>
         <div class="text-sm">
           {{ partial "components/link.html" (dict "url" .RelPermalink "text" "Learn More →") }}
