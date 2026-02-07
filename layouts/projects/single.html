@@ -6,9 +6,16 @@
       <p class="text-xs uppercase text-gray-500 dark:text-gray-400">
         {{ .Params.status }}
       </p>
-      <h1 class="leading-9 text-lg font-semibold text-gray-800 dark:text-gray-200 tracking-tight">
-        {{ .Title }}
-      </h1>
+      <div class="flex justify-between items-center">
+        <h1 class="leading-9 text-lg font-semibold text-gray-800 dark:text-gray-200 tracking-tight">
+          {{ .Title }}
+        </h1>
+        {{ with .Params.githubSlug }}
+        <a href="https://github.com/{{ . }}" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 duration-300">
+          {{ partial "components/icons/github.html" "h-4 w-4" }}
+        </a>
+        {{ end }}
+      </div>
     </div>
   </header>
   <div class="pb-8">
