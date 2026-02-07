@@ -3,22 +3,22 @@ title: "Obsidian & Todoist Plugin"
 status: "active"
 githubSlug: "jamiebrynes7/obsidian-todoist-plugin"
 techStack:
-  - Svelte
+  - React
   - Typescript
 ---
 
-An [Obsidian](https://obsidian.md/) plugin which allows you to materialize [Todoist](https://todoist.com/home) task queries into your notes.
+An [Obsidian](https://obsidian.md/) plugin that materializes [Todoist](https://todoist.com/home) task queries in your notes.
 
 <!--more-->
 
-Todoist is task and project management software that I use extensively. Obsidian is knowledge management software which I also use to plan and track work. Rather than context switching between the two applications, I decided to write an integration between them! The plugin consumes the [Todoist REST API](https://developer.todoist.com/rest/v1/) to fetch the underlying task data and uses the [Obsidian plugin API](https://github.com/obsidianmd/obsidian-api) and Svelte to render the tasks.
+I use [Todoist](https://todoist.com/home) for task management and [Obsidian](https://obsidian.md/) for knowledge management. Rather than context switching between the two, I built an integration. The plugin consumes the [Todoist REST API](https://developer.todoist.com/api/v1/) to fetch task data and uses the [Obsidian plugin API](https://github.com/obsidianmd/obsidian-api) with React to render them.
+
+I've maintained this plugin since 2020, shipped 30+ releases, and amassed 150,000+ downloads across all versions. You can read more about the plugin, its functionality, and how to use it in the [official docs](https://jamiebrynes7.github.io/obsidian-todoist-plugin/docs/overview).
 
 For example, the following query:
 
 {{< include-html "example.gen.html" >}}
 
-Is rendered as:
+Produces the following result:
 
-{{< figure src="./query-example.png" caption="The example rendered query" >}}
-
-This was my first [SvelteJS](https://svelte.dev) project and I've enjoyed the brevity and simplicity of the framework. I can heartily recommend Svelte for rendering data from a remote source and offering a small amount of user interactivity. It also offers a simple API for embedding components within arbitrary DOM and animations out of the box!
+{{< figure src="./example-query-result.png" caption="The example rendered query" >}}
