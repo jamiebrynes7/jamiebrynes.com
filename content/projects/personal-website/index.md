@@ -2,15 +2,11 @@
 title: Personal Website
 status: active
 githubSlug: jamiebrynes7/jamiebrynes.com
+description: "The website you're looking at is open source and handcrafted by me!"
 techStack:
   - Hugo
   - TailwindCSS
 ---
-
-
-The website you're looking at is open source and handcrafted by me!
-
-<!--more-->
 
 This website is built using [Hugo](https://gohugo.io) and [TailwindCSS](https://tailwindcss.com/). I had a few requirements for my personal website:
 

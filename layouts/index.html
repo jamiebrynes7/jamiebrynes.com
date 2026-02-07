@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="text-gray-500 dark:text-gray-400">
-          {{ .Summary | plainify }}
+          {{ .Params.description | markdownify | plainify }}
         </div>
       </div>
       {{ end }}
