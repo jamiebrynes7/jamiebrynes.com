@@ -1,0 +1,46 @@
+name: Update GitHub Stars
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-stars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch GitHub star counts
+        run: ./tools/fetch-github-stars.sh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet data/github.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create PR
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore: update github star counts"
+          branch: update-github-stars
+          title: "chore: update github star counts"
+          body: Automated update of GitHub star counts in `data/github.json`.
+
+      - name: Auto-merge PR
+        if: steps.diff.outputs.changed == 'true'
+        run: gh pr merge update-github-stars --auto --rebase --delete-branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
