@@ -28,6 +28,9 @@ params:
       icon: linkedin
       url: https://www.linkedin.com/in/jamiesonbrynes/
 
+permalinks:
+  posts: /posts/:year/:month/:day/:slug/
+
 markup:
   highlight:
     lineNos: true
