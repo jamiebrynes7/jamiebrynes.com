@@ -8,9 +8,9 @@
       Thoughts, project updates, and anything else!
     </p>
   </div>
-  <ul>
+  <ul class="space-y-4 pt-12">
     {{ range .Pages }}
-    <li class="py-12">
+    <li>
       <div class="flex justify-between items-start text-sm text-gray-900 dark:text-gray-200">
         <div class="flex space-x-4 items-start mr-2">
           <span class="text-gray-500 dark:text-gray-400 flex-shrink-0">{{ .Date | time.Format "02 Jan, 2006" }}</span>
