@@ -67,6 +67,24 @@ module.exports = {
             },
           ]
         },
+        sm: {
+          css: [
+            {
+              h1: {
+                fontSize: "1.1em",
+              },
+              h2: {
+                fontSize: "1.05em",
+              },
+              h3: {
+                fontSize: "1em",
+              },
+              h4: {
+                fontSize: "1em",
+              },
+            },
+          ]
+        },
         invert: {
           css: [
             {
