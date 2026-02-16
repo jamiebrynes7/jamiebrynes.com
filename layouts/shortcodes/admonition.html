@@ -1,0 +1,12 @@
+{{ $type := .Get "type" | default "info" }}
+
+{{ if eq $type "info" }}
+<aside class="my-6 rounded-md border border-slate-300 dark:border-slate-600 p-4 flex items-start space-x-4">
+  <div class="text-blue-500 pt-1">
+    {{ partial "components/icons/info.html" "w-5 h-5" }}
+  </div>
+  <div class="prose dark:prose-invert prose-sm max-w-none">
+    {{ .Inner | markdownify }}
+  </div>
+</aside>
+{{ end }}
