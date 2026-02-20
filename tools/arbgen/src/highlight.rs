@@ -13,10 +13,22 @@ impl HtmlHighlighter {
     }
 
     pub fn highlight(&self, lang: &str, code: &str) -> Result<String> {
-        let mut hl = self.highlighter.fork();
-        let html = hl
-            .highlight(lang, code)
-            .with_context(|| format!("Failed to highlight code with language '{}'", lang))?;
+        let html = if lang == "plain" {
+            // Skip arborium for plain text; just HTML-escape the raw content.
+            code.replace('&', "&amp;")
+                .replace('<', "&lt;")
+                .replace('>', "&gt;")
+                .replace("{{", "&#123;&#123;")
+        } else {
+            let mut hl = self.highlighter.fork();
+            let html = hl
+                .highlight(lang, code)
+                .with_context(|| format!("Failed to highlight code with language '{}'", lang))?;
+
+            // Escape `{{` so Hugo doesn't interpret it as a shortcode or template delimiter
+            // when this HTML is included in a content page via the include-html shortcode.
+            html.replace("{{", "&#123;&#123;")
+        };
 
         let wrapped = wrap_lines_with_numbers(&html);
 
