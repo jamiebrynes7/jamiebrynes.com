@@ -75,28 +75,23 @@ function setupCodeCopyButtons() {
   const clipboardIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
   const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
-  const codeBlocks = document.querySelectorAll(".arbgen-code");
+  const buttons = document.querySelectorAll(".arbgen-code .copy-button");
 
-  codeBlocks.forEach((block) => {
-    const button = document.createElement("button");
-    button.className = "copy-button";
-    button.innerHTML = clipboardIcon;
-    button.setAttribute("aria-label", "Copy code to clipboard");
-    button.setAttribute("title", "Copy");
+  buttons.forEach((button) => {
+    const block = button.closest(".arbgen-code");
+    if (!block) return;
 
     button.addEventListener("click", async () => {
       const code = block.querySelector("code");
       if (!code) return;
 
       try {
-        // Extract text from each line content span and join with newlines
         const lineContents = code.querySelectorAll(".lc");
         const text = Array.from(lineContents)
           .map((lc) => lc.textContent || "")
           .join("\n");
         await navigator.clipboard.writeText(text);
 
-        // Fade out, swap icon, fade in
         button.style.opacity = "0";
         setTimeout(() => {
           button.innerHTML = checkIcon;
@@ -120,7 +115,5 @@ function setupCodeCopyButtons() {
         console.error("Failed to copy code:", err);
       }
     });
-
-    block.appendChild(button);
   });
 }

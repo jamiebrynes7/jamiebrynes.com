@@ -13,3 +13,4 @@ notify = { version = "8", features = ["macos_fsevent"] }
 anyhow = "1"
 owo-colors = "4"
 toml = "0.8"
+simpleicons-rs = "16"

@@ -1,15 +1,19 @@
 .arbgen-code {
-    position: relative;
-    padding: 1.25em;
     border-radius: 10px;
     border-color: rgba(0, 0, 0, 0.1);
     border-width: 1px;
     font-size: 0.875em;
+    overflow: hidden;
+}
+
+.arbgen-code pre {
+    margin: 0;
+    padding: 1.25em;
+    overflow-x: auto;
 }
 
 .arbgen-code code {
     display: table;
-    overflow-x: auto;
     counter-reset: line-number;
 }
 
@@ -42,48 +46,35 @@
     border-color: rgba(255, 255, 255, 0.1);
 }
 
-.arbgen-code::before {
-    content: attr(data-code-lang);
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    font-size: 0.625rem;
+.arbgen-code-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.75rem;
+    color: var(--fg);
+}
+
+.dark .arbgen-code-toolbar {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.arbgen-code-lang {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     text-transform: uppercase;
-    padding: 0.125rem 0.5rem;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 5px;
-    pointer-events: none;
-    background-color: #64748b;
-    color: #fff;
-}
-
-.arbgen-code[data-code-lang="javascript"]::before,
-.arbgen-code[data-code-lang="js"]::before {
-    background-color: #f7df1e;
-    color: #000;
-}
-
-.arbgen-code[data-code-lang="typescript"]::before,
-.arbgen-code[data-code-lang="ts"]::before {
-    background-color: #3178c6;
-    color: #fff;
-}
-
-.arbgen-code[data-code-lang="rust"]::before,
-.arbgen-code[data-code-lang="rs"]::before {
-    background-color: #dea584;
-    color: #000;
 }
 
 .arbgen-code .copy-button {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0.5rem;
     padding: 0.25rem;
     background: transparent;
     cursor: pointer;
-    color: #64748b;
-    transition: color 0.2s ease, opacity 0.15s ease background 0.2s ease;
+    color: var(--muted);
+    transition: color 0.2s ease, opacity 0.15s ease, background 0.2s ease;
     border-radius: 5px;
 }
 
@@ -100,10 +91,6 @@
 .arbgen-code .copy-button.copied {
     color: #22c55e;
     background: transparent;
-}
-
-.dark .arbgen-code .copy-button {
-    color: #94a3b8;
 }
 
 .dark .arbgen-code .copy-button:hover {
