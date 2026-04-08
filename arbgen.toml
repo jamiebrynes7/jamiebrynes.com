@@ -3,5 +3,5 @@ target_dir = "content"
 
 [theme]
 light = "Catppuccin Latte"
-dark = "Tokyo Night"
+dark = "Rosé Pine Moon"
 output = "assets/css/code.gen.css"
